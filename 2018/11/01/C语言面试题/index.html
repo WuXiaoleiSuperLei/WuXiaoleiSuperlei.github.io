@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="说明：本文题目来源于牛客网，答案分析来源个人，仅为参考  1、请问下面的程序最后会产生多少个进程：int main(){​     int i;​     for(i = 0; i&amp;lt;5;i++){​        int pid = fork();​        if(pid == 0){​            //do something​        } else {​">
+<meta name="description" content="本文设置了12到C语言面试题，快来挑战一下吧！">
 <meta name="keywords" content="c语言 面试题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C语言面试题">
 <meta property="og:url" content="http://yoursite.com/2018/11/01/C语言面试题/index.html">
 <meta property="og:site_name" content="Welcome to Rita&#39;s World">
-<meta property="og:description" content="说明：本文题目来源于牛客网，答案分析来源个人，仅为参考  1、请问下面的程序最后会产生多少个进程：int main(){​     int i;​     for(i = 0; i&amp;lt;5;i++){​        int pid = fork();​        if(pid == 0){​            //do something​        } else {​">
+<meta property="og:description" content="本文设置了12到C语言面试题，快来挑战一下吧！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="e:/blog/source/_posts/C语言面试题/皮卡丘.jpg">
-<meta property="og:updated_time" content="2018-11-02T01:45:24.670Z">
+<meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/53bb1eaa40d9c68780bfaf5a7328ae07.jpg">
+<meta property="og:updated_time" content="2018-11-02T03:25:51.318Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言面试题">
-<meta name="twitter:description" content="说明：本文题目来源于牛客网，答案分析来源个人，仅为参考  1、请问下面的程序最后会产生多少个进程：int main(){​     int i;​     for(i = 0; i&amp;lt;5;i++){​        int pid = fork();​        if(pid == 0){​            //do something​        } else {​">
-<meta name="twitter:image" content="e:/blog/source/_posts/C语言面试题/皮卡丘.jpg">
+<meta name="twitter:description" content="本文设置了12到C语言面试题，快来挑战一下吧！">
+<meta name="twitter:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/53bb1eaa40d9c68780bfaf5a7328ae07.jpg">
 
 
 
@@ -100,9 +100,9 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '5.1.4',
-    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -150,7 +150,7 @@
     
   
 
-  <div class="container sidebar-position-right page-post-detail">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -192,6 +192,26 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
           </a>
         </li>
       
@@ -323,6 +343,10 @@
           
 
           
+              <div class="post-description">
+                  本文设置了12到C语言面试题，快来挑战一下吧！
+              </div>
+          
 
         </div>
       </header>
@@ -338,16 +362,48 @@
 
       
         <p>说明：本文题目来源于牛客网，答案分析来源个人，仅为参考</p>
-<p><img src="E:\blog\source\_posts\C语言面试题\皮卡丘.jpg" alt="pikaqiu"></p>
-<p>1、请问下面的程序最后会产生多少个进程：<br>int main(){<br>​     int i;<br>​     for(i = 0; i&lt;5;i++){<br>​        int pid = fork();<br>​        if(pid == 0){<br>​            //do something<br>​        } else {<br>​        //do something<br>​        }<br>​        }<br>​    // do somthing,sleep<br>​    return 0;<br>}</p>
+<p><img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/53bb1eaa40d9c68780bfaf5a7328ae07.jpg" alt="fengjingtu"></p>
+<p>1、请问下面的程序最后会产生多少个进程：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(　）&#123; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">     <span class="keyword">int</span> i; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">     <span class="keyword">for</span>(i = <span class="number">0</span>; i&lt;<span class="number">5</span>;i++)&#123; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">int</span> pid = fork(); </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">if</span>(pid == <span class="number">0</span>)&#123; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="comment">//do something </span></span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        &#125; <span class="keyword">else</span> &#123; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="comment">//do something </span></span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        &#125; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        &#125;</span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="comment">// do somthing,sleep</span></span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">return</span> <span class="number">0</span>;</span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">&#125;</span></span></span><br></pre></td></tr></table></figure>
 <p>A、5  B、10  C、15 D、32</p>
+<p><br></p>
 <p>2、若有定义 int(<em>pt)[3]；则下列说法正确的是：<br>A、定义了基类型为int的三个指针变量<br>B、定义了基类型为int的具有三个元素的指针数组pt<br>C、定义了一个名为</em>pt、具有三个元素的整型数组<br>D、定义了一个名为pt的指针变量，它可以指向每行有三个整数元素的二维数组</p>
-<p>3、（不定项选择）若 a 是 float 型变量,b 是 unsigned 型变量,以下输入语句中合法的是：<br>A、scanf(“%6.2f%d”,&amp;a,&amp;b);<br>B、scanf(“%f%n”,&amp;a,&amp;b);<br>C、scanf(“%f%3o”,&amp;a,&amp;b);<br>D、scanf(“%f%f”,&amp;a,&amp;b);</p>
+<p><br>3、（不定项选择）若 a 是 float 型变量,b 是 unsigned 型变量,以下输入语句中合法的是：<br><code>A、scanf(&quot;%6.2f%d&quot;,&amp;a,&amp;b);</code><br><code>B、scanf(&quot;%f%n&quot;,&amp;a,&amp;b);</code><br><code>C、scanf(&quot;%f%3o&quot;,&amp;a,&amp;b);</code><br><code>D、scanf(&quot;%f%f&quot;,&amp;a,&amp;b);</code></p>
 <hr>
-<p>答案与解析：<br>1、答案：D。<br>解析：第一题考察了关于进程的基本知识。<br>首先，什么是进程？进程是程序的执行实体，是系统资源进行资源分配的基本单位，我们经常拿进程和线程进行对比。<br>线程是任务调度和执行的基本单位，一个进程可以由多个线程组成。我们平时写的程序，一般都只是一个进程，除非<br>程序员手动创建一个新的进程，比如使用fork函数（进程创建方式不止这一种）。<br>由fork创建的新进程被称为子进程。fork函数被调用一次，但是返回两次，一次是父进程的返回值一次是子进程的，<br>两次返回的区别是子进程的返回值是0，父进程的返回值则是新建子进程的进程ID。这时候的子进程就会共享父进程的<br>代码资源，拷贝一份父进程的资源，然后创建属于自己的堆栈等数据空间。也就是说，这时候子进程和父进程都会继续<br>执行fork调用之后的指令，说到这里，我们就可以解决第一个问题了。<br>程序循环fork了5次，第一次只有一个父进程调用fork，创建一个子进程，这时候共有2个进程。然后第二次循环时，这两个<br>进程分别创建一个子进程，共有4个进程。同理,3次循环有8个进程，4次有16,5次就有32个。</p>
-<p>2、答案：D。<br>解析：第二题是一个基本的二级指针定义问题。<br>既然是定义，记住就好。<br>定义基类型为int的三个指针变量:int<em>pt1,int</em>pt2,int<em>pt3;<br>定义一个基类型为int的具有三个元素的指针数组pt：int</em> pt[3]<br>定义一个名为<em>pt、具有三个元素的整型数组:名字叫</em>pt的数组？没法定义。<br>定义一个名为pt的指针变量，它可以指向每行有三个整数元素的二维数组:int (<em>pt)[3];<br>所以：B和D的区别，就是</em>和谁在一起，和int在一起，就说明元素是指针，和变量在一起，就说明变量是指针。</p>
-<p>3、答案：B C。<br>解析：第三题考察了输入输出规则。<br>对于浮点型和字符串%m.n含义不同。浮点型：m表示输出位数，n表示精度，也就是小数点后面几位。<br>对于字符串，表示输出字符的个数。</p>
-
+<p><strong>答案与解析：</strong></p>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D</td>
+<td>D</td>
+<td>BC</td>
+</tr>
+</tbody>
+</table>
+<p>1、答案：D。<br>解析：第一题考察了关于进程的基本知识。</p>
+<p>首先，什么是进程？进程是程序的执行实体，是系统资源进行资源分配的基本单位，我们经常拿进程和线程进行对比。线程是任务调度和执行的基本单位，一个进程可以由多个线程组成。我们平时写的程序，一般都只是一个进程，除非程序员手动创建一个新的进程，比如使用fork函数（进程创建方式不止这一种）。</p>
+<p>由fork创建的新进程被称为子进程。fork函数被调用一次，但是返回两次，一次是父进程的返回值一次是子进程的，两次返回的区别是子进程的返回值是0，父进程的返回值则是新建子进程的进程ID。这时候的子进程就会共享父进程的代码资源，拷贝一份父进程的资源，然后创建属于自己的堆栈等数据空间。也就是说，这时候子进程和父进程都会继续执行fork调用之后的指令。</p>
+<p>说到这里，我们就可以解决第一个问题了。程序循环fork了5次，第一次只有一个父进程调用fork，创建一个子进程，这时候共有2个进程。然后第二次循环时，这两个进程分别创建一个子进程，共有4个进程。同理,3次循环有8个进程，4次有16,5次就有32个。</p>
+<p><br></p>
+<p>2、答案：D。<br>解析：第二题是一个基本的二级指针定义问题。</p>
+<p>既然是定义，记住就好。</p>
+<p>定义基类型为int的三个指针变量:int<em>pt1,int</em>pt2,int*pt3;</p>
+<p>定义一个基类型为int的具有三个元素的指针数组pt：int*pt[3]</p>
+<p>定义一个名为*pt、具有三个元素的整型数组:名字叫*pt的数组？没法定义。</p>
+<p>定义一个名为pt的指针变量，它可以指向每行有三个整数元素的二维数组:int (*pt)[3];</p>
+<p>所以：B和D的区别，就是*和谁在一起，和int在一起，就说明元素是指针，和变量在一起，就说明变量是指针。</p>
+<p><br></p>
+<p>3、答案：B C。</p>
+<p>解析：第三题考察了输入输出规则。</p>
+<p>对于浮点型和字符串%m.n含义不同。浮点型：m表示输出位数，n表示精度，也就是小数点后面几位。对于字符串，表示输出字符的个数。</p>
+<a id="more"></a>
       
     </div>
     
@@ -532,7 +588,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
@@ -638,6 +694,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
