@@ -78,18 +78,20 @@
 
 
 
-<meta name="description" content="说明：本文是关于tr069的基本说明，因为个人能力有限，如有理解错误的地方，恳请大佬们指正呀！ 什么是tr069?在接触网络知识的时候，我们最常用的一个词语就是协议(protocol)，tr069就是一种协议，它规定了网络服务器， tr069是一种网管。服务器和客户端的交互。">
+<meta name="description" content="说明：本文是关于tr069的基本说明，因为个人能力有限，如有理解错误的地方，恳请大佬们指正呀！ 什么是tr069?在接触网络知识的时候，我们最常用的一个词语就是协议(protocol)，tr069就是一种协议，它规定了网络服务器，和设备之间的交互规则。 而且Tr069协议是在soap协议的基础之上的，就是说客户端和服务器发送报文的格式是满足soap协议的，如果有一方不满足，那么另一方很有可能解析不">
 <meta name="keywords" content="网管">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tr069">
 <meta property="og:url" content="http://yoursite.com/2018/10/31/tr069/index.html">
 <meta property="og:site_name" content="Welcome to Rita&#39;s World">
-<meta property="og:description" content="说明：本文是关于tr069的基本说明，因为个人能力有限，如有理解错误的地方，恳请大佬们指正呀！ 什么是tr069?在接触网络知识的时候，我们最常用的一个词语就是协议(protocol)，tr069就是一种协议，它规定了网络服务器， tr069是一种网管。服务器和客户端的交互。">
+<meta property="og:description" content="说明：本文是关于tr069的基本说明，因为个人能力有限，如有理解错误的地方，恳请大佬们指正呀！ 什么是tr069?在接触网络知识的时候，我们最常用的一个词语就是协议(protocol)，tr069就是一种协议，它规定了网络服务器，和设备之间的交互规则。 而且Tr069协议是在soap协议的基础之上的，就是说客户端和服务器发送报文的格式是满足soap协议的，如果有一方不满足，那么另一方很有可能解析不">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-05T08:10:30.791Z">
+<meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/25d4375640f7f91680b8581308ccb48f.png">
+<meta property="og:updated_time" content="2018-11-05T09:54:45.645Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tr069">
-<meta name="twitter:description" content="说明：本文是关于tr069的基本说明，因为个人能力有限，如有理解错误的地方，恳请大佬们指正呀！ 什么是tr069?在接触网络知识的时候，我们最常用的一个词语就是协议(protocol)，tr069就是一种协议，它规定了网络服务器， tr069是一种网管。服务器和客户端的交互。">
+<meta name="twitter:description" content="说明：本文是关于tr069的基本说明，因为个人能力有限，如有理解错误的地方，恳请大佬们指正呀！ 什么是tr069?在接触网络知识的时候，我们最常用的一个词语就是协议(protocol)，tr069就是一种协议，它规定了网络服务器，和设备之间的交互规则。 而且Tr069协议是在soap协议的基础之上的，就是说客户端和服务器发送报文的格式是满足soap协议的，如果有一方不满足，那么另一方很有可能解析不">
+<meta name="twitter:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/25d4375640f7f91680b8581308ccb48f.png">
 
 
 
@@ -345,8 +347,17 @@
 
       
         <p>说明：本文是关于tr069的基本说明，因为个人能力有限，如有理解错误的地方，恳请大佬们指正呀！</p>
-<h3 id="什么是tr069"><a href="#什么是tr069" class="headerlink" title="什么是tr069?"></a>什么是tr069?</h3><p>在接触网络知识的时候，我们最常用的一个词语就是协议(protocol)，tr069就是一种协议，它规定了网络服务器，</p>
-<p>tr069是一种网管。<br>服务器和客户端的交互。</p>
+<h3 id="什么是tr069"><a href="#什么是tr069" class="headerlink" title="什么是tr069?"></a>什么是tr069?</h3><p>在接触网络知识的时候，我们最常用的一个词语就是协议(protocol)，tr069就是一种协议，它规定了网络服务器，和设备之间的交互规则。</p>
+<p>而且Tr069协议是在soap协议的基础之上的，就是说客户端和服务器发送报文的格式是满足soap协议的，如果有一方不满足，那么另一方很有可能解析不出正确的报文信息。</p>
+<h3 id="tr069相关术语"><a href="#tr069相关术语" class="headerlink" title="tr069相关术语"></a>tr069相关术语</h3><p>我们说tr069像其他网管一样，通过服务器操作客户端设备。通常情况下，我们称服务器为ACS（Auto-Configuration Server）,称设备为CPE（Customer Premise Equipment）,这些设备一般都是与运营商业务相关的，比如家庭网关，机顶盒和IP电话终端等等。这些设备会有一系列统一的，或者自定义的参数，我们可以通过服务器来配置参数，诊断设备的问题，对设备进行升级操作等等。这些通过服务器来操作设备的过程称为远程过程调用，即RPC（remote procedure call）。我们把一次RFC调用称为一次会话，即Session。</p>
+<h3 id="tr069协议架构"><a href="#tr069协议架构" class="headerlink" title="tr069协议架构"></a>tr069协议架构</h3><p>tr069协议在网络层使用IP协议；传输层使用TCP，可以使用SSL/TLS在本层加密；应用层使用http加soap；再上层就是客户端和服务器自己实现的RFC方法，这些RFC方法的实现规则不做要求，但是调用应当符合规定。当然不一定完全符合标准规定，只要服务器和客户端的双方意愿一致即可。但是我们鼓励服从标准规则，这样你的设备换到其他的服务器上仍然能正常使用。</p>
+<h3 id="ACS和CPE的交互"><a href="#ACS和CPE的交互" class="headerlink" title="ACS和CPE的交互"></a>ACS和CPE的交互</h3><p>为了交互的安全，应该尽量使用SSL或者TLS进行加密，使用https传输。</p>
+<p>但是为了了解交互过程，分析报文，我们会以http的连接为例。</p>
+<p>首先需要简明一下双方交互的流程：</p>
+<p>每一次的会话都是由客户端发起的，这表示，如果某个事件触发，CPE会向ACS发起一次http会话。而ACS不能主动建立会话。如果ACS想主动操作CPE，他需要先通过UDP或TCP，向CPE发起建立会话的请求，然后CPE就会去建立会话。所以ACS会话请求是属于触发事件中的一个，其他还有一些触发事件，比如，CPE第一次启动，CPE定时访问ACS的时钟到时，某个重要参数比如IP地址发生变化等等。</p>
+<p>下面是通常情况下的流程：</p>
+<p><img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/25d4375640f7f91680b8581308ccb48f.png" alt="tr069交互流程图"></p>
+<p>我们通过wireshark抓包，了解一下具体报文是如何显示的：</p>
 
       
     </div>
@@ -519,7 +530,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是tr069"><span class="nav-number">1.</span> <span class="nav-text">什么是tr069?</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是tr069"><span class="nav-number">1.</span> <span class="nav-text">什么是tr069?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tr069相关术语"><span class="nav-number">2.</span> <span class="nav-text">tr069相关术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tr069协议架构"><span class="nav-number">3.</span> <span class="nav-text">tr069协议架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ACS和CPE的交互"><span class="nav-number">4.</span> <span class="nav-text">ACS和CPE的交互</span></a></li></ol></div>
             
 
           </div>
