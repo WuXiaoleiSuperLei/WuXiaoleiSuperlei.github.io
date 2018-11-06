@@ -78,19 +78,25 @@
 
 
 
-<meta name="description" content="说明：本文是关于tr069的基本说明，因为个人能力有限，如有理解错误的地方，恳请大佬们指正呀！ 什么是tr069?在接触网络知识的时候，我们最常用的一个词语就是协议(protocol)，tr069就是一种协议，它规定了网络服务器，和设备之间的交互规则。 而且Tr069协议是在soap协议的基础之上的，就是说客户端和服务器发送报文的格式是满足soap协议的，如果有一方不满足，那么另一方很有可能解析不">
+<meta name="description" content="本文是关于tr069的基本说明，了解这个，要有简单的网络网管基础呢~">
 <meta name="keywords" content="网管">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tr069">
 <meta property="og:url" content="http://yoursite.com/2018/10/31/tr069/index.html">
 <meta property="og:site_name" content="Welcome to Rita&#39;s World">
-<meta property="og:description" content="说明：本文是关于tr069的基本说明，因为个人能力有限，如有理解错误的地方，恳请大佬们指正呀！ 什么是tr069?在接触网络知识的时候，我们最常用的一个词语就是协议(protocol)，tr069就是一种协议，它规定了网络服务器，和设备之间的交互规则。 而且Tr069协议是在soap协议的基础之上的，就是说客户端和服务器发送报文的格式是满足soap协议的，如果有一方不满足，那么另一方很有可能解析不">
+<meta property="og:description" content="本文是关于tr069的基本说明，了解这个，要有简单的网络网管基础呢~">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/25d4375640f7f91680b8581308ccb48f.png">
-<meta property="og:updated_time" content="2018-11-05T09:54:45.645Z">
+<meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/a61ac6f8401a5ef580d9db3de8cb1132.png">
+<meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/ff27fa02403d5e43800f209b58e913d3.png">
+<meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/67c59f024091740980d3c1a7f58dd723.png">
+<meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/4634d24540f79a2c801d32d56f42a191.png">
+<meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/6bd713204071d7b780b3f2f868fe6f51.png">
+<meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/9e6bfd9b4073a320800bced79cd9850f.png">
+<meta property="og:updated_time" content="2018-11-06T02:49:01.583Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tr069">
-<meta name="twitter:description" content="说明：本文是关于tr069的基本说明，因为个人能力有限，如有理解错误的地方，恳请大佬们指正呀！ 什么是tr069?在接触网络知识的时候，我们最常用的一个词语就是协议(protocol)，tr069就是一种协议，它规定了网络服务器，和设备之间的交互规则。 而且Tr069协议是在soap协议的基础之上的，就是说客户端和服务器发送报文的格式是满足soap协议的，如果有一方不满足，那么另一方很有可能解析不">
+<meta name="twitter:description" content="本文是关于tr069的基本说明，了解这个，要有简单的网络网管基础呢~">
 <meta name="twitter:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/25d4375640f7f91680b8581308ccb48f.png">
 
 
@@ -332,6 +338,10 @@
           
 
           
+              <div class="post-description">
+                  本文是关于tr069的基本说明，了解这个，要有简单的网络网管基础呢~
+              </div>
+          
 
         </div>
       </header>
@@ -346,11 +356,1440 @@
       
 
       
-        <p>说明：本文是关于tr069的基本说明，因为个人能力有限，如有理解错误的地方，恳请大佬们指正呀！</p>
+        <p>说明：因为个人能力有限，如有理解错误的地方，恳请大佬们指正呀！</p>
 <h3 id="什么是tr069"><a href="#什么是tr069" class="headerlink" title="什么是tr069?"></a>什么是tr069?</h3><p>在接触网络知识的时候，我们最常用的一个词语就是协议(protocol)，tr069就是一种协议，它规定了网络服务器，和设备之间的交互规则。</p>
 <p>而且Tr069协议是在soap协议的基础之上的，就是说客户端和服务器发送报文的格式是满足soap协议的，如果有一方不满足，那么另一方很有可能解析不出正确的报文信息。</p>
 <h3 id="tr069相关术语"><a href="#tr069相关术语" class="headerlink" title="tr069相关术语"></a>tr069相关术语</h3><p>我们说tr069像其他网管一样，通过服务器操作客户端设备。通常情况下，我们称服务器为ACS（Auto-Configuration Server）,称设备为CPE（Customer Premise Equipment）,这些设备一般都是与运营商业务相关的，比如家庭网关，机顶盒和IP电话终端等等。这些设备会有一系列统一的，或者自定义的参数，我们可以通过服务器来配置参数，诊断设备的问题，对设备进行升级操作等等。这些通过服务器来操作设备的过程称为远程过程调用，即RPC（remote procedure call）。我们把一次RFC调用称为一次会话，即Session。</p>
 <h3 id="tr069协议架构"><a href="#tr069协议架构" class="headerlink" title="tr069协议架构"></a>tr069协议架构</h3><p>tr069协议在网络层使用IP协议；传输层使用TCP，可以使用SSL/TLS在本层加密；应用层使用http加soap；再上层就是客户端和服务器自己实现的RFC方法，这些RFC方法的实现规则不做要求，但是调用应当符合规定。当然不一定完全符合标准规定，只要服务器和客户端的双方意愿一致即可。但是我们鼓励服从标准规则，这样你的设备换到其他的服务器上仍然能正常使用。</p>
+<h3 id="RPC方法"><a href="#RPC方法" class="headerlink" title="RPC方法"></a>RPC方法</h3><p>简介：远程过程调用（RPC）机制被用于CPE设备和自动配置服务器（ACS）之间的双向通信。包括由ACS发起并发送给CPE的方法，及由CPE发起并发送给ACS的方法。</p>
+<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p>节点的数据类型包括：string，int，unsignedInt，boolean，datetime，base64（base64编码的二进制），any（任意类型）</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>string（字符串）</td>
+<td>本规范列示的字符串，最大允许长度可以用格式字符串（N）表示，N是以字符计的最大长度。对所有字符串，其最大长度要么明确表明，要么隐含在构成该字符串的元素大小中。对内容是枚举类型的字符串，枚举的最大值决定了字符串的最大长度。如果没有明确指明最大长度或者不是枚举类型的字符串，默认最大长度为16个字符。如果字符串型动作参数超过了指定的最大值，会产生一个“无效参数（Invalid arguments）”的错误应答。</td>
+</tr>
+<tr>
+<td>int （整数型）</td>
+<td>从–2147483648（含）到+2147483647（含）范围内的整数。对列示的一些整数型，格式int[Min:Max]表明取值范围，Min和Max值包含在内。如果没有任一Min或Max，表明没有限值。</td>
+</tr>
+<tr>
+<td>unsignedInt无符号整数型</td>
+<td>无符号整数，取值范围为0（含）到4294967295（含）。对列示的一些无符号整数型，格式unsignedInt[Min:Max]表明取值范围，Min和Max值包含在内。如果没有任一Min或Max，表明没有限值。</td>
+</tr>
+<tr>
+<td>boolean（布尔型）</td>
+<td>布尔型，1 = true（真），0 = false（假）。</td>
+</tr>
+<tr>
+<td>dataTime（日期时间型）</td>
+<td>ISO 8601 data-time类型的子集，由SOAP的dateTime型定义。除非明确指明，所有的时间表示为UTC（全球统一时间）。如果CPE不知道绝对时间，它<strong>应当</strong>使用从启动后消逝的时间。比如，启动后的2天3小时4分5秒将表示为0000-00-02T03:04:05。</td>
+</tr>
+<tr>
+<td>base64</td>
+<td>Base64编码的二进制。最大允许长度可以用格式base64(N)来表示，N是指在Base64编码后字符的最大长度。</td>
+</tr>
+<tr>
+<td>any （任意）</td>
+<td>某元素包含该表中列示的任意类型。根据SOAP规范，使用这一类型的元素<strong>必须</strong>包含一个类型属性，来表明该元素的真正类型。例如：</td>
+</tr>
+</tbody>
+</table>
+<p>在本规范中定义的方法可能使用结构和数组（在某些情况下还可能使用复合类型）。数组元素用数据类型后加方框号表示。数组最大长度的说明表示在方框号中。如果最大长度没有说明，除非特别指明，接收方能接受的元素数目没有固定的要求。如果接收方收到的请求含超出其处理能力的过大数组的请求，应当产生“Resources exceeded”错误代码。</p>
+<p><br></p>
+<h4 id="通用方法"><a href="#通用方法" class="headerlink" title="通用方法"></a>通用方法</h4><p>A.1.1.1 GetRPCMethods</p>
+<p>这一方法可用于CPE或ACS来发现另一方所支持的方法集。方法集列表可以包括标准方法（在本规范及后续版本中定义），也可以包括厂商自定制方法。接收该方法的应答方<strong>必须</strong>忽略掉任何不能解释的方法。</p>
+<p>厂商定制方法<strong>必须</strong>采用X_<vendor>_MethodName的格式，其中<vendor>是唯一厂商标识符，可以是一个OUI或域名。OUI（organizationally unique identifier组织的唯一标识）在[9]中定义，<strong>必须</strong>格式化为6个十六进制字符的OUI，所有字母要大写，要包括所有前置0。域名必须是大写，并且将每个点（“.”）替换为连字符或下划线。例如：X_00D09E_MyMethod，X_ACME_COM_MyMethod。</vendor></vendor></p>
+<p>该方法的调用参数在表7中定义。应答参数在表8中定义。</p>
+<p><strong>表7</strong> <strong>–</strong> <strong>GetPRCMethods参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>Void</td>
+<td>本方法没有调用参数。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表8</strong> <strong>–</strong> <strong>GetPRCMethodsResponse参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MethodList</td>
+<td>String(64)[]</td>
+<td>字符串数组，包含接收方支持的每一个PRC方法名称。例如，CPE仅实现了本规范本版本所定义的基本方法，则CPE会返回如下列表给ACS：”GetRPCMethods””SetParameterValues””GetParameterValues””GetParameterNames””SetParameterAttributes””GetParameterAttributes””AddObject””DeleteObject””Reboot””Download”</td>
+</tr>
+</tbody>
+</table>
+<p>针对该方法定义的来自CPE应答的错误代码有：9001，9002。</p>
+<p>针对该方法定义的来自ACS应答的错误代码有：8001，8002，8005。</p>
+<h6 id="CPE方法："><a href="#CPE方法：" class="headerlink" title="CPE方法："></a>CPE方法：</h6><p><strong>SetParameterValues</strong></p>
+<p>服务器可用此方法来修改CPE的一个或多个参数。此方法的调用参数在表9中定义。应答参数在表10中定义。</p>
+<p><strong>表9</strong> <strong>–</strong> <strong>SetParameterValues参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ParameterList</td>
+<td>ParameterValueStruct[]</td>
+<td>表11中所定义的name-value值对数组。对每个name-value值对，CPE需要将指定名称的参数值设置为指定值。</td>
+</tr>
+<tr>
+<td>ParameterKey</td>
+<td>String(32)</td>
+<td>设置ParameterKey参数值。该值<strong>可以</strong>用于服务器，来识别<strong>参数</strong>更新，或者让其为空。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表10</strong> <strong>–</strong> <strong>SetParameterValuesResponse参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Status</td>
+<td>int[0:1]</td>
+<td>对该方法的成功应答返回一个整数型的枚举值定义如下：0 = 参数的改动已经验证并应用。1 = 参数的改动已经验证并提交，只是尚未应用（比如，在新的参数值应用前需要进行重新启动）。</td>
+</tr>
+</tbody>
+</table>
+<p>在成功接受到SetParameterValues PRC后，CPE<strong>必须</strong>立即和自动应用每个指定的<strong>参数</strong>的变化值。参数表中参数的顺序无关紧——CPE对改动值的应用<strong>必须</strong>与它们列示的顺序独立。只有当新的参数值已经成功应用后，才能给该RPC回复一个成功应答。如果CPE在应用新参数值前需要重新启动，CPE<strong>必须</strong>在进行重新启动前应答，即在<strong>参数</strong>值应用之前应答。在这种情况下，应答时<strong>必须</strong>确认所有请求已经完成，并且新值已经正确地保存下来，一旦重新启动后，这些值一定会立即得到应用。</p>
+<p>ParameterValueStruct结构在表11中定义。</p>
+<p><strong>表11</strong> <strong>–</strong> <strong>ParameterValueStruct定义</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>名称</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>string(256)</td>
+<td>这是参数的名称。</td>
+</tr>
+<tr>
+<td>Value</td>
+<td>Any</td>
+<td>这是参数需要设置的值。</td>
+</tr>
+</tbody>
+</table>
+<p>如果有一个或多个参数错误，对该方法的错误应答必须为每个错误的参数包括一个SetParameterValuesFault元素。在此情况下，整个错误应答的首要错误代码必须是无效参数（9003）。</p>
+<p>本方法定义的错误代码有：9001，9002，9003，9004，9005，9006，9007，9008。</p>
+<p><strong>GetParameterValues</strong></p>
+<p>这一方法可用于服务器来获取一个或多个CPE<strong>参数</strong>的值。该方法的调用参数在表12中定义，应答参数在表13中定义。</p>
+<p><strong>表12</strong> <strong>–</strong> <strong>GetParameterValues参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ParameterName</td>
+<td>string(256)[]</td>
+<td>字符串数组，每个代表所请求的<strong>参数</strong>的名称。如果<strong>参数</strong>名是以部分路径名的方式出现，则该请求需被解释为请求返回命名层次中共用相同前缀的该分支的所有<strong>参数</strong>。部分路径名<strong>必须</strong>在层次的最后一个节点名称后面以“.”（点）结尾。空字符串代表整个层次名称的顶部。下面是完整<strong>参数</strong>名称的例子：InternetGatewayDevice.DeviceInfo.SerialNumber下面是部分路径名称的例子：InternetGatewayDevice.DeviceInfo.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表13</strong> <strong>–</strong> <strong>GetParameterValuesResponse参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ParameterList</td>
+<td>ParameterValueStruct[]</td>
+<td>Name-value对的数组，在表11中定义。包括每个被请求参数的名称和值。</td>
+</tr>
+</tbody>
+</table>
+<p>该方法定义了如下错误代码：9001,9002,9003,9004,9005。如果错误是由无效的参数名称引起，则<strong>必须</strong>使用Invalid Parameter Name错误代码（9005）而不是用更泛化的Invalid Argument错误代码（9003）。</p>
+<p><strong>GetParameterNames</strong></p>
+<p>本方法可以由服务器用来发现某一CPE上的可访问的<strong>参数</strong>。本方法的调用参数列示在表14中，应答参数列示在表15中。</p>
+<p><strong>表14</strong> <strong>–</strong> <strong>GetParameterNames参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ParameterPath</td>
+<td>string(256)</td>
+<td>包括一个完整<strong>参数</strong>名或部分路径名的字符串，代表名称层次的一个子集。空字符串代表名称空间的顶层。部分路径名<strong>必须</strong>在层次中的最后一个节点名称后面以“.”（点）结尾。下面是完整参数名的例子：InternetGatewayDevice.DeviceInfo.SerialNumber下面是部分路径名的一个例子：InternetGatewayDevice.DeviceInfo.</td>
+</tr>
+<tr>
+<td>NextLevel</td>
+<td>boolean</td>
+<td>如果值为false，则应答将列出所有以ParameterPath参数指定字符串开始的参数的完整路径名。如果值为true，则应答只列出指定的ParameterPath下一层的部分路径名。例如，如果ParameterPath是“InternetGatewayDevice.LANDevice.”，应答可能列出“InternetGatewayDevice.LANDevice.1. ”和“InternetGatewayDevice.LANDevice.2. ”，而不会列出在该层次下面的所有<strong>参数</strong>。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表15</strong> <strong>–</strong> <strong>GetParameterNamesResponse参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ParameterList</td>
+<td>ParameterInfoStruct[]</td>
+<td>结构数组，每个包含一个<strong>参数</strong>的名称和其它信息，见表16的定义。当NextLevel是false时，这一方法返回所有名称以ParameterPath参数指定的字符串开头的所有可访问的参数及其信息。如果ParameterPath参数是一个空字符串，则将返回该CPE上所有可访问的参数名称。当NextLevel是true时，这一列表包括以ParameterPath指明路径的下一层的所有部分路径名。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表16</strong> <strong>–</strong> <strong>ParameterInfoStruct定义</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>名称</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>string(256)</td>
+<td>这是<strong>参数</strong>的名称或部分路径名。</td>
+</tr>
+<tr>
+<td>Writable</td>
+<td>boolean</td>
+<td>是否该<strong>参数</strong>值能够用SetParameterValues方法来覆盖。如果因NextLevel值为true，该名称是一个部分路径名，则表明是否AddObject和DeleteObject可以被用于该层次来移除该实例或增加其它的实例。</td>
+</tr>
+</tbody>
+</table>
+<p>本方法定义的错误代码有：9001，9002，9003，9005。如果错误是由无效的参数名称引起，则<strong>必须</strong>使用Invalid Parameter Name错误代码（9005）而不是用更泛化的Invalid Argument错误代码（9003）。</p>
+<p><strong>SetParameterAttributes</strong></p>
+<p>本方法可以由服务器用来更改CPE上的一个或更多<strong>参数</strong>的属性。本方法的调用参数列示在表17中，应答参数列示在表18中。</p>
+<p><strong>表17</strong> <strong>–</strong> <strong>SetParameterAttributes参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ParameterList</td>
+<td>SetParameterAttributesStruct[]</td>
+<td>列出用于更改一组<strong>参数</strong>的属性改动值。该数组中的每项条目是一个SetParameterAttributesStruct结构，在表19中定义。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表18</strong> <strong>–</strong> <strong>SetParameterAttributesResponse参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>void</td>
+<td>该方法的应答没有参数。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表19</strong> <strong>–</strong> <strong>SetParameterAttributesStruct定义</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>名称</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>string(256)</td>
+<td>这是应用新属性的<strong>参数</strong>的名称。另一种方式是，该名称可以是一个部分路径名，表明新的属性应当应用于命名层次中该节点下的所有<strong>参数</strong>。部分路径名<strong>必须</strong>在层次中的最后一个节点名称后面以“.”（点）结尾。空字符串代表名称空间的顶层。下面是完整参数名的例子：InternetGatewayDevice.DeviceInfo.SerialNumber下面是部分路径名的一个例子：InternetGatewayDevice.DeviceInfo.</td>
+</tr>
+<tr>
+<td>NotificationChange</td>
+<td>boolean</td>
+<td>如果为true，Notification的值将替换该参数或参数组的当前notification的设置。如果是false，则不作任何notification设置的改动。</td>
+</tr>
+<tr>
+<td>Notification</td>
+<td>int[0:2]</td>
+<td>指定是否CPE应当将指定的该（或多个）参数的变化值放到其Inform报文中，以及是否当指定参数的值发生变化时，CPE应当发起一个到ACS的会话。值的定义如下：0 =  Notification关闭。 CPE不必通过ACS指定参数的变化。1 =  被动式Notification。当指定的参数值变化时，CPE<strong>必须</strong>在下一次建立与ACS的会话时，将这一新值包含在Inform报文的ParameterList中。2 =  主动式Notification。一旦指定参数的值发生变化，CPE<strong>必须</strong>发起与ACS的会话，将新值包含在相应的Inform报文的ParameterList中。因非零的Notification设置引起发送的Inform报文中参数发生变化，事件代码“4 VALUE CHANGE”必须包括在事件列表中。如果试图给一个不适合设置notification值的参数（比如一个持续变化的统计值）设置notification值，CPE可以返回一个“notification request rejected”错误。</td>
+</tr>
+<tr>
+<td>AccessListChange</td>
+<td>boolean</td>
+<td>如果为true，AccessList的值会替换该参数或参数组的当前access list值。如果为false，access list不作改动。</td>
+</tr>
+<tr>
+<td>AccessList</td>
+<td>String(64)[]</td>
+<td>零个或多个实体的数组，该实体对指定的<strong>参数</strong>有写权限。如果数组中不包含条目，则只允许ACS有写权限。目前，只定义了一类实体可以包含在该列表中：“Subscriber”  指明由LAN上的Subscriber控制的设备拥有写权限。比如通过LAN端的DSL CPE配置协议或通过UPnP。默认情况下，在ACS对access list作改动前，上述的所有实体<strong>应当</strong>被赋予写访问权。</td>
+</tr>
+</tbody>
+</table>
+<p>本方法定义的错误代码有：9001，9002，9003，9004，9005，9009。如果错误是由无效的参数名称引起，则<strong>必须</strong>使用Invalid Parameter Name错误代码（9005）而不是用更泛化的Invalid Argument错误代码（9003）。</p>
+<p><strong>GetParameterAttributes</strong></p>
+<p>本方法可以由服务器用来读取CPE上的一个或更多<strong>参数</strong>的属性。本方法的调用参数在表20中定义，应答参数在表21中定义。</p>
+<p><strong>表20</strong> <strong>–</strong> <strong>GetParameterAttributes参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ParameterNames</td>
+<td>string(256)[]</td>
+<td>字符串数组，每一条对应所请求的<strong>参数</strong>的名称。如果<strong>参数</strong>名是以部分路径名的方式出现，则该请求需被解释为请求返回命名层次中共用相同前缀的该分支的所有<strong>参数</strong>。部分路径名<strong>必须</strong>在层次的最后一个节点名称后面以“.”（点）结尾。空字符串代表整个层次名称的顶部。下面是完整<strong>参数</strong>名称的例子：InternetGatewayDevice.DeviceInfo.SerialNumber下面是部分路径名称的例子：InternetGatewayDevice.DeviceInfo.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表21</strong> <strong>–</strong> <strong>GetParameterAttributesResponse参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ParameterList</td>
+<td>ParameterAttributeStruct[]</td>
+<td>列示指定的参数集的access control信息。该数组中的每一条目是一个ParameterAcessStruct结构，在表22中定义。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表22</strong> <strong>–**</strong>ParameterAttributesStruct定义**</p>
+<table>
+<thead>
+<tr>
+<th><strong>名称</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>string(256)</td>
+<td>这是给出属性值的<strong>参数</strong>名称。</td>
+</tr>
+<tr>
+<td>Notification</td>
+<td>int[0:2]</td>
+<td>指定是否CPE应当将指定的该（或多个）参数的变化值放到其Inform报文中，以及是否当指定参数的值发生变化时，CPE应当发起一个到ACS的会话。值的定义如下：0 =  Notification关闭。 CPE不必通过ACS指定参数的变化。1 =  被动式Notification。当指定的参数值变化时，CPE<strong>必须</strong>在下一次建立与ACS的会话时，将这一新值包含在Inform报文的ParameterList中。2 =  主动式Notification。一旦指定参数的值发生变化，CPE<strong>必须</strong>发起与ACS的会话，将新值包含在相应的Inform报文的ParameterList中。</td>
+</tr>
+<tr>
+<td>AccessList</td>
+<td>string(64)[]</td>
+<td>零个或多个实体的数组，该实体对指定的<strong>参数</strong>有写权限。如果数组中不包含条目，则只允许ACS有写权限。目前，只定义了一类实体可以包含在该列表中：“Subscriber”  指明由LAN上的Subscriber控制的设备拥有写权限。比如通过LAN端的DSL CPE配置协议或通过UPnP。</td>
+</tr>
+</tbody>
+</table>
+<p>本方法定义的错误代码有：9001，9002，9003，9004，9005。如果错误是由无效的参数名称引起，则<strong>必须</strong>使用Invalid Parameter Name错误代码（9005）而不是用更泛化的Invalid Argument错误代码（9003）。</p>
+<p><strong>AddObject</strong></p>
+<p>这一方法可以由服务器使用来建立一个多实例对象（multi-instance object）的新实例。多实例对象是指<strong>参数</strong>集合及/或其它定义了多个实例的对象。该方法调用的参数是需要建立新实例的一组对象的路径名，例如：</p>
+<p>​    Top.Group.Object.</p>
+<p>该路径名不包括要建立的对象的实例编号。实例编号由CPE指定，并在应答中返回。一旦指定，该对象的实例编号不得更改，并一直使用直到该对象被DeleteObject方法删除。在建立后，该对象的<strong>参数</strong>或其子对象用路径名及附加其后的实例编号来引用。例如，如果AddObject方法返回实例编号为2，则该实例中的一个<strong>参数</strong>可以用这样的路径名来引用：</p>
+<p>​    Top.Group.Object.2.Parameter</p>
+<p>使用该方法建立了对象后，该对象包含的<strong>参数</strong>被设置为默认值，其相关属性值设置如下：</p>
+<p>l Notification设置为0（Notification关闭）</p>
+<p>l AccessList包括所有定义的实体</p>
+<p>对<strong>Internet网关设备</strong>，可以使用该方法的特定对象集合列示在附录B中。本方法的调用参数在表23中定义，应答参数在表24中定义。</p>
+<p><strong>表23</strong> <strong>–</strong> <strong>AddObject参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>objectName</td>
+<td>string(256)</td>
+<td>要建立新实例的对象集合的路径名称。路径名<strong>必须</strong>在该对象的层次名称的最后节点后加上“.”（点）结尾。</td>
+</tr>
+<tr>
+<td>ParameterKey</td>
+<td>string(32)</td>
+<td>需要设置的ParameterKey参数的值。该参数由服务器决定，并可以为空。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表24</strong> <strong>–</strong> <strong>AddObjectResponse参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>InstanceNumber</td>
+<td>unsignedInt[1:]</td>
+<td>新建对象的实例号码。在对象建立后，可以在路径名中使用该实例号码来引用该对象的<strong>参数</strong>或子对象。由CPE指定的实例号码是任意的，并且与后续的AddObject调用分配的号码无需连续。CPE<strong>不应当</strong>将曾经分配出去的现已删除的对象使用过的号码再分配给新的实例。CPE应当在耗尽某指定对象的整个整数值空间后再重用实例号码。</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int[0:1]</td>
+<td>对该方法的成功应答返回一个整数型的枚举值定义如下：0 = 对象已经建立。1 = 对象的建立已经验证并提交，只是尚未应用（比如，增加新对象前需要进行重新启动）。</td>
+</tr>
+</tbody>
+</table>
+<p>该方法错误代码的定义有：9001,9002,9003,9004,9005。</p>
+<p><strong> DeleteObject</strong></p>
+<p>本方法用于删除一个对象的特定实例。该方法调用的参数值是包含实例号码的对象实例的路径名称。例如：</p>
+<p>​    Top.Group.Object.2.</p>
+<p>如果该方法的调用成功，则指定对象的实例无法再访问，CPE可以丢弃与该实例包含的任意<strong>参数</strong>或子对象相关的状态。</p>
+<p>当对象实例被删除后，与该实例号相关的同一对象集合的其它实例号码不变。这样，在同一个集合中，对象实例的实例号码可能是不连续的。</p>
+<p>对<strong>Internet网关设备</strong>，可以使用该方法的特定的对象集合列示在附录B中。该方法的调用参数在表25中定义，应答参数表26中定义。</p>
+<p><strong>表25</strong> <strong>–</strong> <strong>DeleteObject参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ObjectName</td>
+<td>string(256)</td>
+<td>欲删除的对象实例的路径名。路径名<strong>必须</strong>以对象的实例号码后加“.”（点）来结尾。</td>
+</tr>
+<tr>
+<td>ParameterKey</td>
+<td>string(32)</td>
+<td>设置ParameterKey参数的值。该参数的值由服务器决定，并可以为空。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表26</strong> <strong>–</strong> <strong>DeleteObjectResponse参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Staus</td>
+<td>int[0:1]</td>
+<td>对该方法的成功应答返回一个整数型的枚举值定义如下：0 = 对象已经删除。1 = 对象的删除已经验证并提交，只是尚未应用（比如，将删除对象前需要进行重新启动）。</td>
+</tr>
+</tbody>
+</table>
+<p>该方法错误代码的定义有：9001,9002,9003,9005。</p>
+<p><strong>Download</strong></p>
+<p>本方法可以由服务器使用来指示CPE在指定的位置下载特定的文件。该方法的调用参数在表27中定义，应答参数在表28中定义。</p>
+<p><strong>表27</strong> <strong>–</strong> <strong>Download参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CommandKey</td>
+<td>string(32)</td>
+<td>CPE用来指向特定下载的字符串。该参数在方法TransferComplete和GetQueuedTransfers中引用。</td>
+</tr>
+<tr>
+<td>FileType</td>
+<td>string(64)</td>
+<td>一个整数，其后是一个空格，再其后是一个文件类型说明。目前FileType参数仅定义了以下值：”1 Firmware Upgrade Image””2 Web Content””3 Vendor Configuration File”下列格式用于定义唯一的厂商自定义文件类型：”X <oui> <vendor-specific identifier="">“其中，<oui>用6位十六进制数字的在[9]中定义的OUI（组织唯一标识）代替，其中所有字母用大写，包括所有前置零。</oui></vendor-specific></oui></td>
+</tr>
+<tr>
+<td>URL</td>
+<td>string(256)</td>
+<td>URL说明源文件的位置。<strong>必须</strong>支持HTTP传输。<strong>可以</strong>支持其它可选的传输方式，如2.3.2节的定义。</td>
+</tr>
+<tr>
+<td>Username</td>
+<td>string(256)</td>
+<td>CPE用于认证文件服务器的用户名。如果不需要认证，则该字符串设置为空串。</td>
+</tr>
+<tr>
+<td>Password</td>
+<td>string(256)</td>
+<td>CPE用于认证文件服务器的密码。如果不需要认证，则该字符串设置为空串。</td>
+</tr>
+<tr>
+<td>FileSize</td>
+<td>unsignedInt</td>
+<td>以字节为单位的要传输文件的大小。CPE可以利用该值来判断它是否有足够的空间来下载该文件，或者它必须释放更多空间以为指定文件腾出空间。</td>
+</tr>
+<tr>
+<td>TargetFileName</td>
+<td>string(256)</td>
+<td>在目标文件系统中应使用的文件名。如果目标文件名可以从下载的文件本身来提取，或可以从URL参数中提取，或不需要目标文件名，这一参数的值可以为空。如果说明了该值，但是目标文件名也由其它来源指明了（比如是从下载的文件中自动提取的），这一参数<strong>应当</strong>被忽略。如果目标文件名已经使用，下载的文件将替换任何已经使用的相同名称的文件（是否CPE将被替换的文件存档由CPE自主决定）。</td>
+</tr>
+<tr>
+<td>DelaySeconds</td>
+<td>unsignedInt</td>
+<td>从本方法被调用到CPE被要求开始下载之间的时间间隔。如果值为零表明不需要延迟。如果是非零值，则下载<strong>不应当</strong>使用与该请求相同的事务会话。</td>
+</tr>
+<tr>
+<td>SuccessURL</td>
+<td>string(256)</td>
+<td>在能应用的情况下，本参数包含在下载成功完成后，CPE应当将用户的浏览器重定向到哪一URL。这一URL值可能包含服务器所需要的CGI参数（比如，来维护会话的状态）。只有当下载是由基于浏览器的用户交互式发起，并且CPE支持基于下载结果选择性重定向的能力时才能使用。在不需要这样的URL的情况下，这一参数应当为空。</td>
+</tr>
+<tr>
+<td>FailureURL</td>
+<td>string(256)</td>
+<td>在能应用的情况下，本参数包含在下载未成功完成后，CPE应当将用户的浏览器重定向到哪一URL。这一URL值可能包含服务器所需要的CGI参数（比如，来维护会话的状态）。只有当下载是由基于浏览器的用户交互式发起，并且CPE支持基于下载结果选择性重定向的能力时才能使用。在不需要这样的URL的情况下，这一参数应当为空。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表28</strong> <strong>–</strong> <strong>DownloadResponse参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Staus</td>
+<td>int[0:1]</td>
+<td>对该方法的成功应答返回一个整数型的枚举值定义如下：0 = 下载已结束并已应用。1 = 下载还没有结束（比如，CPE需要重新启动后才能执行文件的下载）。如果该参数的值非零，则CPE<strong>必须</strong>在本会话的后续时间，或者在其后的会话中，调用TransferComplete方法来说明本次下载的完成状态（成功或者失败）。</td>
+</tr>
+<tr>
+<td>StartTime</td>
+<td>dateTime</td>
+<td>下载开始的日期和时间（UTC）。只有在下载结束后该值才需要填写。</td>
+</tr>
+<tr>
+<td>CompleteTime</td>
+<td>dateTime</td>
+<td>下载完全结束并应用时的日期和时间（UTC）。只有在下载结束后该值才需要填写。</td>
+</tr>
+</tbody>
+</table>
+<p>本方法的错误代码定义为：9000,9001,9002,9003,9010,9012,9013。</p>
+<p><strong>Reboot</strong></p>
+<p>这一方法令CPE重新启动。CPE<strong>必须</strong>在启动前发送该方法的应答。在使用该方法时一定要万分小心。这一方法的调用参数在表29中定义，应答参数在表30中定义。</p>
+<p><em>注</em> <em>–</em> <em>本方法主要用于诊断目的。本方法的目的**</em>不是<em>**让ACS在设置完CPE参数或初始化下载后进行重新启动而使用。如果在这些情况下，CPE需要重新启动，它自主负责在会话结束后进行重新启动。因为一些CPE在此类条件下，可能不需要重新启动，因此ACS不应当在这类情况下调用该方法，以避免不必要的重新启动。</em></p>
+<p><strong>表29</strong> <strong>–</strong> <strong>Reboot参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CommandKey</td>
+<td>string(32)</td>
+<td>当CPE重新启动并调用Inform方法时，将在InfromStruct的CommandKey元素中返回该元素值。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表30</strong> <strong>–</strong> <strong>RebootResponse参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>void</td>
+<td>该应答方法无参数。</td>
+</tr>
+</tbody>
+</table>
+<p>这本方法定义的错误代码为：9001,9002,9003。</p>
+<h6 id="服务器方法"><a href="#服务器方法" class="headerlink" title="服务器方法"></a>服务器方法</h6><p>在本节中列示的方法只需在服务器的支持。只有CPE可以调用这些方法。</p>
+<p><strong>Inform</strong></p>
+<p>任何时刻要建立与ACS的连接，CPE<strong>必须</strong>调用Inform方法，来初始化一个传输序列。该方法的调用参数在表31中定义，应答参数在表32中定义。</p>
+<p><strong>表31</strong> <strong>–</strong> <strong>Inform参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>值</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DeviceID</td>
+<td>DeviceIdStruct</td>
+<td>唯一标识CPE的结构，在表34中定义。</td>
+</tr>
+<tr>
+<td>Event</td>
+<td>EventStruct[16]</td>
+<td>结构数组，在表35中定义，说明引发事务会话建立的一个或多个事件。如果存在多于一个原因，CPE必须列出所有原因。</td>
+</tr>
+<tr>
+<td>MaxEnvelopes</td>
+<td>unsignedInt</td>
+<td>CPE能够从ACS接受的一个HTTP回复中的最大SOAP信包数目。零值表明在该信包数目上没有特别的限制。</td>
+</tr>
+<tr>
+<td>CurrentTime</td>
+<td>dateTime</td>
+<td>CPE的当前的日期与时间（UTC）。</td>
+</tr>
+<tr>
+<td>RetryCount</td>
+<td>unsignedInt</td>
+<td>在成功完成对Inform方法的调用前，已进行了多少次调用尝试。特别地，该值在每次非成功的尝试后会增1。非成功的尝试包括发送Inform报文以与ACS建立连接，或每次对Inform报文的不成功使用，比如收到错误应答或没有收到应答。在已经发送了Inform报文并且收到了成功应答后，该值重置为零。</td>
+</tr>
+<tr>
+<td>ParameterList</td>
+<td>ParameterValueStruct[]</td>
+<td>表11中定义的name-value对的数组。对每种类型的CPE，在Inform请求中包括参数信息表。表33列出了<strong>Internet网关设备必须</strong>包括的参数。CPE<strong>可以</strong>发送其它信息。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表32</strong> <strong>–</strong> <strong>InformResponse参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>名称</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MaxEnvelopes</td>
+<td>unsignedInt</td>
+<td>ACS接受的来自CPE的每个HTTP post的SOAP信包的最大数目。零值表明没有对信包数目的限定。</td>
+</tr>
+</tbody>
+</table>
+<p>表33列示了在<strong>Internet网关设备</strong>发出的Inform中需要包含的参数。CPE也<strong>可以</strong>在Inform包中包括其它参数。</p>
+<p>如果是一个或多个参数值变化引起的（不是由ACS自己要求设置而引起）Inform调用，并且该参数值ACS通过SetParameterAttributes已经标记为notification（包括主动与被动），所有这些改变了的参数也必须包括在ParameterList中。如果一个参数在最后一次这类notification后改变过多次，只需要包括其最后一次更动的值。</p>
+<p>对表33中“更改通知”列中做了标记的项，相应参数值的任何变动<strong>必须</strong>产生一个CPE发起的与ACS的连接，以调用Inform方法，而不管ACS是否将这些参数设置为notification。</p>
+<p>因任何在表33中“更改通知”列标记过的参数变化而引起的Inform调用，或者ACS标记为notification（包括主动与被动）的参数变化而引起的Inform调用，<strong>必须</strong>在Inform方法的事件列表中包括事件”4 VALUE CHANGE”。</p>
+<p><strong>表33</strong> <strong>–</strong> <strong>Internet网关设备所需的Inform参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>更改通知</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>InternetGatewayDevice.DeviceInfo.SpecVersion</td>
+<td></td>
+</tr>
+<tr>
+<td>InternetGatewayDevice.DeviceInfo.HardwareVersion</td>
+<td></td>
+</tr>
+<tr>
+<td>InternetGatewayDevice.DeviceInfo.SoftwareVersion</td>
+<td>X</td>
+</tr>
+<tr>
+<td>InternetGatewayDevice.DeviceInfo.ProvisioningCode</td>
+<td>X</td>
+</tr>
+<tr>
+<td>InternetGatewayDevice.ManagementServer.ConnectionRequestURL</td>
+<td>X</td>
+</tr>
+<tr>
+<td>InternetGatewayDevice.ManagementServer.ParameterKey</td>
+<td></td>
+</tr>
+<tr>
+<td>InternetGatewayDevice.WANDevice.{i}.WANConnectionDevice.{j}.WAN{***}Connection.{k}.-ExternalIPAddress</td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表34</strong> <strong>–</strong> <strong>DeviceIdStruct定义</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>名称</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Manufacturer</td>
+<td>string(64)</td>
+<td>设备的制造商（仅用于显示）。</td>
+</tr>
+<tr>
+<td>OUI</td>
+<td>string(6)</td>
+<td>设备制造商的组织唯一标识。用6位十六进制值表示，均为大写，并且包括任何的前置零。该值<strong>必须</strong>是[9]中定义的有效OUI值。</td>
+</tr>
+<tr>
+<td>ProductClass</td>
+<td>string(64)</td>
+<td>序列号所使用的产品类型标识。也就是说，对指定的制造商，该参数是用于标识产品或产品类型，在该类型下，SerialNumber参数是唯一的。</td>
+</tr>
+<tr>
+<td>SerialNumber</td>
+<td>string(64)</td>
+<td>对指定的产品类型和制造商，该标识可以唯一地确定该设备。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表35</strong> <strong>–</strong> <strong>EventStruct定义</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>名称</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EventCode</td>
+<td>string(64)</td>
+<td>每个值包括一个标识字符随后是对应原因的文字描述。几项原因值列示在下面，同时也定义了厂商自定制原因的语法。<strong>值**</strong>原因<strong>“0 BOOTSTRAP”表明会话发起原因是CPE首次安装或ACS的URL发生变化。”1 BOOT”表明会话发起原因是CPE加电或重置，包括系统首次启动，以及因任何原因而引起的重启，包括使用Reboot方法。”2 PERIODIC”表明会话发起原因是定期的Inform引起。”3 SCHEDULED”表明会话发起原因是调用了ScheduleInform方法。”4 VALUE CHANGE”表明会话发起原因是一个或多个</strong>参数**值的变化。该参数值包括在Inform方法的调用中。例如CPE分配了新的IP地址。”5 KICKED”表明会话发起原因是为了web标识管理（见附录D），及在本会话中将会调用Kicked方法（见A.4.2.1节）。”6 CONNECTION REQUEST”表明会话发起原因是3.2节中定义的源自服务器的Connection Request notification。”7 TRANSFER COMPLETE”表明会话的发起是为了表明以前请求的下载或上载（不管是否成功）已经结束，在此会话中将要调用一次或多次TransferComplete方法。”8 DIAGNOSTICS COMPLETE”当完成由ACS发起的诊断测试结束后，重新与ACS建立连接时使用。如DSL环路诊断（见附录B）。”M “<method name="">如果这是另一方法的结果，值“M”后紧接着一个空格和方法的名称。例如：“M Reboot”“X “<oui> <event>厂商自定义事件。在“X”后的OUI和空格是组织唯一标识符，表示为6位十六进制值，均使用大写，并包括任何前置零。该值必须是在[9]中定义的有效OUI。对<event>的值与解释是厂商自定义的。例如：“X 00D09E MyEvent”</event></event></oui></method></td>
+</tr>
+<tr>
+<td>CommandKey</td>
+<td>string(32)</td>
+<td>如果是因定义了一个CommandKey而产生了Inform结构，该元素<strong>必须</strong>CommandKey的值。在其它情况下，该元素的值为空字符串。对本规范的这一版本而言，对以下方法的调用会造成CommandKey值的改变：l ScheduledInform方法l Reboot方法l Download方法l Upload方法</td>
+</tr>
+</tbody>
+</table>
+<p>为该方法定义的错误代码有：8001，8002，8003，8004，8005。</p>
+<p><strong>TransferComplete</strong></p>
+<p>本方法通知服务器由以前的Download或Upload方法调用而引起的文件传输已经结束（不管成功还是失败）。当相关的Download或Upload应答表明指定的文件传输在当时还没有完成（应答中Status参数非零）时，<strong>必须</strong>调用本方法。在这种情况下，本方法<strong>可以</strong>在发起文件传输的会话中调用，也可以在后续的会话中调用。如果使用该方法，则只有在文件传输已经结束（或者已经失败）后才能调用。CPE用来判断何时传输可认作结束的标准由CPE的实现方法自行决定。该方法的调用参数在表36中定义，应答参数在表37中定义。</p>
+<p><strong>表36</strong> <strong>–</strong> <strong>TransferComplete参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>值</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CommandKey</td>
+<td>string(32)</td>
+<td>设置为CommandKey参数的值，该值是在发起文件传输的Download或Upload方法调用中传递给CPE的。</td>
+</tr>
+<tr>
+<td>FaultStruct</td>
+<td>FaultStruct</td>
+<td>表38中定义的FaultStruct结构。如果文件传输成功，FaultCode的值设置为0。否则会指明非零的FaultCode值和说明失败原因的FaultString。</td>
+</tr>
+<tr>
+<td>StartTime</td>
+<td>dateTime</td>
+<td>文件传输开始的日期和时间（UTC）。</td>
+</tr>
+<tr>
+<td>CompleteTime</td>
+<td>dateTime</td>
+<td>文件传输结束的日期和时间（UTC）。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表37</strong> <strong>–</strong> <strong>TransferCompleteResponse参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>值</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>void</td>
+<td>该方法应答无参数。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表38</strong> <strong>–</strong> <strong>FaultStruct定义</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>名称</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>值</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FaultCode</td>
+<td>unsignedInt</td>
+<td>在A.5.1节中定义的数字型错误代码。在失败情况下，允许使用的代码是：9001，9002，9010，9011，9012。零值代表无错误。</td>
+</tr>
+<tr>
+<td>FaultString</td>
+<td>string(256)</td>
+<td>错误的可人读文字描述。如果FaultCode的值为零，则该域<strong>应当</strong>为空。</td>
+</tr>
+</tbody>
+</table>
+<p>本方法定义的错误代码为：8000，8001，8002，8003，8004，8005。</p>
+<p>除此之外还有一些可选的RPC方法：</p>
+<p>该节列示的所有方法是CPE设备可选支持的。只有服务器能够调用这些方法。</p>
+<p><strong>GetQueuedTransfers</strong></p>
+<p>服务器可以用本方法来确定前面的下载或上载请求的状态。该方法的调用参数在表39中定义，其应答参数在表40中定义。</p>
+<p><strong>表39</strong> <strong>–</strong> <strong>GetQueuedTransfers</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>void</td>
+<td>该方法没有调用参数。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表40</strong> <strong>–</strong> <strong>GetQueuedTransfersResponse参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TransferList</td>
+<td>QueuedTransferStruct[16]</td>
+<td>结构数组，在表41中定义。每个结构描述了一个CPE已经指示去执行，但还没有完全结束的文件传输。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表41</strong> <strong>–</strong> <strong>QueuedTransferStruct定义</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>名称</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CommandKey</td>
+<td>string(32)</td>
+<td>其值设置为发起文件传输的Download或Upload方法传递给CPE的CommandKey参数值。</td>
+</tr>
+<tr>
+<td>State</td>
+<td>int[1:3]</td>
+<td>传输的当前状态。定义的值有：1 = 尚未开始2 = 进行中3 = 已结束，正完成清理保留所有其它值。</td>
+</tr>
+</tbody>
+</table>
+<p>为该方法定义的错误代码包括：9000，9001，9002。</p>
+<p><strong>ScheduleInform</strong></p>
+<p>服务器可以用本方法请求CPE来在未来某时刻计划（与CPE的定期调用Inform方法分离）一次性的Inform方法调用。方法的调用参数在表42中定义，应答参数在表43中定义。</p>
+<p><strong>表42</strong> <strong>–</strong> <strong>ScheduleInform参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DelaySeconds</td>
+<td>unsignedInt</td>
+<td>从该方法被调用到CPE响应请求发起一次性的Inform方法调用之间的秒数。CPE发送一个请求，然后DelaySeconds之后调用Inform方法。该值必须比零大。</td>
+</tr>
+<tr>
+<td>CommandKey</td>
+<td>string(32)</td>
+<td>当CPE调用Inform方法时，InformStruct的CommandKey元素应返回的值。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表43</strong> <strong>–</strong> <strong>ScheduleInformResponse参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>void</td>
+<td>该应答方法没有参数。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>SetVouchers</strong></p>
+<p>服务器调用该方法来设置CPE使用的一个或多个Vouchers（凭据）选项。该方法的调用参数在表44中定义，应答选项在表45中定义。</p>
+<p><strong>表44</strong> <strong>–</strong> <strong>SetVouchers参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VoucherList</td>
+<td>base64[]</td>
+<td>Vouchers数组，其中每一个Voucher表示普一个Base64编码的十进制字符串。Voucher的具体结构在附录C中定义。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表45</strong> <strong>–</strong> <strong>SetVouchersResponse参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>void</td>
+<td>该应答方法没有参数。</td>
+</tr>
+</tbody>
+</table>
+<p>为本方法定义的错误代码有：9000，9001，9002，9003，9004。</p>
+<p><strong>GetOptions</strong></p>
+<p>服务器可以用此方法来获得CPE目前设置的选项表，及其它相关状态信息。该方法的调用参数在表46中定义，应答参数在表47中定义。</p>
+<p><strong>表46</strong> <strong>–</strong> <strong>GetOptions参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OptionName</td>
+<td>string(64)</td>
+<td>表示一个特定<strong>选项</strong>的名称的字符串，或一个空串指出该方法应当返回CPE支持的所有<strong>选项</strong>的状态（而不管它们目前是否已经启用）。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表47</strong> <strong>–</strong> <strong>GetOptionsResponse参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OptionList</td>
+<td>OptionStruct[]</td>
+<td>OptionStruct数组，在表48中定义。包括或者一个OptionStruct（当接收到对一个特定<strong>选项</strong>的信息请求）或一个OptionStruct表，每个结构包括CPE支持的一个选项。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表48</strong> <strong>–</strong> <strong>OptionStruct定义</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>名称</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OptionName</td>
+<td>string(64)</td>
+<td>标识特定<strong>选项</strong>的名称。</td>
+</tr>
+<tr>
+<td>VoucherSN</td>
+<td>unsignedInt</td>
+<td>标识特定<strong>选项</strong>的数目。</td>
+</tr>
+<tr>
+<td>State</td>
+<td>unsignedInt</td>
+<td>由两位构成的数字，定义如下：Bit 0 (LSB):0 = <strong>选项</strong>目前被禁用1 = <strong>选项</strong>目前被启用Bit 1:0 = <strong>选项</strong>已经被设置1 = <strong>选项</strong>未被设置对每个<strong>选项</strong>的设置状态的解释是该<strong>选项</strong>所自定义的。但通常情况下解释为指定是否最终用户已经主动地执行了一些动作以使该<strong>选项</strong>完全发挥功能。</td>
+</tr>
+<tr>
+<td>Mode</td>
+<td>int[0:2]</td>
+<td>这一元素说明指定<strong>选项</strong>启用还是禁用。如果已经启用，是否已经指定了过期。定义的值有：0 = 禁用1 = 启用，过期2 = 启用，无过期</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>dateTime</td>
+<td><strong>选项</strong>开始的日期时间（UTC）。如果是未来时间，是指要启用<strong>选项</strong>的时间。如果是过去时间，是<strong>选项</strong>启用时的时间。</td>
+</tr>
+<tr>
+<td>ExpirationDate</td>
+<td>dateTime</td>
+<td>如果有，表明<strong>选项</strong>要过期的日期时间（UTC）。</td>
+</tr>
+<tr>
+<td>IsTransferable</td>
+<td>boolean</td>
+<td>指定是否<strong>选项</strong>已被指定为能够传递或不能传递（见附录C）。定义的值有：0 = 不能传递1 = 能够传递</td>
+</tr>
+</tbody>
+</table>
+<p>为本方法定义的错误代码有：9000，9001，9002，9003。</p>
+<p><strong>Upload</strong></p>
+<p>服务器用本方法使CPE向指定的位置上载一个特定的文件。本方法的调用参数在表49中定义，应答方法在表50中定义。</p>
+<p><strong>表49</strong> <strong>–</strong> <strong>Upload参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CommandKey</td>
+<td>string(32)</td>
+<td>CPE用来指向特定上载的字符串。该参数在TransferComplete和GetQueuedTransfers方法中引用。</td>
+</tr>
+<tr>
+<td>FileType</td>
+<td>string(64)</td>
+<td>一个整数，其后是一个空格，再其后是一个文件类型说明。目前FileType参数仅定义了以下值：”1 Firmware Upgrade Image””2 Web Content”下列格式用于定义唯一的厂商自定义文件类型：”X <oui> <vendor-specific identifier="">“其中，<oui>用6位十六进制数字的在[9]中定义的OUI（组织唯一标识）代替，其中所有字母用大写，包括所有前置零。</oui></vendor-specific></oui></td>
+</tr>
+<tr>
+<td>URL</td>
+<td>string(256)</td>
+<td>URL说明目标文件位置。<strong>必须</strong>支持HTTP传输。<strong>可以</strong>支持其它可选的传输方式，如2.3.2节的定义。</td>
+</tr>
+<tr>
+<td>Username</td>
+<td>string(256)</td>
+<td>CPE用于认证文件服务器的用户名。如果不需要认证，则该字符串设置为空串。</td>
+</tr>
+<tr>
+<td>Password</td>
+<td>string(256)</td>
+<td>CPE用于认证文件服务器的密码。如果不需要认证，则该字符串设置为空串。</td>
+</tr>
+<tr>
+<td>DelaySeconds</td>
+<td>unsignedInt</td>
+<td>从本方法被调用到CPE被要求开始上载之间的时间间隔。如果值为零表明不需要延迟。如果是非零值，则上载<strong>不应当</strong>使用与该请求相同的事务会话。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表50</strong> <strong>–</strong> <strong>UploadResponse参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Staus</td>
+<td>int[0:1]</td>
+<td>对该方法的成功应答返回一个整数型的枚举值定义如下：0 = 上载已完成。1 = 上载尚未完成（比如，如果上载必须等等本会话终止）。如果该参数的值非零，则CPE<strong>必须</strong>在本会话的后续时间，或者在其后的会话中，调用TransferComplete方法来说明本次上载的完成状态（成功或者失败）。</td>
+</tr>
+<tr>
+<td>StartTime</td>
+<td>dateTime</td>
+<td>上载开始的日期和时间（UTC）。只有在上载结束后该值才需要填写。</td>
+</tr>
+<tr>
+<td>CompleteTime</td>
+<td>dateTime</td>
+<td>上载完全结束并应用时的日期和时间（UTC）。只有在上载结束后该值才需要填写。</td>
+</tr>
+</tbody>
+</table>
+<p>为本方法定义的错误代码有：9000，9001，9002，9003，9011，9012，9013。</p>
+<p><strong>FactoryReset</strong></p>
+<p>这一方法将重置CPE到其出厂默认状态。该方法使用时需要万分小心。该方法的调用参数在表51中定义，应答参数在表52中定义。</p>
+<p><strong>表51</strong> <strong>–</strong> <strong>FactoryReset参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>名称</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>void</td>
+<td>该方法没有参数。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表52</strong> <strong>–</strong> <strong>FactoryResetResponse参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>名称</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>void</td>
+<td>该方法的应答没有参数。</td>
+</tr>
+</tbody>
+</table>
+<p>为本方法定义的错误代码包括：9000，9001，9002，9003。</p>
+<p><strong>服务器方法</strong></p>
+<p>本节定义的方法为服务器可选支持，只有CPE才能调用这些方法。</p>
+<p><strong>Kicked</strong></p>
+<p>任何时刻CPE被“踢”（在附录D中描述）时，CPE调用该方法。该方法的调用参数在表53中定义，应答参数在表54中定义。</p>
+<p><strong>表53</strong> <strong>–</strong> <strong>Kicked参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>值</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Command</td>
+<td>string(32)</td>
+<td>通用参数，服务器用它来作识别，或作其它目的。</td>
+</tr>
+<tr>
+<td>Referer</td>
+<td>string(64)</td>
+<td>当被踢出时，发送给CPE的“Referer”HTTP头的值。</td>
+</tr>
+<tr>
+<td>Arg</td>
+<td>string(256)</td>
+<td>通用参数，服务器用它来作识别，或作其它目的。</td>
+</tr>
+<tr>
+<td>Next</td>
+<td>string(1024)</td>
+<td>在正常情况下，服务器应当在本方法的应答中返回的URL。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表54</strong> <strong>–</strong> <strong>KickedResponse参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>值</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NextURL</td>
+<td>string(1024)</td>
+<td>用户的浏览器应当重定向到的下一个URL。该URL可以包括服务器所需的CGI参数（比如，为维持会话状态）。如果服务器希望给用户的浏览器发送CPE设备本身的一个页面，则只返回URL的路径部分作为结果，（比如“/security/index.html”）。这使CPE在HTTP 302应答中能够使用自己的规范名称。注意这需要ACS通过其它机制（不在本规范中讨论）来对CPE设备上的可用URL有事先的了解。</td>
+</tr>
+</tbody>
+</table>
+<p>如果本方法返回错误，CPE<strong>应当</strong>将用户的浏览器重定向到CPE设备上的一个错误页面。</p>
+<p>为本方法定义的错误代码有：8000，8001，8002，8003，8005。</p>
+<p><strong>RequestDownload</strong></p>
+<p>该方法允许CPE向服务器请示求一个文件下载。当接收到该请求时，服务器<strong>可以</strong>调用Download方法来启动下载。本方法的调用参数在表55中定义，应答参数在表56中定义。</p>
+<p><strong>表55</strong> <strong>–</strong> <strong>RequestDownload参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>值</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FileType</td>
+<td>string(64)</td>
+<td>这是被要求的文件类型（见表27列示的允许的文件类型）。</td>
+</tr>
+<tr>
+<td>FileTypeArg</td>
+<td>ArgStruct[16]</td>
+<td>零个或多个附加参数数组，每一个参数是一个表57所定义的name-value值对结构。对其它参数的使用依赖于指明的FileType。对每个目前已定义的文件类型，定义了下列参数：<strong>FileType**</strong>FileTypeArg名称**1 Firmware Upgrade（无）2 Web Content“版本”3 Vendor Configuration File（无） 如果服务器接收到它不能理解的参数，它必须忽略这些未知参数，但仍然用它能够理解的参数来处理请求。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表56</strong> <strong>–</strong> <strong>RequestDownloadResponse参数</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>名称</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>void</td>
+<td>该方法应答无参数。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表57</strong> <strong>–</strong> <strong>ArgStruct定义</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>名称</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>string(64)</td>
+<td>参数名称。</td>
+</tr>
+<tr>
+<td>Value</td>
+<td>string(256)</td>
+<td>参数值。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>CPE错误代码</strong></p>
+<p>表51列示了CPE能够返回的错误代码。注意这些错误代码的值以<strong>十进制</strong>表示。</p>
+<p><strong>表 58</strong> <strong>错误代码</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>错误代码</strong></th>
+<th style="text-align:center"><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9000</td>
+<td style="text-align:center">方法不支持</td>
+</tr>
+<tr>
+<td>9001</td>
+<td style="text-align:center">拒绝请求（未说明原因）</td>
+</tr>
+<tr>
+<td>9002</td>
+<td style="text-align:center">内部错误</td>
+</tr>
+<tr>
+<td>9003</td>
+<td style="text-align:center">无效参数</td>
+</tr>
+<tr>
+<td>9004</td>
+<td style="text-align:center">资源超限（当用于SetParameterValues的关联时，它<strong>不得</strong>用来指示参数错误）</td>
+</tr>
+<tr>
+<td>9005</td>
+<td style="text-align:center">无效参数名（与Set/GetParameterValues，GetParameterNames，Set/GetParameterAttributes相关）</td>
+</tr>
+<tr>
+<td>9006</td>
+<td style="text-align:center">无效参数类型（与SetParameterValues相关）</td>
+</tr>
+<tr>
+<td>9007</td>
+<td style="text-align:center">无效参数值（与SetParameterValues相关）</td>
+</tr>
+<tr>
+<td>9008</td>
+<td style="text-align:center">试图设置不可写的参数（与SetParameterValues相关）</td>
+</tr>
+<tr>
+<td>9009</td>
+<td style="text-align:center">Notification请求被拒（与SetParameterAttributes方法相关）</td>
+</tr>
+<tr>
+<td>9010</td>
+<td style="text-align:center">下载失败（与Download或TransferComplete方法相关）</td>
+</tr>
+<tr>
+<td>9011</td>
+<td style="text-align:center">上载失败（与Upload或TransferComplete方法相关）</td>
+</tr>
+<tr>
+<td>9012</td>
+<td style="text-align:center">文件传输服务器认证失败（与Upload，Download，或TransferComplete方法相关）</td>
+</tr>
+<tr>
+<td>9013</td>
+<td style="text-align:center">文件传输的协议不支持（与Upload和Download方法相关）</td>
+</tr>
+<tr>
+<td>9800 - 9899</td>
+<td style="text-align:center">厂商定义的错误代码</td>
+</tr>
+</tbody>
+</table>
+<p><strong>服务器错误代码</strong></p>
+<p>表59列出了服务器能够返回的错误代码。注意错误代码以<strong>十进制</strong>表示。</p>
+<p><strong>表59</strong> <strong>错误代码</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>错误代码</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8000</td>
+<td>方法不支持</td>
+</tr>
+<tr>
+<td>8001</td>
+<td>拒绝请求（未指明原因）</td>
+</tr>
+<tr>
+<td>8002</td>
+<td>内部错误</td>
+</tr>
+<tr>
+<td>8003</td>
+<td>无效参数</td>
+</tr>
+<tr>
+<td>8004</td>
+<td>资源超限</td>
+</tr>
+<tr>
+<td>8005</td>
+<td>重试请求</td>
+</tr>
+<tr>
+<td>8800 - 8899</td>
+<td>厂商自定义错误代码</td>
+</tr>
+</tbody>
+</table>
+<h6 id="参数节点"><a href="#参数节点" class="headerlink" title="参数节点"></a>参数节点</h6><p>首先，我们需要知道有哪儿些数据类型，这是针对参数（parameter）来说的。</p>
+<p>Tr069的参数是一种树状的结构。对于路由，网关设备，通常参数的根节点是“InternetGatewayDevice”，对于电话设备，根节点是”Device”。在根节点下有一些子节点，比如DeviceSummary 称为：”InternetGatewayDevice”的一个子节点。表示方法是“InternetGatewayDevice.DeviceSummary ”。子节点中还有自己的子节点。父节点和子节点之间使用”.”进行分隔。这些协议规定的，并不是每一个RFC协议规定的节点都要实现，并不是每一个节点都要按照RFC协议规定的含义进行定义，也并不是每一个节点的路径都要按照协议来定义。这些，都要取决于服务器和客户端的统一意愿。如果双方定义了一个协议中没有说明的节点也可以。</p>
+<p>厂商可以用其自定义的参数和对象来扩展标准参数表。厂商自定义的参数和对象可以定义在不同的命名空间，或者定义在标准的命名空间。</p>
+<p>厂商自定义的参数或对象的名称<strong>必须</strong>采用以下格式：</p>
+<p>X_VENDOR_VendorSpecificName</p>
+<p>在该定义中，VENDOR是唯一的厂商标识符，可以是一个OUI或域名。OUI（organizationally unique identifier组织的唯一标识）在[9]中定义，<strong>必须</strong>格式化为6个十六进制字符的OUI，所有字母要大写，要包括所有的前置0。域名必须是大写，并且将每个点（“.”）替换为连字符或下划线。</p>
+<p>VendorSpecificName<strong>必须</strong>是在B.2.1中定义的有效字符串，并<strong>不得</strong>包含“.”（小数点）或空格字符。</p>
+<p><em>注</em> <em>–</em> <em>用字符串“X_”来表示厂商自定义的参数，也就暗示了不得有标准参数可以以“X_”开头</em></p>
+<p>下面是一些厂商自定义的参数或对象名的例子：</p>
+<p>InternetGatewayDevice.UserInterface.X_00D09E_AdBanner</p>
+<p>InternetGatewayDevice.LANDevice.1.X_00D09E_LANInfraredInterfaceConfig.2.Status</p>
+<p>X_GAMECO-COM_GameDevice.Info.Type</p>
+<p>在需要时，厂商也可以扩展枚举类型的值集。如果这样做，厂商自定义的值必须使用格式“X_VENDOR_VendorSpecificValue”。这样的字符符的总长度<strong>不得</strong>超过31字节。 </p>
 <h3 id="ACS和CPE的交互"><a href="#ACS和CPE的交互" class="headerlink" title="ACS和CPE的交互"></a>ACS和CPE的交互</h3><p>为了交互的安全，应该尽量使用SSL或者TLS进行加密，使用https传输。</p>
 <p>但是为了了解交互过程，分析报文，我们会以http的连接为例。</p>
 <p>首先需要简明一下双方交互的流程：</p>
@@ -358,6 +1797,14 @@
 <p>下面是通常情况下的流程：</p>
 <p><img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/25d4375640f7f91680b8581308ccb48f.png" alt="tr069交互流程图"></p>
 <p>我们通过wireshark抓包，了解一下具体报文是如何显示的：</p>
+<h6 id="1、CPE发出Inform-eventCode-1-BOOT表示是系统启动引发的这次回话。最大信包的处理数量是1，表示双方的每一次回复都只完成一个事件。retryCount为0表示在此之前，没有失败的Inform。下面还会有一些参数列表，是用来告诉服务器，设备自己的信息。根据这些信息，就能唯一标识CPE了，当然，通常情况下唯一标识的是设备的Mac地址。"><a href="#1、CPE发出Inform-eventCode-1-BOOT表示是系统启动引发的这次回话。最大信包的处理数量是1，表示双方的每一次回复都只完成一个事件。retryCount为0表示在此之前，没有失败的Inform。下面还会有一些参数列表，是用来告诉服务器，设备自己的信息。根据这些信息，就能唯一标识CPE了，当然，通常情况下唯一标识的是设备的Mac地址。" class="headerlink" title="1、CPE发出Inform,eventCode=1 BOOT表示是系统启动引发的这次回话。最大信包的处理数量是1，表示双方的每一次回复都只完成一个事件。retryCount为0表示在此之前，没有失败的Inform。下面还会有一些参数列表，是用来告诉服务器，设备自己的信息。根据这些信息，就能唯一标识CPE了，当然，通常情况下唯一标识的是设备的Mac地址。"></a>1、CPE发出Inform,eventCode=1 BOOT表示是系统启动引发的这次回话。最大信包的处理数量是1，表示双方的每一次回复都只完成一个事件。retryCount为0表示在此之前，没有失败的Inform。下面还会有一些参数列表，是用来告诉服务器，设备自己的信息。根据这些信息，就能唯一标识CPE了，当然，通常情况下唯一标识的是设备的Mac地址。</h6><p><img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/a61ac6f8401a5ef580d9db3de8cb1132.png" alt="inform"></p>
+<p><img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/ff27fa02403d5e43800f209b58e913d3.png" alt="inform2"></p>
+<p><br></p>
+<h6 id="2、ACS回复InformResponse。标识收到了设备发来的Inform。服务器回复这个请求，使用的headerID和请求的一样，表明对应于该请求的回复，Header中还有一个元素是NoMoreRequest，指明CPE不得在后续的会话中发送更多的请求，但是没有mustunderstand的值，被解释成0，所以暂时没有作用。"><a href="#2、ACS回复InformResponse。标识收到了设备发来的Inform。服务器回复这个请求，使用的headerID和请求的一样，表明对应于该请求的回复，Header中还有一个元素是NoMoreRequest，指明CPE不得在后续的会话中发送更多的请求，但是没有mustunderstand的值，被解释成0，所以暂时没有作用。" class="headerlink" title="2、ACS回复InformResponse。标识收到了设备发来的Inform。服务器回复这个请求，使用的headerID和请求的一样，表明对应于该请求的回复，Header中还有一个元素是NoMoreRequest，指明CPE不得在后续的会话中发送更多的请求，但是没有mustunderstand的值，被解释成0，所以暂时没有作用。"></a>2、ACS回复InformResponse。标识收到了设备发来的Inform。服务器回复这个请求，使用的headerID和请求的一样，表明对应于该请求的回复，Header中还有一个元素是NoMoreRequest，指明CPE不得在后续的会话中发送更多的请求，但是没有mustunderstand的值，被解释成0，所以暂时没有作用。<img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/67c59f024091740980d3c1a7f58dd723.png" alt="InformRespnse"></h6><h6 id="3、CPE发送空的信包，表示没有后续请求。"><a href="#3、CPE发送空的信包，表示没有后续请求。" class="headerlink" title="3、CPE发送空的信包，表示没有后续请求。"></a>3、CPE发送空的信包，表示没有后续请求。</h6><p><img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/4634d24540f79a2c801d32d56f42a191.png" alt="norequest"></p>
+<h6 id="4、ACS收到空包后，调用一个方法：GetParameterValues，想要获得两个参数PeriodicInformEnable：是否CPE必须定期向服务器通过Inform方法调用发送CPE信息。PeriodicInformInterval：在PeriodicInformEnable为真时，CPE必须试图连接ACS并调用Inform方法的时间间隔（以秒计）。"><a href="#4、ACS收到空包后，调用一个方法：GetParameterValues，想要获得两个参数PeriodicInformEnable：是否CPE必须定期向服务器通过Inform方法调用发送CPE信息。PeriodicInformInterval：在PeriodicInformEnable为真时，CPE必须试图连接ACS并调用Inform方法的时间间隔（以秒计）。" class="headerlink" title="4、ACS收到空包后，调用一个方法：GetParameterValues，想要获得两个参数PeriodicInformEnable：是否CPE必须定期向服务器通过Inform方法调用发送CPE信息。PeriodicInformInterval：在PeriodicInformEnable为真时，CPE必须试图连接ACS并调用Inform方法的时间间隔（以秒计）。"></a>4、ACS收到空包后，调用一个方法：GetParameterValues，想要获得两个参数PeriodicInformEnable：是否CPE必须定期向服务器通过Inform方法调用发送CPE信息。PeriodicInformInterval：在PeriodicInformEnable为真时，CPE必须试图连接ACS并调用Inform方法的时间间隔（以秒计）。</h6><p><img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/6bd713204071d7b780b3f2f868fe6f51.png" alt="getvalue"></p>
+<h6 id="5、CPE收到请求后，以相同的ID值，回复ACS请求的参数。回复的方式是GetParameterValuesResponse可能产生的错误代码是9001-9002-9003-9004-9005，表示参数不存在等或其他错误。"><a href="#5、CPE收到请求后，以相同的ID值，回复ACS请求的参数。回复的方式是GetParameterValuesResponse可能产生的错误代码是9001-9002-9003-9004-9005，表示参数不存在等或其他错误。" class="headerlink" title="5、CPE收到请求后，以相同的ID值，回复ACS请求的参数。回复的方式是GetParameterValuesResponse可能产生的错误代码是9001,9002,9003,9004,9005，表示参数不存在等或其他错误。"></a>5、CPE收到请求后，以相同的ID值，回复ACS请求的参数。回复的方式是GetParameterValuesResponse可能产生的错误代码是9001,9002,9003,9004,9005，表示参数不存在等或其他错误。</h6><p><img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/9e6bfd9b4073a320800bced79cd9850f.png" alt="getResponse"></p>
+<h6 id="6、最后ACS发送空消息表示结束会话。"><a href="#6、最后ACS发送空消息表示结束会话。" class="headerlink" title="6、最后ACS发送空消息表示结束会话。"></a>6、最后ACS发送空消息表示结束会话。</h6><p>至此，一次普通的ACS和CPE的会话就结束了。</p>
+<p>对于tr069就先介绍到这里，有更多问题，可以去查找tr069的标准文档。</p>
 
       
     </div>
@@ -475,7 +1922,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -530,7 +1977,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是tr069"><span class="nav-number">1.</span> <span class="nav-text">什么是tr069?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tr069相关术语"><span class="nav-number">2.</span> <span class="nav-text">tr069相关术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tr069协议架构"><span class="nav-number">3.</span> <span class="nav-text">tr069协议架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ACS和CPE的交互"><span class="nav-number">4.</span> <span class="nav-text">ACS和CPE的交互</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是tr069"><span class="nav-number">1.</span> <span class="nav-text">什么是tr069?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tr069相关术语"><span class="nav-number">2.</span> <span class="nav-text">tr069相关术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tr069协议架构"><span class="nav-number">3.</span> <span class="nav-text">tr069协议架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RPC方法"><span class="nav-number">4.</span> <span class="nav-text">RPC方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据类型"><span class="nav-number">4.1.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通用方法"><span class="nav-number">4.2.</span> <span class="nav-text">通用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#CPE方法："><span class="nav-number">4.2.0.1.</span> <span class="nav-text">CPE方法：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#服务器方法"><span class="nav-number">4.2.0.2.</span> <span class="nav-text">服务器方法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参数节点"><span class="nav-number">4.2.0.3.</span> <span class="nav-text">参数节点</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#ACS和CPE的交互"><span class="nav-number">5.</span> <span class="nav-text">ACS和CPE的交互</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1、CPE发出Inform-eventCode-1-BOOT表示是系统启动引发的这次回话。最大信包的处理数量是1，表示双方的每一次回复都只完成一个事件。retryCount为0表示在此之前，没有失败的Inform。下面还会有一些参数列表，是用来告诉服务器，设备自己的信息。根据这些信息，就能唯一标识CPE了，当然，通常情况下唯一标识的是设备的Mac地址。"><span class="nav-number">5.0.0.1.</span> <span class="nav-text">1、CPE发出Inform,eventCode=1 BOOT表示是系统启动引发的这次回话。最大信包的处理数量是1，表示双方的每一次回复都只完成一个事件。retryCount为0表示在此之前，没有失败的Inform。下面还会有一些参数列表，是用来告诉服务器，设备自己的信息。根据这些信息，就能唯一标识CPE了，当然，通常情况下唯一标识的是设备的Mac地址。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2、ACS回复InformResponse。标识收到了设备发来的Inform。服务器回复这个请求，使用的headerID和请求的一样，表明对应于该请求的回复，Header中还有一个元素是NoMoreRequest，指明CPE不得在后续的会话中发送更多的请求，但是没有mustunderstand的值，被解释成0，所以暂时没有作用。"><span class="nav-number">5.0.0.2.</span> <span class="nav-text">2、ACS回复InformResponse。标识收到了设备发来的Inform。服务器回复这个请求，使用的headerID和请求的一样，表明对应于该请求的回复，Header中还有一个元素是NoMoreRequest，指明CPE不得在后续的会话中发送更多的请求，但是没有mustunderstand的值，被解释成0，所以暂时没有作用。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3、CPE发送空的信包，表示没有后续请求。"><span class="nav-number">5.0.0.3.</span> <span class="nav-text">3、CPE发送空的信包，表示没有后续请求。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4、ACS收到空包后，调用一个方法：GetParameterValues，想要获得两个参数PeriodicInformEnable：是否CPE必须定期向服务器通过Inform方法调用发送CPE信息。PeriodicInformInterval：在PeriodicInformEnable为真时，CPE必须试图连接ACS并调用Inform方法的时间间隔（以秒计）。"><span class="nav-number">5.0.0.4.</span> <span class="nav-text">4、ACS收到空包后，调用一个方法：GetParameterValues，想要获得两个参数PeriodicInformEnable：是否CPE必须定期向服务器通过Inform方法调用发送CPE信息。PeriodicInformInterval：在PeriodicInformEnable为真时，CPE必须试图连接ACS并调用Inform方法的时间间隔（以秒计）。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5、CPE收到请求后，以相同的ID值，回复ACS请求的参数。回复的方式是GetParameterValuesResponse可能产生的错误代码是9001-9002-9003-9004-9005，表示参数不存在等或其他错误。"><span class="nav-number">5.0.0.5.</span> <span class="nav-text">5、CPE收到请求后，以相同的ID值，回复ACS请求的参数。回复的方式是GetParameterValuesResponse可能产生的错误代码是9001,9002,9003,9004,9005，表示参数不存在等或其他错误。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6、最后ACS发送空消息表示结束会话。"><span class="nav-number">5.0.0.6.</span> <span class="nav-text">6、最后ACS发送空消息表示结束会话。</span></a></li></ol></li></div>
             
 
           </div>
