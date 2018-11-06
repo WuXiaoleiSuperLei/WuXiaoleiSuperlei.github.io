@@ -87,7 +87,7 @@
 <meta property="og:description" content="本文设置了12到C语言面试题，快来挑战一下吧！">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/53bb1eaa40d9c68780bfaf5a7328ae07.jpg">
-<meta property="og:updated_time" content="2018-11-02T08:06:59.785Z">
+<meta property="og:updated_time" content="2018-11-06T12:18:00.576Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言面试题">
 <meta name="twitter:description" content="本文设置了12到C语言面试题，快来挑战一下吧！">
@@ -352,20 +352,31 @@
       
         <p>说明：本文题目来源于牛客网，答案分析来源个人，仅为参考</p>
 <p><img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/53bb1eaa40d9c68780bfaf5a7328ae07.jpg" alt="fengjingtu"></p>
-<p>1、请问下面的程序最后会产生多少个进程：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(　）&#123; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">     <span class="keyword">int</span> i; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">     <span class="keyword">for</span>(i = <span class="number">0</span>; i&lt;<span class="number">5</span>;i++)&#123; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">int</span> pid = fork(); </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">if</span>(pid == <span class="number">0</span>)&#123; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="comment">//do something </span></span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        &#125; <span class="keyword">else</span> &#123; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="comment">//do something </span></span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        &#125; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        &#125;</span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="comment">// do somthing,sleep</span></span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">return</span> <span class="number">0</span>;</span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">&#125;</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><h5 id="1、请问下面的程序最后会产生多少个进程："><a href="#1、请问下面的程序最后会产生多少个进程：" class="headerlink" title="1、请问下面的程序最后会产生多少个进程："></a>1、请问下面的程序最后会产生多少个进程：</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(　）&#123; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">     <span class="keyword">int</span> i; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">     <span class="keyword">for</span>(i = <span class="number">0</span>; i&lt;<span class="number">5</span>;i++)&#123; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">int</span> pid = fork(); </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">if</span>(pid == <span class="number">0</span>)&#123; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="comment">//do something </span></span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        &#125; <span class="keyword">else</span> &#123; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="comment">//do something </span></span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        &#125; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        &#125;</span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="comment">// do somthing,sleep</span></span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">return</span> <span class="number">0</span>;</span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">&#125;</span></span></span><br></pre></td></tr></table></figure>
 <p>A、5  B、10  C、15 D、32</p>
 <p><br></p>
-<p>2、若有定义 int(<em>pt)[3]；则下列说法正确的是：<br>A、定义了基类型为int的三个指针变量<br>B、定义了基类型为int的具有三个元素的指针数组pt<br>C、定义了一个名为</em>pt、具有三个元素的整型数组<br>D、定义了一个名为pt的指针变量，它可以指向每行有三个整数元素的二维数组</p>
-<p><br>3、（不定项选择）若 a 是 float 型变量,b 是 unsigned 型变量,以下输入语句中合法的是：<br><code>A、scanf(&quot;%6.2f%d&quot;,&amp;a,&amp;b);</code><br><code>B、scanf(&quot;%f%n&quot;,&amp;a,&amp;b);</code><br><code>C、scanf(&quot;%f%3o&quot;,&amp;a,&amp;b);</code><br><code>D、scanf(&quot;%f%f&quot;,&amp;a,&amp;b);</code></p>
-<hr>
-<p><strong>答案与解析：</strong></p>
-<table>
+<h5 id="2、若有定义-int-pt-3-；则下列说法正确的是："><a href="#2、若有定义-int-pt-3-；则下列说法正确的是：" class="headerlink" title="2、若有定义 int(*pt)[3]；则下列说法正确的是："></a>2、若有定义 int(*pt)[3]；则下列说法正确的是：</h5><p>A、定义了基类型为int的三个指针变量<br>B、定义了基类型为int的具有三个元素的指针数组pt<br>C、定义了一个名为*pt、具有三个元素的整型数组<br>D、定义了一个名为pt的指针变量，它可以指向每行有三个整数元素的二维数组</p>
+<p><br></p>
+<h5 id="3、（不定项选择）若-a-是-float-型变量-b-是-unsigned-型变量-以下输入语句中合法的是："><a href="#3、（不定项选择）若-a-是-float-型变量-b-是-unsigned-型变量-以下输入语句中合法的是：" class="headerlink" title="3、（不定项选择）若 a 是 float 型变量,b 是 unsigned 型变量,以下输入语句中合法的是："></a>3、（不定项选择）若 a 是 float 型变量,b 是 unsigned 型变量,以下输入语句中合法的是：</h5><p><code>A、scanf(&quot;%6.2f%d&quot;,&amp;a,&amp;b);</code><br><code>B、scanf(&quot;%f%n&quot;,&amp;a,&amp;b);</code><br><code>C、scanf(&quot;%f%3o&quot;,&amp;a,&amp;b);</code><br><code>D、scanf(&quot;%f%f&quot;,&amp;a,&amp;b);</code></p>
+<p><br></p>
+<h5 id="4、（不定项选择）下列程序的运行结果是PP-10003，请为横线处选择合适的程序（）"><a href="#4、（不定项选择）下列程序的运行结果是PP-10003，请为横线处选择合适的程序（）" class="headerlink" title="4、（不定项选择）下列程序的运行结果是PP 10003，请为横线处选择合适的程序（）"></a>4、（不定项选择）下列程序的运行结果是PP 10003，请为横线处选择合适的程序（）</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">STU</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">   <span class="keyword">char</span> name[<span class="number">10</span>];</span><br><span class="line">   <span class="keyword">int</span> num;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(char_____, <span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">STU</span> <span class="title">s</span>[2]=&#123;</span>&#123;<span class="string">"SS"</span>,<span class="number">10001</span>&#125;,&#123;<span class="string">"PP"</span>,<span class="number">10002</span>&#125;&#125;;</span><br><span class="line">   num = s[<span class="number">1</span>].num;</span><br><span class="line">   <span class="built_in">strcpy</span>(name, s[<span class="number">1</span>].name);</span><br><span class="line">&#125;</span><br><span class="line">main()</span><br><span class="line">&#123;</span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">STU</span>  <span class="title">s</span>[2]=&#123;</span>&#123;<span class="string">"YY"</span>,<span class="number">10003</span>&#125;,&#123;<span class="string">"LL"</span>,<span class="number">10004</span>&#125;&#125;,*p;</span><br><span class="line">   p=s;</span><br><span class="line">   f(p-&gt;name, p-&gt;num);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"%s %d\n"</span>, p-&gt;name, p-&gt;num);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>A、*name     B、name[]    C、name    D、&amp;name</p>
+<h5 id="5、若-ch-为-char-型变量，k-为-int-型变量（已知字符-a-的-ASCII-十进制代码为97），则以下程序段的执行结果是（）。"><a href="#5、若-ch-为-char-型变量，k-为-int-型变量（已知字符-a-的-ASCII-十进制代码为97），则以下程序段的执行结果是（）。" class="headerlink" title="5、若 ch 为 char 型变量，k 为 int 型变量（已知字符 a 的 ASCII 十进制代码为97），则以下程序段的执行结果是（）。"></a>5、若 ch 为 char 型变量，k 为 int 型变量（已知字符 a 的 ASCII 十进制代码为97），则以下程序段的执行结果是（）。</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> ch=<span class="string">'a'</span>;</span><br><span class="line">    <span class="keyword">int</span> k=<span class="number">12</span>; </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%x,%o,"</span>,ch,ch,k);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"k=%%d\n"</span>,k);</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>A、因变量类型与格式描述符的类型不匹配，输出无定值</p>
+<p>B、输出项与格式描述符个数不符，输出为零值或不定值</p>
+<p>C、61,141,k=%d</p>
+<p>D、61,141,k=%12</p>
+<h5 id="6、以下叙述中正确的是（）"><a href="#6、以下叙述中正确的是（）" class="headerlink" title="6、以下叙述中正确的是（）"></a>6、以下叙述中正确的是（）</h5><p>A、在C语言中，逻辑真值和假值分别对应1和0<br>B、关系运算符两边的运算对象可以是Ｃ语言中任意合法的表达式<br>C、对于浮点变量x和y，表达式：x==y 是非法的，会出编译错误<br>D、分支结构是根据算术表达式的结果来判断流程走向的</p>
+<h5 id="7、unsigned-int-a-0x1234-unsigned-char-b-unsigned-char-a-在32位大端模式处理器上变量b等于"><a href="#7、unsigned-int-a-0x1234-unsigned-char-b-unsigned-char-a-在32位大端模式处理器上变量b等于" class="headerlink" title="7、unsigned int a= 0x1234; unsigned char b=(unsigned char )&a; 在32位大端模式处理器上变量b等于()?"></a>7、unsigned int a= 0x1234; unsigned char b=<em>(unsigned char </em>)&a; 在32位大端模式处理器上变量b等于()?</h5><p>A、0x00<br>B、0x12<br>C、0x34<br>D、0x1234</p>
+<h4 id="答案与解析："><a href="#答案与解析：" class="headerlink" title="答案与解析："></a>答案与解析：</h4><table>
 <thead>
 <tr>
 <th>1</th>
 <th>2</th>
 <th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
 </tr>
 </thead>
 <tbody>
@@ -373,15 +384,33 @@
 <td>D</td>
 <td>D</td>
 <td>BC</td>
+<td>AB</td>
+<td>C</td>
+<td>B</td>
+</tr>
+<tr>
+<td>7</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>A</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<p>1、答案：D。<br>解析：第一题考察了关于进程的基本知识。</p>
+<h5 id="1、答案：D。"><a href="#1、答案：D。" class="headerlink" title="1、答案：D。"></a>1、答案：D。</h5><p>解析：第一题考察了关于进程的基本知识。</p>
 <p>首先，什么是进程？进程是程序的执行实体，是系统资源进行资源分配的基本单位，我们经常拿进程和线程进行对比。线程是任务调度和执行的基本单位，一个进程可以由多个线程组成。我们平时写的程序，一般都只是一个进程，除非程序员手动创建一个新的进程，比如使用fork函数（进程创建方式不止这一种）。</p>
 <p>由fork创建的新进程被称为子进程。fork函数被调用一次，但是返回两次，一次是父进程的返回值一次是子进程的，两次返回的区别是子进程的返回值是0，父进程的返回值则是新建子进程的进程ID。这时候的子进程就会共享父进程的代码资源，拷贝一份父进程的资源，然后创建属于自己的堆栈等数据空间。也就是说，这时候子进程和父进程都会继续执行fork调用之后的指令。</p>
 <p>说到这里，我们就可以解决第一个问题了。程序循环fork了5次，第一次只有一个父进程调用fork，创建一个子进程，这时候共有2个进程。然后第二次循环时，这两个进程分别创建一个子进程，共有4个进程。同理,3次循环有8个进程，4次有16,5次就有32个。</p>
 <p><br></p>
-<p>2、答案：D。<br>解析：第二题是一个基本的二级指针定义问题。</p>
+<h5 id="2、答案：D。"><a href="#2、答案：D。" class="headerlink" title="2、答案：D。"></a>2、答案：D。</h5><p>解析：第二题是一个基本的二级指针定义问题。</p>
 <p>既然是定义，记住就好。</p>
 <p>定义基类型为int的三个指针变量:int<em>pt1,int</em>pt2,int*pt3;</p>
 <p>定义一个基类型为int的具有三个元素的指针数组pt：int*pt[3]</p>
@@ -389,11 +418,12 @@
 <p>定义一个名为pt的指针变量，它可以指向每行有三个整数元素的二维数组:int (*pt)[3];</p>
 <p>所以：B和D的区别，就是*和谁在一起，和int在一起，就说明元素是指针，和变量在一起，就说明变量是指针。</p>
 <p><br></p>
-<p>3、答案：B C。</p>
-<p>解析：第三题考察了输入输出规则。</p>
+<h5 id="3、答案：B-C。"><a href="#3、答案：B-C。" class="headerlink" title="3、答案：B C。"></a>3、答案：B C。</h5><p>解析：第三题考察了输入输出规则。</p>
 <p>对于浮点型和字符串%m.n含义不同。浮点型：m表示输出位数，n表示精度，也就是小数点后面几位。对于字符串，表示输出字符的个数。</p>
-<a id="more"></a>
-
+<h5 id="4、答案：A-B。"><a href="#4、答案：A-B。" class="headerlink" title="4、答案：A B。"></a>4、答案：A B。</h5><p>解析：不要忘记数组做函数参数的时候会退化成指针哟，所以B也是对的，另外D是C++引用的写法，即使是C++环境下，D也是不对的，因为引用不能用指针的形式调用，而且 char &amp;name表示的是一个字符，应该是char &amp;name[]。</p>
+<h5 id="5、答案：C"><a href="#5、答案：C" class="headerlink" title="5、答案：C"></a>5、答案：C</h5><p>解析：printf(“%x,%o,”,ch,ch,k);中虽然输出项不匹配，但是不会死机，K会被忽略，%x表示16进制输出，%o表示8进制输出。%%是输出%的转换表示。所以输出%d。</p>
+<h5 id="6、答案：B"><a href="#6、答案：B" class="headerlink" title="6、答案：B"></a>6、答案：B</h5><p>A:真是非0，假是0<br>C:x==y对于浮点型变量来讲是合法的<br>D:分支的判断是根据表达式的结果，不是算数表达式</p>
+<h5 id="7、答案：A"><a href="#7、答案：A" class="headerlink" title="7、答案：A"></a>7、答案：A</h5><a id="more"></a>
       
     </div>
     
@@ -433,8 +463,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/11/01/STL阅读笔记一/" rel="prev" title="STL阅读笔记一">
-                STL阅读笔记一 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/11/01/cpp面试题/" rel="prev" title="C++面试题">
+                C++面试题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -487,8 +517,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -505,7 +544,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -527,7 +566,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -550,6 +589,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、请问下面的程序最后会产生多少个进程："><span class="nav-number">1.1.</span> <span class="nav-text">1、请问下面的程序最后会产生多少个进程：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、若有定义-int-pt-3-；则下列说法正确的是："><span class="nav-number">1.2.</span> <span class="nav-text">2、若有定义 int(*pt)[3]；则下列说法正确的是：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、（不定项选择）若-a-是-float-型变量-b-是-unsigned-型变量-以下输入语句中合法的是："><span class="nav-number">1.3.</span> <span class="nav-text">3、（不定项选择）若 a 是 float 型变量,b 是 unsigned 型变量,以下输入语句中合法的是：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、（不定项选择）下列程序的运行结果是PP-10003，请为横线处选择合适的程序（）"><span class="nav-number">1.4.</span> <span class="nav-text">4、（不定项选择）下列程序的运行结果是PP 10003，请为横线处选择合适的程序（）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5、若-ch-为-char-型变量，k-为-int-型变量（已知字符-a-的-ASCII-十进制代码为97），则以下程序段的执行结果是（）。"><span class="nav-number">1.5.</span> <span class="nav-text">5、若 ch 为 char 型变量，k 为 int 型变量（已知字符 a 的 ASCII 十进制代码为97），则以下程序段的执行结果是（）。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6、以下叙述中正确的是（）"><span class="nav-number">1.6.</span> <span class="nav-text">6、以下叙述中正确的是（）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7、unsigned-int-a-0x1234-unsigned-char-b-unsigned-char-a-在32位大端模式处理器上变量b等于"><span class="nav-number">1.7.</span> <span class="nav-text">7、unsigned int a= 0x1234; unsigned char b=(unsigned char )&amp;a; 在32位大端模式处理器上变量b等于()?</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#答案与解析："><span class="nav-number">2.</span> <span class="nav-text">答案与解析：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、答案：D。"><span class="nav-number">2.1.</span> <span class="nav-text">1、答案：D。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、答案：D。"><span class="nav-number">2.2.</span> <span class="nav-text">2、答案：D。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、答案：B-C。"><span class="nav-number">2.3.</span> <span class="nav-text">3、答案：B C。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、答案：A-B。"><span class="nav-number">2.4.</span> <span class="nav-text">4、答案：A B。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5、答案：C"><span class="nav-number">2.5.</span> <span class="nav-text">5、答案：C</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6、答案：B"><span class="nav-number">2.6.</span> <span class="nav-text">6、答案：B</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7、答案：A"><span class="nav-number">2.7.</span> <span class="nav-text">7、答案：A</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
