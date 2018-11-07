@@ -78,19 +78,19 @@
 
 
 
-<meta name="description" content="本文设置了13到C语言面试题，快来挑战一下吧！">
+<meta name="description" content="本文设置了20道C语言面试题，快来挑战一下吧！">
 <meta name="keywords" content="c语言 面试题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C语言面试题">
 <meta property="og:url" content="http://yoursite.com/2018/11/01/C语言面试题/index.html">
 <meta property="og:site_name" content="Welcome to Rita&#39;s World">
-<meta property="og:description" content="本文设置了13到C语言面试题，快来挑战一下吧！">
+<meta property="og:description" content="本文设置了20道C语言面试题，快来挑战一下吧！">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/53bb1eaa40d9c68780bfaf5a7328ae07.jpg">
-<meta property="og:updated_time" content="2018-11-06T13:09:31.587Z">
+<meta property="og:updated_time" content="2018-11-07T11:27:45.570Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言面试题">
-<meta name="twitter:description" content="本文设置了13到C语言面试题，快来挑战一下吧！">
+<meta name="twitter:description" content="本文设置了20道C语言面试题，快来挑战一下吧！">
 <meta name="twitter:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/53bb1eaa40d9c68780bfaf5a7328ae07.jpg">
 
 
@@ -333,7 +333,7 @@
 
           
               <div class="post-description">
-                  本文设置了13到C语言面试题，快来挑战一下吧！
+                  本文设置了20道C语言面试题，快来挑战一下吧！
               </div>
           
 
@@ -355,7 +355,7 @@
 <h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><h5 id="1、请问下面的程序最后会产生多少个进程："><a href="#1、请问下面的程序最后会产生多少个进程：" class="headerlink" title="1、请问下面的程序最后会产生多少个进程："></a>1、请问下面的程序最后会产生多少个进程：</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(　）&#123; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">     <span class="keyword">int</span> i; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">     <span class="keyword">for</span>(i = <span class="number">0</span>; i&lt;<span class="number">5</span>;i++)&#123; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">int</span> pid = fork(); </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">if</span>(pid == <span class="number">0</span>)&#123; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="comment">//do something </span></span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        &#125; <span class="keyword">else</span> &#123; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="comment">//do something </span></span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        &#125; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        &#125;</span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="comment">// do somthing,sleep</span></span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">return</span> <span class="number">0</span>;</span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">&#125;</span></span></span><br></pre></td></tr></table></figure>
 <p>A、5  B、10  C、15 D、32</p>
 <p><br></p>
-<h5 id="2、若有定义-int-pt-3-；则下列说法正确的是："><a href="#2、若有定义-int-pt-3-；则下列说法正确的是：" class="headerlink" title="2、若有定义 int(*pt)[3]；则下列说法正确的是："></a>2、若有定义 int(*pt)[3]；则下列说法正确的是：</h5><p>A、定义了基类型为int的三个指针变量<br>B、定义了基类型为int的具有三个元素的指针数组pt<br>C、定义了一个名为*pt、具有三个元素的整型数组<br>D、定义了一个名为pt的指针变量，它可以指向每行有三个整数元素的二维数组</p>
+<h5 id="2、若有定义-int-pt-3-；则下列说法正确的是："><a href="#2、若有定义-int-pt-3-；则下列说法正确的是：" class="headerlink" title="2、若有定义 int( * pt)[3]；则下列说法正确的是："></a>2、若有定义 int( * pt)[3]；则下列说法正确的是：</h5><p>A、定义了基类型为int的三个指针变量<br>B、定义了基类型为int的具有三个元素的指针数组pt<br>C、定义了一个名为*pt、具有三个元素的整型数组<br>D、定义了一个名为pt的指针变量，它可以指向每行有三个整数元素的二维数组</p>
 <p><br></p>
 <h5 id="3、（不定项选择）若-a-是-float-型变量-b-是-unsigned-型变量-以下输入语句中合法的是："><a href="#3、（不定项选择）若-a-是-float-型变量-b-是-unsigned-型变量-以下输入语句中合法的是：" class="headerlink" title="3、（不定项选择）若 a 是 float 型变量,b 是 unsigned 型变量,以下输入语句中合法的是："></a>3、（不定项选择）若 a 是 float 型变量,b 是 unsigned 型变量,以下输入语句中合法的是：</h5><p><code>A、scanf(&quot;%6.2f%d&quot;,&amp;a,&amp;b);</code><br><code>B、scanf(&quot;%f%n&quot;,&amp;a,&amp;b);</code><br><code>C、scanf(&quot;%f%3o&quot;,&amp;a,&amp;b);</code><br><code>D、scanf(&quot;%f%f&quot;,&amp;a,&amp;b);</code></p>
 <p><br></p>
@@ -374,6 +374,23 @@
 <h5 id="11、以下-pragma预处理命令哪个是改变编译器的对齐方式（）"><a href="#11、以下-pragma预处理命令哪个是改变编译器的对齐方式（）" class="headerlink" title="11、以下#pragma预处理命令哪个是改变编译器的对齐方式（）?"></a>11、以下#pragma预处理命令哪个是改变编译器的对齐方式（）?</h5><p>A、#pragma comment<br>B、#pragma pack<br>C、#pragma data_seg<br>D、#pragma once</p>
 <h5 id="12、若有定义；int-a-8-，则以下表达式中不能代表数组元素a-1-的地址的是（）。"><a href="#12、若有定义；int-a-8-，则以下表达式中不能代表数组元素a-1-的地址的是（）。" class="headerlink" title="12、若有定义；int a[8];，则以下表达式中不能代表数组元素a[1]的地址的是（）。"></a>12、若有定义；int a[8];，则以下表达式中不能代表数组元素a[1]的地址的是（）。</h5><p>A、&amp;a[0]+1<br>B、&amp;a[1]<br>C、&amp;a[0]++<br>D、a+1</p>
 <h5 id="13、若有说明：int-a-4-0-0-，则下面不正确的叙述为（）"><a href="#13、若有说明：int-a-4-0-0-，则下面不正确的叙述为（）" class="headerlink" title="13、若有说明：int a[][4]={0,0};，则下面不正确的叙述为（）"></a>13、若有说明：int a[][4]={0,0};，则下面不正确的叙述为（）</h5><p>A、数组 a 中的每个元素都可以得到初值 0<br>B、二维数组 a 的第一维大小为 1<br>C、数组 a 的行数为 1<br>D、只有数组元素 a[0][0] 和 a[0][1] 可以得到初值 0，其余元素的初值无法确定。</p>
+<h5 id="14、若有以下程序"><a href="#14、若有以下程序" class="headerlink" title="14、若有以下程序"></a>14、若有以下程序</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SUB( X,Y ) (X+1)*Y</span></span><br><span class="line">main( )</span><br><span class="line">&#123; </span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">3</span>,b=<span class="number">4</span>;</span><br><span class="line">    <span class="built_in">printf</span>( <span class="string">"%d\n"</span> ,SUB( a++ ,b++ ) );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>程序运行后的输出结果是?</p>
+<p>A、25    B、20     C、12    D、16</p>
+<h5 id="15、若有定义；int-a-7；float-x-2-5，y-4-7；则表达式x-a-3-int-x-y-2-4的值是（）。"><a href="#15、若有定义；int-a-7；float-x-2-5，y-4-7；则表达式x-a-3-int-x-y-2-4的值是（）。" class="headerlink" title="15、若有定义；int a=7；float x=2.5，y=4.7；则表达式x+a%3 * (int)(x+y)%2/4的值是（）。"></a>15、若有定义；int a=7；float x=2.5，y=4.7；则表达式x+a%3 * (int)(x+y)%2/4的值是（）。</h5><p>A、2.500000<br>B、2.750000<br>C、3.500000<br>D、0.000000</p>
+<h5 id="16、若有下面的说明和定义："><a href="#16、若有下面的说明和定义：" class="headerlink" title="16、若有下面的说明和定义："></a>16、若有下面的说明和定义：</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">test</span>&#123;</span> </span><br><span class="line">    <span class="keyword">int</span> ml;</span><br><span class="line">    <span class="keyword">char</span> m2;</span><br><span class="line">    <span class="keyword">float</span> m3;</span><br><span class="line">    <span class="keyword">union</span> uu&#123;</span><br><span class="line">        <span class="keyword">char</span> ul[<span class="number">5</span>]; </span><br><span class="line">        <span class="keyword">int</span> u2[<span class="number">2</span>];</span><br><span class="line">    &#125; ua;</span><br><span class="line">&#125; myaa;</span><br></pre></td></tr></table></figure>
+<p>则sizeof(struct test )的值是（ ）。</p>
+<p>A、20    B、16    C、14    D、9</p>
+<h5 id="17、在32位操作系统中，我们定义如下变量-int-n-10-请问调用函数sizeof-n-返回值为（）"><a href="#17、在32位操作系统中，我们定义如下变量-int-n-10-请问调用函数sizeof-n-返回值为（）" class="headerlink" title="17、在32位操作系统中，我们定义如下变量 int ( * n)[10]; 请问调用函数sizeof(n),返回值为（）"></a>17、在32位操作系统中，我们定义如下变量 int ( * n)[10]; 请问调用函数sizeof(n),返回值为（）</h5><p>A、4        B、40     C、8     D、80</p>
+<h5 id="18、下面代码会输出"><a href="#18、下面代码会输出" class="headerlink" title="18、下面代码会输出()"></a>18、下面代码会输出()</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">4</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> *ptr=(<span class="keyword">int</span>*)(&amp;a+<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,*(ptr<span class="number">-1</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>A、4        B、1        C、2        D、3</p>
+<h5 id="19、哪个选项可以将下面的t初始化为当前程序的运行时间？"><a href="#19、哪个选项可以将下面的t初始化为当前程序的运行时间？" class="headerlink" title="19、哪个选项可以将下面的t初始化为当前程序的运行时间？"></a>19、哪个选项可以将下面的t初始化为当前程序的运行时间？</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">time_t</span> t;</span><br></pre></td></tr></table></figure>
+<p>A、t = clock();<br>B、time( &amp;t );<br>C、time( t );<br>D、t = localtime();<br>E、None of the above</p>
+<h5 id="20、若-k-为-int-型变量，则以下程序段的执行结果是（）。"><a href="#20、若-k-为-int-型变量，则以下程序段的执行结果是（）。" class="headerlink" title="20、若 k 为 int 型变量，则以下程序段的执行结果是（）。"></a>20、若 k 为 int 型变量，则以下程序段的执行结果是（）。</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">k=<span class="number">-8567</span>; </span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"|%06D|\n"</span>,k);</span><br></pre></td></tr></table></figure>
+<p>A、格式描述符不合法,输出无定值</p>
+<p>B、输出为|%06D|</p>
+<p>C、输出为|0-8567|</p>
+<p>D、输出为|-8567|</p>
 <h4 id="答案与解析："><a href="#答案与解析：" class="headerlink" title="答案与解析："></a>答案与解析：</h4><table>
 <thead>
 <tr>
@@ -412,15 +429,31 @@
 </tr>
 <tr>
 <td>13</td>
-<td></td>
+<td>14</td>
+<td>15</td>
+<td>16</td>
+<td>17</td>
+<td>18</td>
+</tr>
+<tr>
+<td>D</td>
+<td>D</td>
+<td>A</td>
+<td>A</td>
+<td>A</td>
+<td>A</td>
+</tr>
+<tr>
+<td>19</td>
+<td>20</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>D</td>
-<td></td>
+<td>A</td>
+<td>B</td>
 <td></td>
 <td></td>
 <td></td>
@@ -434,11 +467,11 @@
 <p><br></p>
 <h5 id="2、答案：D。"><a href="#2、答案：D。" class="headerlink" title="2、答案：D。"></a>2、答案：D。</h5><p>解析：第二题是一个基本的二级指针定义问题。</p>
 <p>既然是定义，记住就好。</p>
-<p>定义基类型为int的三个指针变量:int<em>pt1,int</em>pt2,int*pt3;</p>
-<p>定义一个基类型为int的具有三个元素的指针数组pt：int*pt[3]</p>
-<p>定义一个名为*pt、具有三个元素的整型数组:名字叫*pt的数组？没法定义。</p>
-<p>定义一个名为pt的指针变量，它可以指向每行有三个整数元素的二维数组:int (*pt)[3];</p>
-<p>所以：B和D的区别，就是*和谁在一起，和int在一起，就说明元素是指针，和变量在一起，就说明变量是指针。</p>
+<p>定义基类型为int的三个指针变量:int<em> pt1,int </em> pt2,int * pt3;</p>
+<p>定义一个基类型为int的具有三个元素的指针数组pt：int *pt[3]</p>
+<p>定义一个名为 <em> pt、具有三个元素的整型数组:名字叫 </em> pt的数组？没法定义。</p>
+<p>定义一个名为pt的指针变量，它可以指向每行有三个整数元素的二维数组:int ( * pt)[3];</p>
+<p>所以：B和D的区别，就是 * 和谁在一起，和int在一起，就说明元素是指针，和变量在一起，就说明变量是指针。</p>
 <p><br></p>
 <h5 id="3、答案：B-C。"><a href="#3、答案：B-C。" class="headerlink" title="3、答案：B C。"></a>3、答案：B C。</h5><p>解析：第三题考察了输入输出规则。</p>
 <p>对于浮点型和字符串%m.n含义不同。浮点型：m表示输出位数，n表示精度，也就是小数点后面几位。对于字符串，表示输出字符的个数。</p>
@@ -456,11 +489,15 @@
 <table>
 <thead>
 <tr>
-<th>r</th>
-<th>read的简写，表示只读打开，文件必须存在</th>
+<th>表示</th>
+<th>含义</th>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>r</td>
+<td>read的简写，表示只读打开，文件必须存在</td>
+</tr>
 <tr>
 <td>r+</td>
 <td>读写打开文件，文件必须存在，写的意思是覆盖之前的文件</td>
@@ -508,15 +545,29 @@
 </tbody>
 </table>
 <p>综上：+表示读写，w表示文件可以不存在。</p>
-<h6 id="10、答案：C"><a href="#10、答案：C" class="headerlink" title="10、答案：C"></a>10、答案：C</h6><p>A：void*<br>B：错<br>D：整数也是不能直接赋值给指针变量的，必须强制转换成对应的指针类型。</p>
-<h6 id="11、答案：B"><a href="#11、答案：B" class="headerlink" title="11、答案：B"></a>11、答案：B</h6><p>在所有的预处理指令中#pragma 可能是最复杂的了。</p>
+<h5 id="10、答案：C"><a href="#10、答案：C" class="headerlink" title="10、答案：C"></a>10、答案：C</h5><p>A：void*<br>B：错<br>D：整数也是不能直接赋值给指针变量的，必须强制转换成对应的指针类型。</p>
+<h5 id="11、答案：B"><a href="#11、答案：B" class="headerlink" title="11、答案：B"></a>11、答案：B</h5><p>在所有的预处理指令中#pragma 可能是最复杂的了。</p>
 <p>#pragma comment。将一个注释记录放置到对象文件或可执行文件中。</p>
 <p>#pragma pack。用来改变编译器的字节对齐方式。</p>
 <p>#pragma code_seg。它能够设置程序中的函数在obj文件中所在的代码段。在驱动开发中会用到</p>
 <p>#pragma once。保证所在文件只会被包含一次</p>
-<h6 id="12、答案：C"><a href="#12、答案：C" class="headerlink" title="12、答案：C"></a>12、答案：C</h6><p>A：&amp;a[0]+1表示元素a[0]的地址加1，也就是a[1]的地址;<br>B：&amp;a[1]当然表示a[1]的地址<br>C：&amp;a[0]++包含有对&amp;a[0]的赋值运算，本身是非法的<br>D：a+1表示数组a的首地址（即a[0]的地址）加1，也是a[1]的地址</p>
-<h6 id="13、答案：D"><a href="#13、答案：D" class="headerlink" title="13、答案：D"></a>13、答案：D</h6><p>数组初始化原则是：只要对数组中元素部分初始化，剩余元素都被编译器默认初始化为0.所以A对D不对，二维数组a中初值的个数不能被第二维大小的值整除,则第一维的大小等于所得商数再加1,故数组a的行数为1</p>
+<h5 id="12、答案：C"><a href="#12、答案：C" class="headerlink" title="12、答案：C"></a>12、答案：C</h5><p>A：&amp;a[0]+1表示元素a[0]的地址加1，也就是a[1]的地址;<br>B：&amp;a[1]当然表示a[1]的地址<br>C：&amp;a[0]++包含有对&amp;a[0]的赋值运算，本身是非法的<br>D：a+1表示数组a的首地址（即a[0]的地址）加1，也是a[1]的地址</p>
+<h5 id="13、答案：D"><a href="#13、答案：D" class="headerlink" title="13、答案：D"></a>13、答案：D</h5><p>数组初始化原则是：只要对数组中元素部分初始化，剩余元素都被编译器默认初始化为0.所以A对D不对，二维数组a中初值的个数不能被第二维大小的值整除,则第一维的大小等于所得商数再加1,故数组a的行数为1</p>
+<h5 id="14、答案：D"><a href="#14、答案：D" class="headerlink" title="14、答案：D"></a>14、答案：D</h5><p>#define XXX YYY,表达式XXX会在预处理阶段处理，直接进行替换。所以程序就变成了：<br>printf( “%d\n” ,(a++ +1) <em> b++)),其中a++在括号里面，先加在取值，b++则先取值再加，结果就是：4 </em> 4=16。</p>
+<h5 id="15、答案：A"><a href="#15、答案：A" class="headerlink" title="15、答案：A"></a>15、答案：A</h5><p>%的优先级和 <em> / 是相等的，所以注意从左向右<br>x+a%3 </em> (int)(x+y) % 2 / 4=2.5+7%3 <em> (int)(7.2) % 2 / 4=2.5+1 </em> 7%2/4=2.5+0=2.5</p>
+<h5 id="16、答案：A"><a href="#16、答案：A" class="headerlink" title="16、答案：A"></a>16、答案：A</h5><p>这道题考察了结构体和联合体的字节对齐规则：联合体的规则比较简单，因为它的所有成员变量都共用同一块内存，所以整个联合体的内存大小就是最大成员所占的内存大小。<br>结构体会按照成员的顺序依次分配，也就是说可能两个结构体成员的定义都是相同的，只是顺序不一样，那么这两个结构体需要的内存空间有可能不一样。<br>当轮到某一个成员时，如果此时的内存偏移量不是该成员所需内存的倍数时，则需要扩充到满足位置，所有成员都分配完成后，如果此时内存块大小不是最大成员大小的倍数时，也需要扩充。</p>
+<p>注意，数组是按照一个元素来算的。</p>
+<p>本题中，各成员所需要的内存大小是：<br>int ml：4；char m2：1；float m3：4； char ul[5]：5；int u2[2]：8；<br>最开始的偏移量为：0，这时候是4的0倍，不需要补齐，所以是+4；偏移量变为：4；<br>4是1的倍数，所以+1，偏移量变为：5；<br>5不是4的倍数，补齐+3，偏移量变为：8，是4的2倍，所以+4，偏移量变为：12；<br>联合体的内存大小是：8,按照单个元素4来算，12是4的倍数，直接+4*2，变为：20。</p>
+<p>当然，还有另外一种算法是直接算出对齐的单位，不足就补齐：对齐方式由 编译器的対界方式 和 自身的対界方式 取较小的那一个编译器的対界方式默认为8，可以以宏的方式进行设置#pragma pack(x) x为对齐的字节大小本题中没有设置编译器，固为默认的8，而自身的対界方式如下：<br>struct(还有union,class)的対界方式为最大的数据成员的大小：在struct里面为4(int)，在union里面也为4(int),<br>综合判断4 &lt; 8，固对齐方式为4个字节</p>
+<p>接下来看sizeof(struct test)的大小，除union部分外<br>sizeof(int)+size(char)+sizeof(float) = 4 + 1 + 4 = 9<br>对union来说大小为成员定义里面最大的那个<br>5<em>sizeof(char) = 5 &lt; 2</em>sizrof(int) = 8;<br>固union的sizeof(union uu)为 8 ,<br>因此总的大小为 9 + 8 = 17，考虑到对齐的方式为4字节，<br>因此向开界20对齐。答案为 A</p>
+<h5 id="17、答案：A"><a href="#17、答案：A" class="headerlink" title="17、答案：A"></a>17、答案：A</h5><p>区分一下这两个：<br>int( <em> n)[10]; 是数组指针  sizeof(n)=4；<br>int </em>  n[10];  是指针数组  sizeof(n)=40；<br>本题可以结合第二题一起练习。</p>
+<h5 id="18、答案：A"><a href="#18、答案：A" class="headerlink" title="18、答案：A"></a>18、答案：A</h5><p>考察对于数组和指针的认识，指针加一的能力由类型决定。int<em>ptr=(int</em>)(&amp;a+1);     &amp;a 和a 都指的是数组首元素的地址。不同的是<br>a就是a+0 ， <em> （a+0）就是a[0],而&amp;a+1  相当于a[]数组类型的指针加1，此时指针加到数组的末尾。<br>ptr接受后，由于Ptr的类型是int </em> 因此ptr-1  即回退4字节。即指到最后一个元素。</p>
+<h5 id="19、答案：A"><a href="#19、答案：A" class="headerlink" title="19、答案：A"></a>19、答案：A</h5><p>clock()就是该程序从启动到函数调用占用CPU的时间</p>
+<p>time( &amp;t );为获取系统时间</p>
+<p>localtime(&amp;t);  将一个UTC时间转为本地时间</p>
+<h5 id="20、答案：B"><a href="#20、答案：B" class="headerlink" title="20、答案：B"></a>20、答案：B</h5><p>%06d意思是将要输出的整数按六位输出，不足六位的用零补齐。但是此题的d大写成D，因此不选C。</p>
 <a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -637,7 +688,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -648,7 +699,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -659,7 +710,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -692,7 +743,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、请问下面的程序最后会产生多少个进程："><span class="nav-number">1.1.</span> <span class="nav-text">1、请问下面的程序最后会产生多少个进程：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、若有定义-int-pt-3-；则下列说法正确的是："><span class="nav-number">1.2.</span> <span class="nav-text">2、若有定义 int(*pt)[3]；则下列说法正确的是：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、（不定项选择）若-a-是-float-型变量-b-是-unsigned-型变量-以下输入语句中合法的是："><span class="nav-number">1.3.</span> <span class="nav-text">3、（不定项选择）若 a 是 float 型变量,b 是 unsigned 型变量,以下输入语句中合法的是：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、（不定项选择）下列程序的运行结果是PP-10003，请为横线处选择合适的程序（）"><span class="nav-number">1.4.</span> <span class="nav-text">4、（不定项选择）下列程序的运行结果是PP 10003，请为横线处选择合适的程序（）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5、若-ch-为-char-型变量，k-为-int-型变量（已知字符-a-的-ASCII-十进制代码为97），则以下程序段的执行结果是（）。"><span class="nav-number">1.5.</span> <span class="nav-text">5、若 ch 为 char 型变量，k 为 int 型变量（已知字符 a 的 ASCII 十进制代码为97），则以下程序段的执行结果是（）。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6、以下叙述中正确的是（）"><span class="nav-number">1.6.</span> <span class="nav-text">6、以下叙述中正确的是（）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7、unsigned-int-a-0x1234-unsigned-char-b-unsigned-char-a-在32位大端模式处理器上变量b等于"><span class="nav-number">1.7.</span> <span class="nav-text">7、unsigned int a= 0x1234; unsigned char b=(unsigned char )&amp;a; 在32位大端模式处理器上变量b等于()?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8、一张1024×640分辨率的图片，假定每个像素用16位色彩表示，用位图文件（bitmap）格式存储，则这张图片文件需要占用多大的存储空间"><span class="nav-number">1.8.</span> <span class="nav-text">8、一张1024×640分辨率的图片，假定每个像素用16位色彩表示，用位图文件（bitmap）格式存储，则这张图片文件需要占用多大的存储空间</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9、若要以-读和写两种操作方式打开一个二进制文件，当文件不存在时返回打开失败信息，则选用的打开方式字符串为（-）。"><span class="nav-number">1.9.</span> <span class="nav-text">9、若要以 读和写两种操作方式打开一个二进制文件，当文件不存在时返回打开失败信息，则选用的打开方式字符串为（ ）。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10、关于指针概念说法正确的是（）。"><span class="nav-number">1.10.</span> <span class="nav-text">10、关于指针概念说法正确的是（）。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11、以下-pragma预处理命令哪个是改变编译器的对齐方式（）"><span class="nav-number">1.11.</span> <span class="nav-text">11、以下#pragma预处理命令哪个是改变编译器的对齐方式（）?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#12、若有定义；int-a-8-，则以下表达式中不能代表数组元素a-1-的地址的是（）。"><span class="nav-number">1.12.</span> <span class="nav-text">12、若有定义；int a[8];，则以下表达式中不能代表数组元素a[1]的地址的是（）。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#13、若有说明：int-a-4-0-0-，则下面不正确的叙述为（）"><span class="nav-number">1.13.</span> <span class="nav-text">13、若有说明：int a[][4]={0,0};，则下面不正确的叙述为（）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#答案与解析："><span class="nav-number">2.</span> <span class="nav-text">答案与解析：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、答案：D。"><span class="nav-number">2.1.</span> <span class="nav-text">1、答案：D。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、答案：D。"><span class="nav-number">2.2.</span> <span class="nav-text">2、答案：D。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、答案：B-C。"><span class="nav-number">2.3.</span> <span class="nav-text">3、答案：B C。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、答案：A-B。"><span class="nav-number">2.4.</span> <span class="nav-text">4、答案：A B。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5、答案：C"><span class="nav-number">2.5.</span> <span class="nav-text">5、答案：C</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6、答案：B"><span class="nav-number">2.6.</span> <span class="nav-text">6、答案：B</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7、答案：A"><span class="nav-number">2.7.</span> <span class="nav-text">7、答案：A</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8、答案：C"><span class="nav-number">2.8.</span> <span class="nav-text">8、答案：C</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9、答案：C"><span class="nav-number">2.9.</span> <span class="nav-text">9、答案：C</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#10、答案：C"><span class="nav-number">2.9.1.</span> <span class="nav-text">10、答案：C</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#11、答案：B"><span class="nav-number">2.9.2.</span> <span class="nav-text">11、答案：B</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#12、答案：C"><span class="nav-number">2.9.3.</span> <span class="nav-text">12、答案：C</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#13、答案：D"><span class="nav-number">2.9.4.</span> <span class="nav-text">13、答案：D</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、请问下面的程序最后会产生多少个进程："><span class="nav-number">1.1.</span> <span class="nav-text">1、请问下面的程序最后会产生多少个进程：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、若有定义-int-pt-3-；则下列说法正确的是："><span class="nav-number">1.2.</span> <span class="nav-text">2、若有定义 int( * pt)[3]；则下列说法正确的是：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、（不定项选择）若-a-是-float-型变量-b-是-unsigned-型变量-以下输入语句中合法的是："><span class="nav-number">1.3.</span> <span class="nav-text">3、（不定项选择）若 a 是 float 型变量,b 是 unsigned 型变量,以下输入语句中合法的是：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、（不定项选择）下列程序的运行结果是PP-10003，请为横线处选择合适的程序（）"><span class="nav-number">1.4.</span> <span class="nav-text">4、（不定项选择）下列程序的运行结果是PP 10003，请为横线处选择合适的程序（）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5、若-ch-为-char-型变量，k-为-int-型变量（已知字符-a-的-ASCII-十进制代码为97），则以下程序段的执行结果是（）。"><span class="nav-number">1.5.</span> <span class="nav-text">5、若 ch 为 char 型变量，k 为 int 型变量（已知字符 a 的 ASCII 十进制代码为97），则以下程序段的执行结果是（）。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6、以下叙述中正确的是（）"><span class="nav-number">1.6.</span> <span class="nav-text">6、以下叙述中正确的是（）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7、unsigned-int-a-0x1234-unsigned-char-b-unsigned-char-a-在32位大端模式处理器上变量b等于"><span class="nav-number">1.7.</span> <span class="nav-text">7、unsigned int a= 0x1234; unsigned char b=(unsigned char )&amp;a; 在32位大端模式处理器上变量b等于()?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8、一张1024×640分辨率的图片，假定每个像素用16位色彩表示，用位图文件（bitmap）格式存储，则这张图片文件需要占用多大的存储空间"><span class="nav-number">1.8.</span> <span class="nav-text">8、一张1024×640分辨率的图片，假定每个像素用16位色彩表示，用位图文件（bitmap）格式存储，则这张图片文件需要占用多大的存储空间</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9、若要以-读和写两种操作方式打开一个二进制文件，当文件不存在时返回打开失败信息，则选用的打开方式字符串为（-）。"><span class="nav-number">1.9.</span> <span class="nav-text">9、若要以 读和写两种操作方式打开一个二进制文件，当文件不存在时返回打开失败信息，则选用的打开方式字符串为（ ）。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10、关于指针概念说法正确的是（）。"><span class="nav-number">1.10.</span> <span class="nav-text">10、关于指针概念说法正确的是（）。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11、以下-pragma预处理命令哪个是改变编译器的对齐方式（）"><span class="nav-number">1.11.</span> <span class="nav-text">11、以下#pragma预处理命令哪个是改变编译器的对齐方式（）?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#12、若有定义；int-a-8-，则以下表达式中不能代表数组元素a-1-的地址的是（）。"><span class="nav-number">1.12.</span> <span class="nav-text">12、若有定义；int a[8];，则以下表达式中不能代表数组元素a[1]的地址的是（）。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#13、若有说明：int-a-4-0-0-，则下面不正确的叙述为（）"><span class="nav-number">1.13.</span> <span class="nav-text">13、若有说明：int a[][4]={0,0};，则下面不正确的叙述为（）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#14、若有以下程序"><span class="nav-number">1.14.</span> <span class="nav-text">14、若有以下程序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#15、若有定义；int-a-7；float-x-2-5，y-4-7；则表达式x-a-3-int-x-y-2-4的值是（）。"><span class="nav-number">1.15.</span> <span class="nav-text">15、若有定义；int a=7；float x=2.5，y=4.7；则表达式x+a%3 * (int)(x+y)%2/4的值是（）。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#16、若有下面的说明和定义："><span class="nav-number">1.16.</span> <span class="nav-text">16、若有下面的说明和定义：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#17、在32位操作系统中，我们定义如下变量-int-n-10-请问调用函数sizeof-n-返回值为（）"><span class="nav-number">1.17.</span> <span class="nav-text">17、在32位操作系统中，我们定义如下变量 int ( * n)[10]; 请问调用函数sizeof(n),返回值为（）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#18、下面代码会输出"><span class="nav-number">1.18.</span> <span class="nav-text">18、下面代码会输出()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#19、哪个选项可以将下面的t初始化为当前程序的运行时间？"><span class="nav-number">1.19.</span> <span class="nav-text">19、哪个选项可以将下面的t初始化为当前程序的运行时间？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#20、若-k-为-int-型变量，则以下程序段的执行结果是（）。"><span class="nav-number">1.20.</span> <span class="nav-text">20、若 k 为 int 型变量，则以下程序段的执行结果是（）。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#答案与解析："><span class="nav-number">2.</span> <span class="nav-text">答案与解析：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、答案：D。"><span class="nav-number">2.1.</span> <span class="nav-text">1、答案：D。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、答案：D。"><span class="nav-number">2.2.</span> <span class="nav-text">2、答案：D。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、答案：B-C。"><span class="nav-number">2.3.</span> <span class="nav-text">3、答案：B C。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、答案：A-B。"><span class="nav-number">2.4.</span> <span class="nav-text">4、答案：A B。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5、答案：C"><span class="nav-number">2.5.</span> <span class="nav-text">5、答案：C</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6、答案：B"><span class="nav-number">2.6.</span> <span class="nav-text">6、答案：B</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7、答案：A"><span class="nav-number">2.7.</span> <span class="nav-text">7、答案：A</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8、答案：C"><span class="nav-number">2.8.</span> <span class="nav-text">8、答案：C</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9、答案：C"><span class="nav-number">2.9.</span> <span class="nav-text">9、答案：C</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10、答案：C"><span class="nav-number">2.10.</span> <span class="nav-text">10、答案：C</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11、答案：B"><span class="nav-number">2.11.</span> <span class="nav-text">11、答案：B</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#12、答案：C"><span class="nav-number">2.12.</span> <span class="nav-text">12、答案：C</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#13、答案：D"><span class="nav-number">2.13.</span> <span class="nav-text">13、答案：D</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#14、答案：D"><span class="nav-number">2.14.</span> <span class="nav-text">14、答案：D</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#15、答案：A"><span class="nav-number">2.15.</span> <span class="nav-text">15、答案：A</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#16、答案：A"><span class="nav-number">2.16.</span> <span class="nav-text">16、答案：A</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#17、答案：A"><span class="nav-number">2.17.</span> <span class="nav-text">17、答案：A</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#18、答案：A"><span class="nav-number">2.18.</span> <span class="nav-text">18、答案：A</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#19、答案：A"><span class="nav-number">2.19.</span> <span class="nav-text">19、答案：A</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#20、答案：B"><span class="nav-number">2.20.</span> <span class="nav-text">20、答案：B</span></a></li></ol></li></ol></div>
             
 
           </div>

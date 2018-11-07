@@ -87,7 +87,7 @@
 <meta property="og:description" content="本文设置了1到C++面试题，快来挑战一下吧！">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/153951b9408aee0780bdf7e66a1777ab.jpg">
-<meta property="og:updated_time" content="2018-11-06T13:12:52.232Z">
+<meta property="og:updated_time" content="2018-11-07T11:48:33.977Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++面试题">
 <meta name="twitter:description" content="本文设置了1到C++面试题，快来挑战一下吧！">
@@ -354,24 +354,83 @@
 <p><img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/153951b9408aee0780bdf7e66a1777ab.jpg" alt="fengjingtu"></p>
 <h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><h5 id="1、（不定项选择）引用与指针有什么区别？"><a href="#1、（不定项选择）引用与指针有什么区别？" class="headerlink" title="1、（不定项选择）引用与指针有什么区别？"></a>1、（不定项选择）引用与指针有什么区别？</h5><p>A、指针是一个实体，而引用仅是个别名<br>B、指针没有 const，引用有 const；<br>C、引用不能为空，指针可以为空；<br>D、“sizeof 引用”得到的是所指向的变量(对象)的大小，而“sizeof 指针”得到的是指针本身(所指向的E变量或对象的地址)的大小；<br>E、从内存分配上看：程序为引用变量分配内存区域，而指针不需要分配内存区域<br>F、指针和引用的自增(++)运算，意义一样</p>
 <p><br></p>
+<h5 id="2、如果是类-B-在类-A-的基础上构造，那么就称（-）。"><a href="#2、如果是类-B-在类-A-的基础上构造，那么就称（-）。" class="headerlink" title="2、如果是类 B 在类 A 的基础上构造，那么就称（   ）。"></a>2、如果是类 B 在类 A 的基础上构造，那么就称（   ）。</h5><p>A、类 A 为基类、父类或超类，类 B 为派生类、子类或友元类</p>
+<p>B、类 A 为基类、父类或超类，类 B 为派生类或子类</p>
+<p>C、类 A 为派生类、子类或友元类，类 B 为基类、父类或超类</p>
+<p>D、类 A 为派生类或子类类，B 为基类、父类或超类</p>
+<p><br></p>
+<h5 id="3、下面程序的输出是（）"><a href="#3、下面程序的输出是（）" class="headerlink" title="3、下面程序的输出是（）"></a>3、下面程序的输出是（）</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"1"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"2"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span> <span class="keyword">public</span> A</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"3"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"4"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    A a;</span><br><span class="line">    B b;</span><br><span class="line">    A *p = &amp;a;</span><br><span class="line">    p-&gt;foo();</span><br><span class="line">    p-&gt;fun();</span><br><span class="line">    p = &amp;b;</span><br><span class="line">    p-&gt;foo();</span><br><span class="line">    p-&gt;fun();</span><br><span class="line">    A *ptr = (A *)&amp;b;</span><br><span class="line">    ptr-&gt;foo();</span><br><span class="line">        ptr-&gt;fun();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>A、121434</p>
+<p>B、121414</p>
+<p>C、121232</p>
+<p>D、123434</p>
+<h5 id="4、STL中的unordered-map和priority-queue使用的底层数据结构分别是什么"><a href="#4、STL中的unordered-map和priority-queue使用的底层数据结构分别是什么" class="headerlink" title="4、STL中的unordered_map和priority_queue使用的底层数据结构分别是什么?()"></a>4、STL中的unordered_map和priority_queue使用的底层数据结构分别是什么?()</h5><p>A、rbtree,queue</p>
+<p>B、hashtable,heap</p>
+<p>C、rbtree,heap</p>
+<p>D、hashtable,queue</p>
 <h4 id="答案与解析："><a href="#答案与解析：" class="headerlink" title="答案与解析："></a>答案与解析：</h4><table>
 <thead>
 <tr>
 <th>1</th>
 <th>2</th>
 <th>3</th>
+<th>4</th>
+<th></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>ACD</td>
+<td>B</td>
+<td>B</td>
+<td>B</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
 <h5 id="1、答案：ACD。"><a href="#1、答案：ACD。" class="headerlink" title="1、答案：ACD。"></a>1、答案：ACD。</h5><p>解析：指针和引用的区别，ACD都是正确的。<br>B：指针有const，引用没有const<br>E：程序为指针变量分配内存区域，而引用不需要分配内存区域<br>F：指针和引用的自增++意义不同，如果a[0]++,对指针来说是指向a[1],对引用来说是数值加1.</p>
+<h5 id="2、答案：B。"><a href="#2、答案：B。" class="headerlink" title="2、答案：B。"></a>2、答案：B。</h5><p>友元类即外部类访问类的私有成员，没有继承结构。</p>
+<h5 id="3、答案：B"><a href="#3、答案：B" class="headerlink" title="3、答案：B"></a>3、答案：B</h5><p>指针的调用取决于指针的类型。如果定义的是派生类指针，则该基类成员不可见(隐藏)，但是若为基类指针，该基类成员仍然是可见的啊！因为此处的p和ptr均为基类指针，只是分别指向了基类和派生类对象，所以调用foo()的时候仍然是基类的成员。</p>
+<p>但是如果定义个派生类指针pb，如下:</p>
+<p> B *pb=&b;</p>
+<p> pb-&gt;foo(); </p>
+<p>这时只会调用派生类的foo()，虽然B继承自A，但是基类的foo()会被隐藏。 </p>
+<p>但是一旦foo()里有参数的时候，你就会大吃一惊！</p>
+<p>假设A中为void foo(float a)，B中为void foo(int a): </p>
+<p> 做如下调用: </p>
+<p>B *pb=&b; </p>
+<p>pb-&gt;foo(3.14); </p>
+<p>到底会调用谁？你可能会想: 首先foo()成 员不是虚函数，但是B继承A，B中有两个foo()，调用foo(3.14)时根据参数类型应该匹配基类的void foo(float)成员。 </p>
+<p><strong>然而并不是！</strong></p>
+<p>因为触发了隐藏机制，基类的void foo(float)会被隐藏，所以即使你调用foo(3.14)仍然只会调用派生类的void foo(int)成员。 </p>
+<p><strong>你的惊讶正好解释了隐藏机制存在的意义。</strong></p>
+<p>（PS：牛客网上C/C++专项训练上有专门一道题考察这种情况，当时解释里提出隐藏机制时大多数人也是一脸懵逼）  </p>
+<p>总结:</p>
+<p>1.判断要点:如果不是重载也不是覆盖，派生类和基类中一旦出现同名函数，一定触发隐藏机制(这是个简便判断技巧，你可以考虑除去重载和覆盖的任何同名函数情况，一定满足隐藏机制触发的两条规则)。</p>
+<p>2.隐藏触发的结果:指针对成员的函数调用取决于指针类型。</p>
+<p>若本身是基类指针(不管指向基类还是派生类)则仍然调用基类成员(不会牵扯到派生类，此处是隐藏，和多态没关系，按第1点已说明隐藏的触发可以首先排除覆盖，也就是多态问题);</p>
+<p>若本身是派生类指针，这时你就会看到隐藏的威力！此时不是简单地继承基类的成员，然后根据参数匹配调用，而是隐藏基类成员，只会调用派生类成员。</p>
+<h5 id="4、答案：B"><a href="#4、答案：B" class="headerlink" title="4、答案：B"></a>4、答案：B</h5><p>unordered_map：是所谓的哈希map，很容易就选了hashtable</p>
+<p>priority_queue：是所谓的优先级队列，说白了就是一个二叉堆，所以底层应该是用heap实现，并非名字中的queue</p>
+<p>map： map内部实现了一个红黑树，该结构具有自动排序的功能，因此map内部的所有元素都是<strong>有序的</strong>，红黑树的每一个节点都代表着map的一个元素，因此，对于map进行的查找，删除，添加等一系列的操作都相当于是对红黑树进行这样的操作，故红黑树的效率决定了map的效率。</p>
 <a id="more"></a>
-
       
     </div>
     
@@ -492,7 +551,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -503,7 +562,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -514,7 +573,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -547,7 +606,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、（不定项选择）引用与指针有什么区别？"><span class="nav-number">1.1.</span> <span class="nav-text">1、（不定项选择）引用与指针有什么区别？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#答案与解析："><span class="nav-number">2.</span> <span class="nav-text">答案与解析：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、答案：ACD。"><span class="nav-number">2.1.</span> <span class="nav-text">1、答案：ACD。</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、（不定项选择）引用与指针有什么区别？"><span class="nav-number">1.1.</span> <span class="nav-text">1、（不定项选择）引用与指针有什么区别？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、如果是类-B-在类-A-的基础上构造，那么就称（-）。"><span class="nav-number">1.2.</span> <span class="nav-text">2、如果是类 B 在类 A 的基础上构造，那么就称（   ）。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、下面程序的输出是（）"><span class="nav-number">1.3.</span> <span class="nav-text">3、下面程序的输出是（）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、STL中的unordered-map和priority-queue使用的底层数据结构分别是什么"><span class="nav-number">1.4.</span> <span class="nav-text">4、STL中的unordered_map和priority_queue使用的底层数据结构分别是什么?()</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#答案与解析："><span class="nav-number">2.</span> <span class="nav-text">答案与解析：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、答案：ACD。"><span class="nav-number">2.1.</span> <span class="nav-text">1、答案：ACD。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、答案：B。"><span class="nav-number">2.2.</span> <span class="nav-text">2、答案：B。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、答案：B"><span class="nav-number">2.3.</span> <span class="nav-text">3、答案：B</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、答案：B"><span class="nav-number">2.4.</span> <span class="nav-text">4、答案：B</span></a></li></ol></li></ol></div>
             
 
           </div>

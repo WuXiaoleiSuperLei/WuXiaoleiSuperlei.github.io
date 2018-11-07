@@ -87,7 +87,7 @@
 <meta property="og:description" content="linux编程的小伙伴们，一定遇到过fseek，你了解它吗？">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/7f9b605b40e5786180d4cb0eed125aed.jpg">
-<meta property="og:updated_time" content="2018-11-06T08:20:13.005Z">
+<meta property="og:updated_time" content="2018-11-07T13:21:40.024Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="fseek函数">
 <meta name="twitter:description" content="linux编程的小伙伴们，一定遇到过fseek，你了解它吗？">
@@ -309,8 +309,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/C语言/" itemprop="url" rel="index">
+                    <span itemprop="name">C语言</span>
                   </a>
                 </span>
 
@@ -369,9 +369,9 @@
 <p>stream表示已经打开的某个文件描述符，</p>
 <p>offset表示偏移量的大小，也就是字节的个数。</p>
 <p>whence表示相对位置，取值可以是SEEK_SET, SEEK_CUR,  SEEK_END三种。</p>
-<p>​    SEEK_SET表示重新定位到<strong>文件开始</strong>后offset字节位置。</p>
-<p>​    SEEK_CUR表示重新定位到<strong>当前位置</strong>后的offset字节位置。</p>
-<p>​    SEEK_END表示重新定位到<strong>文件尾</strong>后的offset字节位置，此时允许出现负数，表示倒数第offset个字节处。</p>
+<p>​    SEEK_SET（值为0）表示重新定位到<strong>文件开始</strong>后offset字节位置。</p>
+<p>​    SEEK_CUR（值为1）表示重新定位到<strong>当前位置</strong>后的offset字节位置。</p>
+<p>​    SEEK_END（值为2）表示重新定位到<strong>文件尾</strong>后的offset字节位置，此时允许出现负数，表示倒数第offset个字节处。</p>
 <p>一次成功的fseek函数调用，会清除文件尾的指示符，并不会对ungetc函数的调用起到任何影响。</p>
 <p><strong>返回值</strong></p>
 <p>调用成功返回0，不成功返回-1。不成功时，指示符的位置不变。造成不成功的原因可能是offset已经超出了文件大小。或者指向的流是不可搜索的。</p>
@@ -492,7 +492,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -503,7 +503,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -514,7 +514,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
