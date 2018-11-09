@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="linux,linux网络编程,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文详细解释了linux网络编程中最基础的send一起来了解一下吧！">
+<meta name="keywords" content="linux,linux网络编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="send函数详解">
+<meta property="og:url" content="http://yoursite.com/2017/12/08/send/index.html">
+<meta property="og:site_name" content="Welcome to Rita&#39;s World">
+<meta property="og:description" content="本文详细解释了linux网络编程中最基础的send一起来了解一下吧！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/09/2055005d40fabad5803ff2c93c38a9eb.jpg">
+<meta property="og:updated_time" content="2018-11-09T09:30:19.550Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="send函数详解">
+<meta name="twitter:description" content="本文详细解释了linux网络编程中最基础的send一起来了解一下吧！">
+<meta name="twitter:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/09/2055005d40fabad5803ff2c93c38a9eb.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/08/send/">
+
+
+
+
+
+  <title>send函数详解 | Welcome to Rita's World</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  <script type="text/javascript" color="0,0,255" opacity="0.4" zindex="-2" count="5" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Welcome to Rita's World</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">知识的搬运工</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/08/send/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Rita Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome to Rita's World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">send函数详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-08T14:25:30+08:00">
+                2017-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">linux网络编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  本文详细解释了linux网络编程中最基础的send一起来了解一下吧！
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>说明：本文主要是对man 帮助文档的翻译，若有错误，欢迎指正。</p>
+<p><img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/09/2055005d40fabad5803ff2c93c38a9eb.jpg" alt=""></p>
+<h4 id="send"><a href="#send" class="headerlink" title="send"></a>send</h4><p>send：是一个系统调用函数，用来发送消息到一个套接字中，和sendto，sendmsg功能相似。</p>
+<p><strong>概要：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ssize_t</span> send(<span class="keyword">int</span> sockfd, <span class="keyword">const</span> <span class="keyword">void</span> *buf, <span class="keyword">size_t</span> len, <span class="keyword">int</span> flags);</span><br></pre></td></tr></table></figure>
+<p><strong>说明：</strong></p>
+<p>send()函数只能在套接字处于连接状态的时候才能使用。（只有这样才知道接受者是谁）</p>
+<p>send和write的唯一区别就是最后一个参数：flags的存在，当我们设置flags为0时，send和wirte是同等的。</p>
+<p>即：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 下面的两个函数等效：</span></span><br><span class="line">write（sockfd,buf,le）；</span><br><span class="line">send(sockfd,buf,len,<span class="number">0</span>)；</span><br></pre></td></tr></table></figure>
+<p>当消息不适合套接字的发送缓冲区时，send通常会阻塞，除非套接字在事先设置为非阻塞的模式，那样他不会阻塞，而是返回EAGAIN或者EWOULDBLOCK错误，此时可以调用select函数来监视何时可以发送数据。</p>
+<p><strong>参数描述</strong></p>
+<p>ssize_t类型在之前的read/write中描述符哦，相当于long。</p>
+<p>sockfd：接收消息的套接字的文件描述符。</p>
+<p>buf：要发送的消息。</p>
+<p>len：要发送的字节数。</p>
+<p>flags：flags参数表示下列标志中的0个或多个</p>
+<p>MSG_CONFIRM ：用来告诉链路层，</p>
+<p>MSG_DONTROUTE：不要使用网关来发送数据，只发送到直接连接的主机上。通常只有诊断或者路由程序会使用，这只针对路由的协议族定义的，数据包的套接字没有。</p>
+<p>MSG_DONTWAIT ：启用非阻塞操作，如果操作阻塞，就返回EAGAIN或EWOULDBLOCK</p>
+<p>MSG_EOR ：当支持SOCK_SEQPACKET时，终止记录。</p>
+<p>MSG_MORE ：调用方有更多的数据要发送。这个标志与TCP或者udp套接字一起使用</p>
+<p>MSG_NOSIGNAL ：当另一端中断连接时，请求不向流定向套接字上的错误发送SIGPIPE ，EPIPE 错误仍然返回。</p>
+<p>MSG_OOB：在支持此概念的套接字上发送带外数据（例如，SOCK_STREAM类型）；底层协议还必须支持带外数据</p>
+<p><strong>返回值</strong></p>
+<p>在网络中的传递错误对send来说是无法检测的，能检测到某些发送错，则会返回-1；</p>
+<p>否则返回发送的字节数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">EACCES (For  UNIX domain sockets, which are identified by pathname) Write permission is denied on the destination socket file, <span class="keyword">or</span> search per‐</span><br><span class="line">              mission is denied <span class="keyword">for</span> one of the directories the path prefix.  (See path_resolution(<span class="number">7</span>).)</span><br><span class="line"></span><br><span class="line">       EAGAIN <span class="keyword">or</span> EWOULDBLOCK</span><br><span class="line">              The socket is marked nonblocking <span class="keyword">and</span> the requested operation would block.  POSIX<span class="number">.1</span><span class="number">-2001</span> allows either error to be  returned  <span class="keyword">for</span>  <span class="keyword">this</span></span><br><span class="line">              <span class="keyword">case</span>, <span class="keyword">and</span> does <span class="keyword">not</span> require these constants to have the same value, so a portable application should check <span class="keyword">for</span> both possibilities.</span><br><span class="line"></span><br><span class="line">       EBADF  An invalid descriptor was specified.</span><br><span class="line"></span><br><span class="line">       ECONNRESET</span><br><span class="line">              Connection reset by peer.</span><br><span class="line"></span><br><span class="line">       EDESTADDRREQ</span><br><span class="line">              The socket is <span class="keyword">not</span> connection-mode, <span class="keyword">and</span> no peer address is <span class="built_in">set</span>.</span><br><span class="line"></span><br><span class="line">       EFAULT An invalid user space address was specified <span class="keyword">for</span> an argument.</span><br><span class="line"></span><br><span class="line">       EINTR  A signal occurred before any data was transmitted; see signal(7).</span><br><span class="line"></span><br><span class="line">       EINVAL Invalid argument passed.</span><br><span class="line"></span><br><span class="line">       EISCONN</span><br><span class="line">              The  connection-mode socket was connected already but a recipient was specified.  (Now either <span class="keyword">this</span> error is returned, <span class="keyword">or</span> the recipient</span><br><span class="line">              specification is ignored.)</span><br><span class="line"></span><br><span class="line">       EMSGSIZE</span><br><span class="line">              The socket type requires that message be sent atomically, <span class="keyword">and</span> the size of the message to be sent made <span class="keyword">this</span> impossible.</span><br><span class="line"></span><br><span class="line">       ENOBUFS</span><br><span class="line">              The output <span class="built_in">queue</span> <span class="keyword">for</span> a network interface was full.  This generally indicates that the interface has stopped sending, but may be caused</span><br><span class="line">              by transient congestion.  (Normally, <span class="keyword">this</span> does <span class="keyword">not</span> occur in Linux.  Packets are just silently dropped when a device <span class="built_in">queue</span> overflows.)</span><br><span class="line"></span><br><span class="line">       ENOMEM No memory available.</span><br><span class="line"></span><br><span class="line">       ENOTCONN</span><br><span class="line">              The socket is <span class="keyword">not</span> connected, <span class="keyword">and</span> no target has been given.</span><br><span class="line"></span><br><span class="line">       ENOTSOCK</span><br><span class="line">              The argument sockfd is <span class="keyword">not</span> a socket.</span><br><span class="line"></span><br><span class="line">       EOPNOTSUPP</span><br><span class="line">              Some bit in the flags argument is inappropriate <span class="keyword">for</span> the socket type.</span><br><span class="line"></span><br><span class="line">       EPIPE  The  local  end  has  been  shut  down  on  a connection oriented socket.  In <span class="keyword">this</span> <span class="keyword">case</span> the p</span><br></pre></td></tr></table></figure>
+<h4 id="sendto"><a href="#sendto" class="headerlink" title="sendto"></a>sendto</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="keyword">ssize_t</span> sendto(<span class="keyword">int</span> sockfd, <span class="keyword">const</span> <span class="keyword">void</span> *buf, <span class="keyword">size_t</span> len, <span class="keyword">int</span> flags,</span><br><span class="line">               <span class="keyword">const</span> struct sockaddr *dest_addr, <span class="keyword">socklen_t</span> addrlen);</span><br></pre></td></tr></table></figure>
+<p>sendto函数如果在连接状态（SOCK_STREAM, SOCK_SEQPACKET）下使用，后面的两个参数dest_addr和addrlen被忽略的，如果不把他们设置成null和0，会返回错误EISCONN，如果把他们设置成NULL和0，发现实际上不是连接状态，会返回错误EISCONN。正常连接下，它和send同等。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//下面的两个也是等效的：</span></span><br><span class="line">send(sockfd, buf, len, flags);</span><br><span class="line">sendto(sockfd, buf, len, flags, <span class="literal">NULL</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>其他情况下，目标地址是由dest_addr给出，addrlen指定其大小。</p>
+<h4 id="sendmsg"><a href="#sendmsg" class="headerlink" title="sendmsg"></a>sendmsg</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="keyword">ssize_t</span> sendmsg(<span class="keyword">int</span> sockfd, <span class="keyword">const</span> struct msghdr *msg, <span class="keyword">int</span> flags);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="class"><span class="keyword">struct</span> <span class="title">msghdr</span> &#123;</span></span><br><span class="line">               <span class="keyword">void</span>         *msg_name;       <span class="comment">/* optional address */</span></span><br><span class="line">               <span class="keyword">socklen_t</span>     msg_namelen;    <span class="comment">/* size of address */</span></span><br><span class="line">               <span class="class"><span class="keyword">struct</span> <span class="title">iovec</span> *<span class="title">msg_iov</span>;</span>        <span class="comment">/* scatter/gather array */</span></span><br><span class="line">               <span class="keyword">size_t</span>        msg_iovlen;     <span class="comment">/* # elements in msg_iov */</span></span><br><span class="line">               <span class="keyword">void</span>         *msg_control;    <span class="comment">/* ancillary data, see below */</span></span><br><span class="line">               <span class="keyword">size_t</span>        msg_controllen; <span class="comment">/* ancillary data buffer len */</span></span><br><span class="line">               <span class="keyword">int</span>           msg_flags;      <span class="comment">/* flags on received message */</span></span><br><span class="line">           &#125;;</span><br></pre></td></tr></table></figure>
+<p>对于sendmsg，目标地址是由msg的成员 msg.msg_name,来给出， msg.msg_namelen 指定大小。send和sendto发送消息的是buf，而且有它的指定长度len，但是在sendmsg中是由msg.msg_iov数组来决定的。所以sendmsg允许发送辅助信息（也称为控制信息）。</p>
+<p>如果发送的消息太长，不能以原子形式通过底层协议，则返回EMSGSIZE。并且不发送这个消息。</p>
+<p><strong>测试代码</strong></p>
+<a id="more"></a>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/linux网络编程/" rel="tag"># linux网络编程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/08/recv/" rel="next" title="recv函数详解">
+                <i class="fa fa-chevron-left"></i> recv函数详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/08/poll/" rel="prev" title="poll函数详解">
+                poll函数详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Rita Wu">
+            
+              <p class="site-author-name" itemprop="name">Rita Wu</p>
+              <p class="site-description motion-element" itemprop="description">本站用于记录个人学习、工作经验</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#send"><span class="nav-number">1.</span> <span class="nav-text">send</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sendto"><span class="nav-number">2.</span> <span class="nav-text">sendto</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sendmsg"><span class="nav-number">3.</span> <span class="nav-text">sendmsg</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rita Wu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
