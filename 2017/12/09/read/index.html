@@ -78,19 +78,19 @@
 
 
 
-<meta name="description" content="从read和write开始详解linux系统编程和网络编程的相关函数把！">
+<meta name="description" content="底层文件访问之二：read系统调用">
 <meta name="keywords" content="linux系统编程,C语言">
 <meta property="og:type" content="article">
-<meta property="og:title" content="read&#x2F;write函数详解">
-<meta property="og:url" content="http://yoursite.com/2017/12/06/read-write/index.html">
+<meta property="og:title" content="read函数详解">
+<meta property="og:url" content="http://yoursite.com/2017/12/09/read/index.html">
 <meta property="og:site_name" content="Welcome to Rita&#39;s World">
-<meta property="og:description" content="从read和write开始详解linux系统编程和网络编程的相关函数把！">
+<meta property="og:description" content="底层文件访问之二：read系统调用">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/09/2055005d40fabad5803ff2c93c38a9eb.jpg">
-<meta property="og:updated_time" content="2018-11-09T07:02:16.429Z">
+<meta property="og:updated_time" content="2018-11-16T08:30:47.872Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="read&#x2F;write函数详解">
-<meta name="twitter:description" content="从read和write开始详解linux系统编程和网络编程的相关函数把！">
+<meta name="twitter:title" content="read函数详解">
+<meta name="twitter:description" content="底层文件访问之二：read系统调用">
 <meta name="twitter:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/09/2055005d40fabad5803ff2c93c38a9eb.jpg">
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/06/read-write/">
+  <link rel="canonical" href="http://yoursite.com/2017/12/09/read/">
 
 
 
 
 
-  <title>read/write函数详解 | Welcome to Rita's World</title>
+  <title>read函数详解 | Welcome to Rita's World</title>
   
 
 
@@ -257,7 +257,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/06/read-write/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/09/read/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Rita Wu">
@@ -274,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">read/write函数详解</h1>
+          <h1 class="post-title" itemprop="name headline">read函数详解</h1>
         
 
         <div class="post-meta">
@@ -286,8 +286,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-06T12:45:22+08:00">
-                2017-12-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-09T12:45:22+08:00">
+                2017-12-09
               </time>
             
 
@@ -333,7 +333,7 @@
 
           
               <div class="post-description">
-                  从read和write开始详解linux系统编程和网络编程的相关函数把！
+                  底层文件访问之二：read系统调用
               </div>
           
 
@@ -350,17 +350,10 @@
       
 
       
-        <p>说明：本文主要是对man 帮助文档的翻译，代码来源于个人，若有错误，欢迎指正。</p>
+        <p>说明：本文主要是对man 帮助文档和《linux程序设计》第四版的摘录，部分理解来源于个人，请酌情参考。</p>
 <p><img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/09/2055005d40fabad5803ff2c93c38a9eb.jpg" alt=""></p>
-<p>在linux学习过程中，如果我们想学习如何使用库函数或者系统调用，都会想赶快查一下？你通常会google，百度，还是使用man命令？其实对于一个初级程序员，学习使用man命令是很有益的，我们看到的很多网上的说明都是对man帮助文档的翻译。所以，如果你英文不是很差，就自己来翻译一下你想要查询的信息吧！</p>
-<p><br></p>
-<p>今天我们就通过这样的方式学习一下read和write这两个函数。</p>
-<p>打开linux的控制台，我们输入“man read”：会进入帮助文档，里面关于read的说明是这样的：</p>
-<p><br></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">READ(<span class="number">2</span>)    					 Linux Programmer'<span class="function">s Manual                          <span class="title">READ</span><span class="params">(<span class="number">2</span>)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">NAME</span></span><br><span class="line">       read - read from a file descriptor</span><br><span class="line"></span><br><span class="line">SYNOPSIS</span><br><span class="line">       <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">       <span class="keyword">ssize_t</span> read(<span class="keyword">int</span> fd, <span class="keyword">void</span> *buf, <span class="keyword">size_t</span> count);</span><br><span class="line"></span><br><span class="line">DESCRIPTION</span><br><span class="line">       read() attempts to read up to count bytes from file descriptor fd into the buffer starting at buf.</span><br><span class="line">    </span><br><span class="line">       If count is zero, read() returns zero <span class="keyword">and</span> has no other results.  If count is greater than SSIZE_MAX, the</span><br><span class="line">       result is unspecified.</span><br><span class="line"></span><br><span class="line">RETURN VALUE</span><br><span class="line">       On success, the number of bytes read is returned (zero indicates end of file), and the file position  is</span><br><span class="line">       advanced  by  <span class="keyword">this</span>  number.   It  is  <span class="keyword">not</span>  an  error  <span class="keyword">if</span> <span class="keyword">this</span> number is smaller than the number of bytes</span><br><span class="line">       requested; <span class="function"><span class="keyword">this</span> may happen <span class="keyword">for</span> example because fewer bytes  are  actually  available  right  <span class="title">now</span>  <span class="params">(maybe</span></span></span><br><span class="line">       because  we  were  close  to end-of-file, or because we are reading from a pipe, or from a terminal), or</span><br><span class="line">       because read() was interrupted by a signal.  On error, -1 is returned, and errno is  set  appropriately.</span><br><span class="line">       In this case it is left unspecified whether the file position (if any) changes.</span><br><span class="line"></span><br><span class="line">ERRORS</span><br><span class="line">       EAGAIN The  file  descriptor  fd  refers  to  a file other than a socket <span class="keyword">and</span> has been marked nonblocking</span><br><span class="line">              (O_NONBLOCK), <span class="keyword">and</span> the read would block.</span><br><span class="line"></span><br><span class="line">       EAGAIN <span class="keyword">or</span> EWOULDBLOCK</span><br><span class="line">              The file descriptor fd refers to a socket and has been marked nonblocking (O_NONBLOCK),  and  the</span><br><span class="line">              read  would  block.   POSIX<span class="number">.1</span><span class="number">-2001</span> allows either error to be returned <span class="keyword">for</span> <span class="keyword">this</span> <span class="keyword">case</span>, <span class="keyword">and</span> does <span class="keyword">not</span></span><br><span class="line">              require these constants to have the same value, so a portable application should check  <span class="keyword">for</span>  both</span><br><span class="line">              possibilities.</span><br><span class="line"></span><br><span class="line">       EBADF  fd is <span class="keyword">not</span> a valid file descriptor <span class="keyword">or</span> is <span class="keyword">not</span> open <span class="keyword">for</span> reading.</span><br><span class="line"></span><br><span class="line">       EFAULT buf is outside your accessible address space.</span><br><span class="line"></span><br><span class="line">       EINTR  The call was interrupted by a signal before any data was read; see signal(7).</span><br><span class="line"></span><br><span class="line">       EINVAL fd  is  attached  to  an  object which is unsuitable <span class="keyword">for</span> reading; <span class="keyword">or</span> the file was opened with the</span><br><span class="line">              O_DIRECT flag, <span class="keyword">and</span> either the address specified in buf, the value specified in count, <span class="keyword">or</span> the cur‐</span><br><span class="line">              rent file offset is <span class="keyword">not</span> suitably aligned.</span><br><span class="line"></span><br><span class="line">       <span class="function">EINVAL fd was created via a call to <span class="title">timerfd_create</span><span class="params">(<span class="number">2</span>)</span> <span class="keyword">and</span> the wrong size buffer was given to <span class="title">read</span><span class="params">()</span></span>; see</span><br><span class="line">              timerfd_create(<span class="number">2</span>) <span class="keyword">for</span> further information.</span><br><span class="line"></span><br><span class="line">       EIO    I/O error.  This will happen <span class="keyword">for</span> example when the process is in a background process group, tries</span><br><span class="line">              to  read  from  its controlling tty, <span class="keyword">and</span> either it is ignoring <span class="keyword">or</span> blocking SIGTTIN <span class="keyword">or</span> its process</span><br><span class="line">              group is orphaned.  It may also occur when there is a low-level I/O error <span class="keyword">while</span>  reading  from  a</span><br><span class="line">              disk <span class="keyword">or</span> tape.</span><br><span class="line"></span><br><span class="line">       EISDIR fd refers to a directory.</span><br><span class="line"></span><br><span class="line">       Other  errors  may occur, depending on the object connected to fd.  POSIX allows a read() that is inter‐</span><br><span class="line">       rupted after reading some data to <span class="keyword">return</span> <span class="number">-1</span> (with errno <span class="built_in">set</span> to EINTR) <span class="keyword">or</span> to <span class="keyword">return</span> the number  of  bytes</span><br><span class="line">       already read.</span><br><span class="line"></span><br><span class="line">CONFORMING TO</span><br><span class="line">       SVr4, <span class="number">4.3B</span>SD, POSIX<span class="number">.1</span><span class="number">-2001.</span></span><br><span class="line"></span><br><span class="line">NOTES</span><br><span class="line">       On NFS file systems, reading small amounts of data will only update the timestamp the first time, subse‐</span><br><span class="line">       quent calls may <span class="keyword">not</span> <span class="keyword">do</span> so.  This is caused by client side attribute caching, because most <span class="keyword">if</span> <span class="keyword">not</span> all NFS</span><br><span class="line">       clients  leave  st_atime  (last  file access time) updates to the server <span class="keyword">and</span> client side reads satisfied</span><br><span class="line">       from the client's cache will <span class="keyword">not</span> cause st_atime updates on the server as there are no server side reads.</span><br><span class="line">       UNIX  semantics  can be obtained by disabling client side attribute caching, but in most situations <span class="keyword">this</span></span><br><span class="line">       will substantially increase server load <span class="keyword">and</span> decrease performance.</span><br><span class="line"></span><br><span class="line">       Many file systems <span class="keyword">and</span> disks were considered to be fast enough that the implementation of O_NONBLOCK  was</span><br><span class="line">       deemed unnecessary.  So, O_NONBLOCK may <span class="keyword">not</span> be available on files <span class="keyword">and</span>/<span class="keyword">or</span> disks.</span><br><span class="line"></span><br><span class="line">SEE ALSO</span><br><span class="line">       close(<span class="number">2</span>), fcntl(<span class="number">2</span>), ioctl(<span class="number">2</span>), lseek(<span class="number">2</span>), open(<span class="number">2</span>), pread(<span class="number">2</span>), readdir(<span class="number">2</span>), readlink(<span class="number">2</span>), readv(<span class="number">2</span>), select(<span class="number">2</span>),</span><br><span class="line">       write(<span class="number">2</span>), fread(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">COLOPHON</span><br><span class="line">       This page is part of release <span class="number">3.35</span> of the Linux man-pages project.  A description  of  the  project,  <span class="keyword">and</span></span><br><span class="line">       information about reporting bugs, can be found at http:<span class="comment">//man7.org/linux/man-pages/.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Linux                               <span class="number">2009</span><span class="number">-02</span><span class="number">-23</span>                                  READ(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<p>让我们一起理解和翻译一下：</p>
-<h4 id="Read"><a href="#Read" class="headerlink" title="Read"></a>Read</h4><p>read：从一个文件描述符中读取数据。</p>
+<p>接着上一篇的write，我们来学习一下read。</p>
+<h4 id="Read"><a href="#Read" class="headerlink" title="Read"></a>Read</h4><p>系统调用read的作用是：从与文件描述符fd相关联的文件中读取 n bytes个字节的数据。并把它放入到数据区buf中。</p>
 <p><strong>概要：</strong></p>
 <p>read函数在<code>&lt;unistd.h&gt;</code>头文件中定义。</p>
 <p>原型是：<code>ssize_t read(int fd, void *buf, size_t count);</code></p>
@@ -390,17 +383,6 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc,<span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">char</span> buffer[<span class="number">64</span>] =<span class="string">""</span>;</span><br><span class="line">    <span class="keyword">int</span> fp = open(<span class="string">"./test.txt"</span>, O_RDONLY);<span class="comment">//只读模式打开文件</span></span><br><span class="line">    res=read(fp,buffer,<span class="number">60</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"read %d bits,they are %s\n"</span>,res,buffer);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>,strerror(errno));</span><br><span class="line">    close(fp);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">test.txt的内容：</span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">运行结果：</span><br><span class="line">read <span class="number">4</span> bits,they are <span class="number">123</span></span><br><span class="line"></span><br><span class="line">Success</span><br></pre></td></tr></table></figure>
-<h4 id="Write"><a href="#Write" class="headerlink" title="Write"></a>Write</h4><p>write：向一个文件描述符中写入数据。</p>
-<p><strong>概要：</strong></p>
-<p>write函数在<code>&lt;unistd.h&gt;</code>头文件中定义。</p>
-<p>原型是：<code>ssize_t write(int fd,const void*buf,size_t count);</code></p>
-<p><strong>说明：</strong></p>
-<p>write()函数尝试向文件描述符fd中写入buf 中的count个字节。</p>
-<p>写常规文件时，write的返回值通常等于请求写的字节数count， 而向终端设备或者网络写时则不一定</p>
-<p><strong>返回值</strong></p>
-<p>调用成功返回写入的字节数，文件指示符指到对应的位置。</p>
-<p>调用失败的时候返回-1；并且errno会被设置，这时候文件的指示符位置变化与否是未知的。</p>
-<p>write的使用与read类似，就不再赘述。</p>
 <a id="more"></a>
       
     </div>
@@ -433,14 +415,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/12/08/epoll/" rel="next" title="epoll函数详解">
+                <i class="fa fa-chevron-left"></i> epoll函数详解
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/08/send/" rel="prev" title="send函数详解">
-                send函数详解 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/13/open/" rel="prev" title="open函数详解">
+                open函数详解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -520,7 +506,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -575,7 +561,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Read"><span class="nav-number">1.</span> <span class="nav-text">Read</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Write"><span class="nav-number">2.</span> <span class="nav-text">Write</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Read"><span class="nav-number">1.</span> <span class="nav-text">Read</span></a></li></ol></div>
             
 
           </div>
