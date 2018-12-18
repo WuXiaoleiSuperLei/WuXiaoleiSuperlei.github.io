@@ -67,7 +67,7 @@
 
 
 
-  <meta name="keywords" content="C语言,linux系统编程,">
+  <meta name="keywords" content="C++,">
 
 
 
@@ -78,20 +78,20 @@
 
 
 
-<meta name="description" content="底层文件访问之二：read系统调用">
-<meta name="keywords" content="C语言,linux系统编程">
+<meta name="description" content="本文总结剑指offer的编程题目，与使用C++实现的答案，快来挑战一下吧！">
+<meta name="keywords" content="C++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="read函数详解">
-<meta property="og:url" content="https://WuXiaoleiSuperlei.github.io/2017/12/09/read/index.html">
+<meta property="og:title" content="剑指offer（二）">
+<meta property="og:url" content="https://WuXiaoleiSuperlei.github.io/2018/11/01/offer-pow/index.html">
 <meta property="og:site_name" content="Welcome to Rita&#39;s World">
-<meta property="og:description" content="底层文件访问之二：read系统调用">
+<meta property="og:description" content="本文总结剑指offer的编程题目，与使用C++实现的答案，快来挑战一下吧！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/09/2055005d40fabad5803ff2c93c38a9eb.jpg">
-<meta property="og:updated_time" content="2018-11-16T08:30:47.872Z">
+<meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/e20678b04086df6880bce2ba3a2b3c28.jpg">
+<meta property="og:updated_time" content="2018-12-06T12:50:02.348Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="read函数详解">
-<meta name="twitter:description" content="底层文件访问之二：read系统调用">
-<meta name="twitter:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/09/2055005d40fabad5803ff2c93c38a9eb.jpg">
+<meta name="twitter:title" content="剑指offer（二）">
+<meta name="twitter:description" content="本文总结剑指offer的编程题目，与使用C++实现的答案，快来挑战一下吧！">
+<meta name="twitter:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/e20678b04086df6880bce2ba3a2b3c28.jpg">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="https://WuXiaoleiSuperlei.github.io/2017/12/09/read/">
+  <link rel="canonical" href="https://WuXiaoleiSuperlei.github.io/2018/11/01/offer-pow/">
 
 
 
 
 
-  <title>read函数详解 | Welcome to Rita's World</title>
+  <title>剑指offer（二） | Welcome to Rita's World</title>
   
 
 
@@ -267,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://WuXiaoleiSuperlei.github.io/2017/12/09/read/">
+    <link itemprop="mainEntityOfPage" href="https://WuXiaoleiSuperlei.github.io/2018/11/01/offer-pow/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Rita Wu">
@@ -284,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">read函数详解</h1>
+          <h1 class="post-title" itemprop="name headline">剑指offer（二）</h1>
         
 
         <div class="post-meta">
@@ -296,8 +296,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-09T12:45:22+08:00">
-                2017-12-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-01T18:13:22+08:00">
+                2018-11-01
               </time>
             
 
@@ -319,8 +319,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux系统编程/" itemprop="url" rel="index">
-                    <span itemprop="name">linux系统编程</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -343,7 +343,7 @@
 
           
               <div class="post-description">
-                  底层文件访问之二：read系统调用
+                  本文总结剑指offer的编程题目，与使用C++实现的答案，快来挑战一下吧！
               </div>
           
 
@@ -360,40 +360,27 @@
       
 
       
-        <p>说明：本文主要是对man 帮助文档和《linux程序设计》第四版的摘录，部分理解来源于个人，请酌情参考。</p>
-<p><img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/09/2055005d40fabad5803ff2c93c38a9eb.jpg" alt=""></p>
-<p>接着上一篇的write，我们来学习一下read。</p>
-<h4 id="Read"><a href="#Read" class="headerlink" title="Read"></a>Read</h4><p>系统调用read的作用是：从与文件描述符fd相关联的文件中读取 n bytes个字节的数据。并把它放入到数据区buf中。</p>
-<p><strong>概要：</strong></p>
-<p>read函数在<code>&lt;unistd.h&gt;</code>头文件中定义。</p>
-<p>原型是：<code>ssize_t read(int fd, void *buf, size_t count);</code></p>
-<p><strong>说明：</strong></p>
-<p>read()函数尝试从文件描述符fd中读取count个字节到buf开头的缓冲区中。</p>
-<p>如果count=0;read返回0，并且没有其他结果，如果count&gt;SSIZE_MAX，结果未指定。</p>
-<p><strong>ssize_t：</strong>有符号整型，与long类似。typedef long size_t</p>
-<p><strong>size_t</strong>：无符号的ssize_t,：typedef unsigned long size_t</p>
-<p><strong>返回值</strong></p>
-<p>调用成功返回读取的字节数，文件指示符指到对应的位置。这个返回值可能会比count，比如以下情况：</p>
-<p>当文件的整体字节比count小时，读到文件尾。</p>
-<p>我们从管道或者终端读取</p>
-<p>我们读取时被一个信号打断了等等情况。</p>
-<p>调用失败的时候返回-1；并且errno会被设置，这时候文件的指示符位置变化与否是未知的。</p>
-<p>可能出现的错误值有：</p>
-<p>EAGAIN：文件描述符指向一个非套接字的文件，并且已经被标记为非阻塞。这时候如果读阻塞，返回这个错误。</p>
-<p>EAGAIN /EWOULDBLOCK：文件描述符指向一个套接字的文件，并且已经被标记为非阻塞。然后发生读阻塞。这两个错误码都有可能会被设置，所以在检查的时候应该二者都检查。</p>
-<p>EBADF：fd不是一个有效的文件描述符，或者没有打开。</p>
-<p>EFAULT ：buf在你可以访问的地址空间之外</p>
-<p>EINTR ：读取被一个信号打断。</p>
-<p>EINVAL：fd指向的文件是一个不稳定的读取对象，或者文件在打开的时候带有O_DIRECT标志，或者buf，count指定的值，当前文件的便宜位置没有适当的对齐。</p>
-<p>如果文件是通过timerfd_create（）创建的，并且buf的大小错。</p>
-<p>EIO：I/O错误。例如，当进程处于后台进程组中，试图从它的控制tty读取时，或者忽略SIGTTIN时，阻塞SIGTTIN时，或者它的进程组成为孤儿时，就会发生这种情况。当从磁盘或磁带读取时存在低级I/O错误时，也可能发生这种情况。</p>
-<p>EISDIR：fd指向一个目录。</p>
-<p>其他错误可能会发生，这取决于连接到FD的对象。POSIX允许在读取某些数据之后中断的read()返回-1（errno设置为EINTR）或返回已经读取的字节数。</p>
-<p><strong>测试代码</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc,<span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">char</span> buffer[<span class="number">64</span>] =<span class="string">""</span>;</span><br><span class="line">    <span class="keyword">int</span> fp = open(<span class="string">"./test.txt"</span>, O_RDONLY);<span class="comment">//只读模式打开文件</span></span><br><span class="line">    res=read(fp,buffer,<span class="number">60</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"read %d bits,they are %s\n"</span>,res,buffer);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>,strerror(errno));</span><br><span class="line">    close(fp);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">test.txt的内容：</span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">运行结果：</span><br><span class="line">read <span class="number">4</span> bits,they are <span class="number">123</span></span><br><span class="line"></span><br><span class="line">Success</span><br></pre></td></tr></table></figure>
+        <p>说明：本文题目来源于牛客网，答案分析参考《剑指offer》，包含个人理解，仅为参考。强烈大家去阅读《剑指offer》原书。</p>
+<p><img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/e20678b04086df6880bce2ba3a2b3c28.jpg" alt="fengjingtu"></p>
+<h4 id="数值的整数次方"><a href="#数值的整数次方" class="headerlink" title="数值的整数次方"></a>数值的整数次方</h4><p>实现函数double Power（double base，int exponent），求base的exponent次方，不得使用库函数，同时不需要考虑大叔问题。</p>
+<h5 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h5><p>考虑exponent为负数的情况。</p>
+<p>考虑base为0的情况。</p>
+<p>选择以返回值，全局代码，或者异常的方式处理错误调用。</p>
+<p>0的0此方没有意义，返回0还是1都是可以接受的。</p>
+<p>使用高效的求平方算法。</p>
+<p>判断double类型的数据是否相等的方式。</p>
+<p>判断是否为基数。</p>
+<p>求一个数的一半。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">bool</span> error_power=<span class="literal">false</span>;<span class="comment">//以全局变量返回输入出错的情况。调用者应该检查这个值是否为true。</span></span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">Power</span><span class="params">(<span class="keyword">double</span> base, <span class="keyword">int</span> exponent)</span> </span>&#123;</span><br><span class="line">        error_power=<span class="literal">false</span>;</span><br><span class="line">        <span class="comment">/* 当base为0时，不能取倒数*/</span></span><br><span class="line">        <span class="keyword">if</span>(equel(base,<span class="number">0.0</span>) &amp;&amp; exponent&lt;<span class="number">0</span> )</span><br><span class="line">        &#123;</span><br><span class="line">            error_power=<span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0.0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">int</span> absExponent = (<span class="keyword">unsigned</span> <span class="keyword">int</span> )exponent;</span><br><span class="line">        <span class="keyword">if</span>(exponent &lt; <span class="number">0</span>)</span><br><span class="line">            absExponent=(<span class="keyword">unsigned</span> <span class="keyword">int</span> )(-exponent);</span><br><span class="line">        <span class="keyword">double</span> result=powerWithUnsignedExponent(base,absExponent);</span><br><span class="line">        <span class="keyword">if</span>(exponent &lt;<span class="number">0</span>)</span><br><span class="line">            result=<span class="number">1.0</span>/result;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//使用优化方式。</span></span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">powerWithUnsignedExponent</span><span class="params">(<span class="keyword">double</span> base, <span class="keyword">unsigned</span> <span class="keyword">int</span> exponent)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(exponent == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(exponent == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> base;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//n次方=（n/2）次方的平方。</span></span><br><span class="line">        <span class="keyword">double</span> result = powerWithUnsignedExponent(base ,exponent &gt;&gt; <span class="number">1</span>);</span><br><span class="line">        result *=result;</span><br><span class="line">        <span class="keyword">if</span>((exponent &amp; <span class="number">0x1</span>) == <span class="number">1</span>)<span class="comment">//判断是否为奇数。</span></span><br><span class="line">            result *= base;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">equel</span><span class="params">(<span class="keyword">double</span> num1,<span class="keyword">double</span> num2)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//由于精度问题，认为两个数相差0.0000001时，即为相等。</span></span><br><span class="line">        <span class="keyword">if</span>((num1-num2&lt;<span class="number">0.0000001</span>)&amp;&amp;(num1-num2&gt;<span class="number">-0.0000001</span>))</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="打印1到最大的n位数"><a href="#打印1到最大的n位数" class="headerlink" title="打印1到最大的n位数"></a>打印1到最大的n位数</h4><p>输入数字n，按顺序打印从1到最大的n位十进制数，比如输入3，则打印1,2,3，一直打印到999。</p>
+<h5 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h5><p>大数问题。</p>
+<p>什么时候到达最大值。</p>
+<p>递归使用全排列使代码简洁。</p>
+<p>不要打印数字前面的0。</p>
+<p>第一种思路：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <a id="more"></a>
+
       
     </div>
     
@@ -410,9 +397,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/C语言/" rel="tag"># C语言</a>
-          
-            <a href="/tags/linux系统编程/" rel="tag"># linux系统编程</a>
+            <a href="/tags/C/" rel="tag"># C++</a>
           
         </div>
       
@@ -425,8 +410,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/08/send/" rel="next" title="send函数详解">
-                <i class="fa fa-chevron-left"></i> send函数详解
+              <a href="/2018/11/01/RBTree/" rel="next" title="C语言面试题">
+                <i class="fa fa-chevron-left"></i> C语言面试题
               </a>
             
           </div>
@@ -435,8 +420,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/13/open/" rel="prev" title="open函数详解">
-                open函数详解 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/11/01/success-record/" rel="prev" title="《异类 不一样的成功启示录》">
+                《异类 不一样的成功启示录》 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -571,7 +556,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Read"><span class="nav-number">1.</span> <span class="nav-text">Read</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#数值的整数次方"><span class="nav-number">1.</span> <span class="nav-text">数值的整数次方</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#注意"><span class="nav-number">1.1.</span> <span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打印1到最大的n位数"><span class="nav-number">2.</span> <span class="nav-text">打印1到最大的n位数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#注意-1"><span class="nav-number">2.1.</span> <span class="nav-text">注意</span></a></li></ol></li></ol></div>
             
 
           </div>
