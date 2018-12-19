@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="linux,C语言,linux网络编程,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文详细解释了linux IO 复用技术之select函数，以及使用案例，一起来了解一下吧！">
+<meta name="keywords" content="linux,C语言,linux网络编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="select函数详解">
+<meta property="og:url" content="wuxiaoleisuperlei.github.io/2017/12/22/select/index.html">
+<meta property="og:site_name" content="Welcome to Rita&#39;s World">
+<meta property="og:description" content="本文详细解释了linux IO 复用技术之select函数，以及使用案例，一起来了解一下吧！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/7f75cad54015c64680a4209f3db218e1.jpg">
+<meta property="og:updated_time" content="2018-12-18T11:56:39.311Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="select函数详解">
+<meta name="twitter:description" content="本文详细解释了linux IO 复用技术之select函数，以及使用案例，一起来了解一下吧！">
+<meta name="twitter:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/7f75cad54015c64680a4209f3db218e1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="wuxiaoleisuperlei.github.io/2017/12/22/select/">
+
+
+
+
+
+  <title>select函数详解 | Welcome to Rita's World</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  <script type="text/javascript" color="0,0,255" opacity="0.4" zindex="-2" count="5" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Welcome to Rita's World</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">知识的搬运工</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="wuxiaoleisuperlei.github.io/2017/12/22/select/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Rita Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome to Rita's World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">select函数详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T14:25:30+08:00">
+                2017-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">linux网络编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  本文详细解释了linux IO 复用技术之select函数，以及使用案例，一起来了解一下吧！
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>说明：本文整合网络资源和man帮助文档，请酌情参考。</p>
+<p><img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/7f75cad54015c64680a4209f3db218e1.jpg" alt="fengjingtu"></p>
+<h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>select函数是实现IO多路复用的一种方式。</p>
+<p>什么是IO多路复用？</p>
+<p>举一个简单地网络服务器的例子，如果你的服务器需要和多个客户端保持连接，处理客户端的请求，属于多进程的并发问题，如果创建很多个进程来处理这些IO流，会导致CPU占有率很高。所以人们提出了I/O多路复用模型：<strong>一个线程，通过记录I/O流的状态来同时管理多个I/O</strong>。</p>
+<p>select只是IO复用的一种方式，其他的还有：poll，epoll等。</p>
+<h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/* According to POSIX.1-2001 */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/select.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* According to earlier standards */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">select</span><span class="params">(<span class="keyword">int</span> nfds, fd_set *readfds, fd_set *writefds,</span></span></span><br><span class="line"><span class="function"><span class="params">           fd_set *exceptfds, struct timeval *timeout)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FD_CLR</span><span class="params">(<span class="keyword">int</span> fd, fd_set *<span class="built_in">set</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span>  <span class="title">FD_ISSET</span><span class="params">(<span class="keyword">int</span> fd, fd_set *<span class="built_in">set</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FD_SET</span><span class="params">(<span class="keyword">int</span> fd, fd_set *<span class="built_in">set</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FD_ZERO</span><span class="params">(fd_set *<span class="built_in">set</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<h5 id="介绍、"><a href="#介绍、" class="headerlink" title="介绍、"></a>介绍、</h5><p>select()函数允许程序监视多个文件描述符，等待所监视的一个或者多个文件描述符变为“准备好”的状态。所谓的”准备好“状态是指：文件描述符不再是阻塞状态，可以用于某类IO操作了，包括可读，可写，发生异常三种。<br><br><br>我们使用select来监视文件描述符时，要向内核传递的信息包括：<br>​    1、我们要监视的文件描述符个数<br>​    2、每个文件描述符，我们可以监视它的一种或多种状态，包括：可读，可写，发生异常三种。<br>​    3、要等待的时间，监视是一个过程，我们希望内核监视多长时间，然后返回给我们监视结果呢？<br>​    4、监视结果包括：准备好了的文件描述符个数，对于读，写，异常，分别是哪儿个文件描述符准备好了。</p>
+<h5 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h5><p><strong>nfds：</strong>是一个整数值， 表示集合中所有文件描述符的范围，即所有文件描述符的最大值+1。在windows中不需要管这个。</p>
+<p>linux select第一个参数的函数： 待测试的描述集的总个数。 但要注意， 待测试的描述集总是从0， 1， 2， …开始的。 所以， 假如你要检测的描述符为8， 9， 10， 那么系统实际也要监测0， 1， 2， 3， 4， 5， 6,  7，  此时真正待测试的描述符的个数为11个， 也就是max（8， 9， 10） + 1<br>注意：<br>​    1、果你要检测描述符8, 9, 10, 但是你把select的第一个参数定为8， 实际上只检测0到7， 所以select不会感知到8, 9, 10描述符的变化。<br>​    2、果你要检测描述符8, 9, 10, 且你把select的第一个参数定为11， 实际上会检测0-10， 但是， 如果你不把描述如0 set到描述符中， 那么select也不会感知到0描述符的变化。<br>​    所以， select感知到描述符变化的必要条件是， 第一个参数要合理， 比如定义为fdmax+1,  且把需要检测的描述符set到描述集中。</p>
+<p><strong>fd_set：</strong><br>一个文件描述符集合保存在fd_set变量中，可读，可写，异常这三个描述符集合需要使用三个变量来保存，分别是 readfds，writefds，exceptfds。我们可以认为一个fd_set变量是由很多个二进制构成的数组，每一位表示一个文件描述符是否需要监视。</p>
+<p>对于fd_set类型的变量，我们只能使用相关的函数来操作。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FD_CLR</span><span class="params">(<span class="keyword">int</span> fd, fd_set *<span class="built_in">set</span>)</span></span>;<span class="comment">//清除某一个被监视的文件描述符。</span></span><br><span class="line"><span class="function"><span class="keyword">int</span>  <span class="title">FD_ISSET</span><span class="params">(<span class="keyword">int</span> fd, fd_set *<span class="built_in">set</span>)</span></span>;<span class="comment">//测试一个文件描述符是否是集合中的一员</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FD_SET</span><span class="params">(<span class="keyword">int</span> fd, fd_set *<span class="built_in">set</span>)</span></span>;<span class="comment">//添加一个文件描述符，将set中的某一位设置成1；</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FD_ZERO</span><span class="params">(fd_set *<span class="built_in">set</span>)</span></span>;<span class="comment">//清空集合中的文件描述符,将每一位都设置为0；</span></span><br></pre></td></tr></table></figure></p>
+<p>使用案例：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fd_set readfds;</span><br><span class="line"><span class="keyword">int</span> fd;</span><br><span class="line">FD_ZERO(&amp;readfds)<span class="comment">//新定义的变量要清空一下。相当于初始化。</span></span><br><span class="line">FD_SET(fd,&amp;readfds);<span class="comment">//把文件描述符fd加入到readfds中。</span></span><br><span class="line"><span class="comment">//select 返回</span></span><br><span class="line"><span class="keyword">if</span>(FD_ISSET(fd,&amp;readset))<span class="comment">//判断是否成功监视</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//dosomething</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>readfds：</strong><br>监视文件描述符的一个集合，我们监视其中的文件描述符是不是可读，或者更准确的说，读取是不是不阻塞了。<br><strong>writefds：</strong><br>监视文件描述符的一个集合，我们监视其中的文件描述符是不是可写，或者更准确的说，写入是不是不阻塞了。<br><strong>exceptfds：</strong><br>用来监视发生错误异常文件</p>
+<p><strong>timeout</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timeval</span>&#123;</span></span><br><span class="line">    <span class="keyword">long</span> tv_sec;<span class="comment">//秒</span></span><br><span class="line">    <span class="keyword">long</span> tv_usec;<span class="comment">//微秒</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>timeout表示select返回之前的时间上限。<br>如果timeout==NULL，无期限等待下去，这个等待可以被一个信号中断，只有当一个描述符准备好，或者捕获到一个信号时函数才会返回。如果是捕获到信号，select返回-1，并将变量errno设置成EINTR。</p>
+<p>如果timeout-&gt;tv_sec==0 &amp;&amp; timeout-&gt;tv_sec==0 ，不等待直接返回，加入的描述符都会被测试，并且返回满足要求的描述符个数，这种方法通过轮询，无阻塞地获得了多个文件描述符状态。</p>
+<p>如果timeout-&gt;tv_sec！=0 || timeout-&gt;tv_sec！=0 ，等待指定的时间。当有描述符复合条件或者超过超时时间的话，函数返回。等待总是会被信号中断。</p>
+<h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h5><p>理解select模型的关键在于理解fd_set,为说明方便，取fd_set长度为1字节，fd_set中的每一bit可以对应一个文件描述符fd。则1字节长的fd_set最大可以对应8个fd。<br>​    执行fd_set set;FD_ZERO(&amp;set);则set用位表示是0000,0000。<br>​    若fd＝5,执行FD_SET(fd,&amp;set);后set变为0001,0000(第5位置为1)<br>​    若再加入fd＝2，fd=1,则set变为0001,0011<br>​    执行select(6,&amp;set,0,0,0)阻塞等待<br>​    若fd=1,fd=2上都发生可读事件，则select返回，此时set变为0000,0011。注意：没有事件发生的fd=5被清空。</p>
+<h5 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h5><p>成功时：返回三中描述符集合中”准备好了“的文件描述符数量。<br>超时：返回0<br>错误：返回-1，并设置 errno</p>
+<p>EBADF：集合中包含无效的文件描述符。（文件描述符已经关闭了，或者文件描述符上已经有错误了）。<br>EINTR：捕获到一个信号。<br>EINVAL：nfds是负的或者timeout中包含的值无效。<br>ENOMEM：无法为内部表分配内存。</p>
+<h5 id="pselect"><a href="#pselect" class="headerlink" title="pselect"></a>pselect</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/select.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pselect</span><span class="params">(<span class="keyword">int</span> nfds, fd_set *readfds, fd_set *writefds,</span></span></span><br><span class="line"><span class="function"><span class="params">           fd_set *exceptfds, <span class="keyword">const</span> struct timespec *timeout,</span></span></span><br><span class="line"><span class="function"><span class="params">           <span class="keyword">const</span> <span class="keyword">sigset_t</span> *sigmask)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>select和pselect有三个主要的区别：</p>
+<p>1、select超时使用的是struct timeval，用秒和微秒计时，而pselect使用struct timespec ，用秒和纳秒。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timespec</span>&#123;</span></span><br><span class="line">    <span class="keyword">time_t</span> tv_sec;<span class="comment">//秒</span></span><br><span class="line">    <span class="keyword">long</span> tv_nsec;<span class="comment">//纳秒</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2、select会更新超时参数timeout 以指示还剩下多少时间，pselect不会。</p>
+<p>3、select没有sigmask参数.<br>sigmask:这个参数保存了一组内核应该打开的信号（即：从调用线程的信号掩码中删除）</p>
+<p>当pselect的sigmask==NULL时pselect和select一样</p>
+<p>当sigmask！=NULL时，等效于以下原子操作：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sigset_t</span> origmask;</span><br><span class="line">sigprocmask(SIG_SETMASK, &amp;sigmask, &amp;origmask);</span><br><span class="line">ready = select(nfds, &amp;readfds, &amp;writefds, &amp;exceptfds, timeout);</span><br><span class="line">sigprocmask(SIG_SETMASK, &amp;origmask, <span class="literal">NULL</span>);</span><br></pre></td></tr></table></figure>
+<p>接收信号的程序通常只使用信号处理程序来引发全局标志。全局标志将指示事件必须被处理。在程序的主循环中。一个信号将导致select和pselect返回-1 并将erron=EINTR。</p>
+<p>我们经常要在主循环中处理信号，主循环的某个位置将会检查全局标志，那么我们会问：如果信号在条件之后，select之前到达怎么办。答案是select会无限期阻塞。</p>
+<p>这种情况很少见，但是这就是为什么出现了pselect。因为他是类似原子操作的。</p>
+<p>举个栗子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">volatile</span> <span class="keyword">sig_atomic_t</span> got_SIGCHLD = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">      child_sig_handler(<span class="keyword">int</span> sig)</span><br><span class="line">      &#123;</span><br><span class="line">          got_SIGCHLD = <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">int</span></span><br><span class="line">      main(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span><br><span class="line">      &#123;</span><br><span class="line">          <span class="keyword">sigset_t</span> sigmask, empty_mask;</span><br><span class="line">          <span class="class"><span class="keyword">struct</span> <span class="title">sigaction</span> <span class="title">sa</span>;</span></span><br><span class="line">          fd_set readfds, writefds, exceptfds;</span><br><span class="line">          <span class="keyword">int</span> r;</span><br><span class="line"></span><br><span class="line">          sigemptyset(&amp;sigmask);</span><br><span class="line">          sigaddset(&amp;sigmask, SIGCHLD);</span><br><span class="line">          <span class="keyword">if</span> (sigprocmask(SIG_BLOCK, &amp;sigmask, <span class="literal">NULL</span>) == <span class="number">-1</span>) &#123;</span><br><span class="line">              perror(<span class="string">"sigprocmask"</span>);</span><br><span class="line">              <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          sa.sa_flags = <span class="number">0</span>;</span><br><span class="line">          sa.sa_handler = child_sig_handler;</span><br><span class="line">          sigemptyset(&amp;sa.sa_mask);</span><br><span class="line">          <span class="keyword">if</span> (sigaction(SIGCHLD, &amp;sa, <span class="literal">NULL</span>) == <span class="number">-1</span>) &#123;</span><br><span class="line">              perror(<span class="string">"sigaction"</span>);</span><br><span class="line">              <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          sigemptyset(&amp;empty_mask);</span><br><span class="line"></span><br><span class="line">          <span class="keyword">for</span> (;;) &#123;          <span class="comment">/* main loop */</span></span><br><span class="line">              <span class="comment">/* Initialize readfds, writefds, and exceptfds</span></span><br><span class="line"><span class="comment">                 before the pselect() call. (Code omitted.) */</span></span><br><span class="line"></span><br><span class="line">              r = pselect(nfds, &amp;readfds, &amp;writefds, &amp;exceptfds,</span><br><span class="line">                          <span class="literal">NULL</span>, &amp;empty_mask);</span><br><span class="line">              <span class="keyword">if</span> (r == <span class="number">-1</span> &amp;&amp; errno != EINTR) &#123;</span><br><span class="line">                  <span class="comment">/* Handle error */</span></span><br><span class="line">              &#125;</span><br><span class="line"></span><br><span class="line">              <span class="keyword">if</span> (got_SIGCHLD) &#123;</span><br><span class="line">                  got_SIGCHLD = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">                  <span class="comment">/* Handle signalled event here; e.g., wait() for all</span></span><br><span class="line"><span class="comment">                     terminated children. (Code omitted.) */</span></span><br><span class="line">              &#125;</span><br><span class="line"></span><br><span class="line">              <span class="comment">/* main body of program */</span></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>select()可以同时监视多个描述符，如果他们没有活动，则正确地将进程置于休眠状态。Unix程序员们经常要处理多个文件描述符的I/O，他们的数据流可能是间歇性的。如果只创建read或者write会导致程序阻塞。</p>
+<p>在我们使用select的时候，需要注意：</p>
+<p>1、我们应该总是设置timeout=0，因为如果没有可用的数据，程序在运行时间里将无视可做。依赖超时的代码通常是不可移植，并且很难调试。</p>
+<p>2、nfds的值一要准备且适当。</p>
+<p>3、如果在调用完select之后，你不想检查结果，也不想做出适当的响应，那么文件描述符不需要添加到集合中。</p>
+<p>4、select返回后，所有的文件描述符都应该被检查，看看他们是否准备好了。</p>
+<p>5、read，recv，write，send，这几个函数不一定读/写你所请求的全部数据。如果他们读/写全部数据，是因为低流量负载和快速流。情况并非重视如此，应该处理你的函数仅管理发送或接收单个字节的情况。</p>
+<p>6、除非你真的确信你有少量的数据要处理，否则不要一次只读一个字节，当你每次都能缓冲的时候，尽可能多的读取数据是非常低效的。</p>
+<p>7、read，recv，write，send和select都会有返回-1的情况，并set errno的值。这些errno必须被恰当的处理。如果你的程序不会接收到任何信号，那么errno永远都不会等于EINTR，如果你的程序并不会设置非阻塞IO，那么errno就不会等于EAGAIN。</p>
+<p>8、调用read，recv，write，send，不要使buffer的长度为0；</p>
+<p>9、如果read，recv，write，send调用失败，并且返回的errno不是7中说的那两种情况，或者返回0，意思是“end-of-file”,这种情况下我们不应再将文件描述符传递给select。</p>
+<p>10、每次调用select之前，timeout都用重新设置。</p>
+<p>11、由于select()修改其文件描述符集，如果调用在循环中使用，则必须在每次调用之前重新初始化这些集。</p>
+<p>大多数的操作系统都支持select。相比于试图用线程，进程，IPCS，信号，内存共享等方式来解决问题，select函数更有效且轻松。系统调用poll和select相似，在监视稀疏文件集合的时候更加有效。poll现在也在被广泛的使用，但没有select简便。linux专用的epoll在监视大连数据时比select和poll更加有效。</p>
+<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><h5 id="案例1"><a href="#案例1" class="headerlink" title="案例1"></a>案例1</h5><p>下面是”man select “帮助文档中案例：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    fd_set rfds;<span class="comment">//定义一个能保存文件描述符集合的变量</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">tv</span>;</span><span class="comment">//定义超时时间</span></span><br><span class="line">    <span class="keyword">int</span> retval;<span class="comment">//保存返回值</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Watch stdin (fd 0) to see when it has input. */</span></span><br><span class="line">    <span class="comment">/* 监测标准输入流（fd=0）看什么时候又输入*/</span></span><br><span class="line">    FD_ZERO(&amp;rfds);<span class="comment">//初始化集合</span></span><br><span class="line">    FD_SET(<span class="number">0</span>, &amp;rfds);<span class="comment">//把文件描述符0加入到监测集合中。</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Wait up to five seconds. */</span></span><br><span class="line">    <span class="comment">/* 设置超时时间为5s */</span></span><br><span class="line">    tv.tv_sec = <span class="number">5</span>;</span><br><span class="line">    tv.tv_usec = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*调用select函数，将文件描述符集合设置成读取监测 */</span></span><br><span class="line">    retval = select(<span class="number">1</span>, &amp;rfds, <span class="literal">NULL</span>, <span class="literal">NULL</span>, &amp;tv);</span><br><span class="line">    <span class="comment">/* Don't rely on the value of tv now! */</span></span><br><span class="line">    <span class="comment">/* 这时候的tv值是不可依赖的 */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/*根据返回值类型判断select函数 */</span></span><br><span class="line">    <span class="keyword">if</span> (retval == <span class="number">-1</span>)</span><br><span class="line">        perror(<span class="string">"select()"</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (retval)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Data is available now.\n"</span>);</span><br><span class="line">    <span class="comment">/* FD_ISSET(0, &amp;rfds) will be true. */</span></span><br><span class="line">    <span class="comment">/* 因为值增加了一个fd，如果返回值&gt;0,则说明fd=0在集合中。*/</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"No data within five seconds.\n"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(EXIT_SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="案例2"><a href="#案例2" class="headerlink" title="案例2"></a>案例2</h5><p>下面是”man select_tut “帮助文档中案例：</p>
+<p>这个例子更好的说明了select函数的作用，这是一个TCP转发相关的程序，从一个端口转发到另一个端口</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> forward_port;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">undef</span> max</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> max(x,y) ((x) &gt; (y) ? (x) : (y))</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">listen_socket</span><span class="params">(<span class="keyword">int</span> listen_port)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">a</span>;</span></span><br><span class="line">    <span class="keyword">int</span> s;</span><br><span class="line">    <span class="keyword">int</span> yes;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ((s = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>)) == <span class="number">-1</span>) &#123;</span><br><span class="line">        perror(<span class="string">"socket"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    yes = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (setsockopt(s, SOL_SOCKET, SO_REUSEADDR,</span><br><span class="line">                   (<span class="keyword">char</span> *) &amp;yes, <span class="keyword">sizeof</span>(yes)) == <span class="number">-1</span>) &#123;</span><br><span class="line">        perror(<span class="string">"setsockopt"</span>);</span><br><span class="line">        close(s);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memset</span>(&amp;a, <span class="number">0</span>, <span class="keyword">sizeof</span>(a));</span><br><span class="line">    a.sin_port = htons(listen_port);</span><br><span class="line">    a.sin_family = AF_INET;</span><br><span class="line">    <span class="keyword">if</span> (bind(s, (struct sockaddr *) &amp;a, <span class="keyword">sizeof</span>(a)) == <span class="number">-1</span>) &#123;</span><br><span class="line">        perror(<span class="string">"bind"</span>);</span><br><span class="line">        close(s);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"accepting connections on port %d\n"</span>, listen_port);</span><br><span class="line">    listen(s, <span class="number">10</span>);</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">connect_socket</span><span class="params">(<span class="keyword">int</span> connect_port, <span class="keyword">char</span> *address)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">a</span>;</span></span><br><span class="line">    <span class="keyword">int</span> s;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ((s = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>)) == <span class="number">-1</span>) &#123;</span><br><span class="line">        perror(<span class="string">"socket"</span>);</span><br><span class="line">        close(s);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(&amp;a, <span class="number">0</span>, <span class="keyword">sizeof</span>(a));</span><br><span class="line">    a.sin_port = htons(connect_port);</span><br><span class="line">    a.sin_family = AF_INET;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!inet_aton(address, (struct in_addr *) &amp;a.sin_addr.s_addr)) &#123;</span><br><span class="line">        perror(<span class="string">"bad IP address format"</span>);</span><br><span class="line">        close(s);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (connect(s, (struct sockaddr *) &amp;a, <span class="keyword">sizeof</span>(a)) == <span class="number">-1</span>) &#123;</span><br><span class="line">        perror(<span class="string">"connect()"</span>);</span><br><span class="line">        shutdown(s, SHUT_RDWR);</span><br><span class="line">        close(s);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SHUT_FD1 do &#123;                                \</span></span><br><span class="line">                            <span class="keyword">if</span> (fd1 &gt;= <span class="number">0</span>) &#123;                 \</span><br><span class="line">                                shutdown(fd1, SHUT_RDWR);   \</span><br><span class="line">                                close(fd1);                 \</span><br><span class="line">                                fd1 = <span class="number">-1</span>;                   \</span><br><span class="line">                            &#125;                               \</span><br><span class="line">                        &#125; <span class="keyword">while</span> (<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SHUT_FD2 do &#123;                                \</span></span><br><span class="line">                            <span class="keyword">if</span> (fd2 &gt;= <span class="number">0</span>) &#123;                 \</span><br><span class="line">                                shutdown(fd2, SHUT_RDWR);   \</span><br><span class="line">                                close(fd2);                 \</span><br><span class="line">                                fd2 = <span class="number">-1</span>;                   \</span><br><span class="line">                            &#125;                               \</span><br><span class="line">                        &#125; <span class="keyword">while</span> (<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BUF_SIZE 1024</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> h;</span><br><span class="line">    <span class="keyword">int</span> fd1 = <span class="number">-1</span>, fd2 = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">char</span> buf1[BUF_SIZE], buf2[BUF_SIZE];</span><br><span class="line">    <span class="keyword">int</span> buf1_avail, buf1_written;</span><br><span class="line">    <span class="keyword">int</span> buf2_avail, buf2_written;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//我们希望调用主函数的时候，要指明，本地端口，发送端口，还有发送的ip地址</span></span><br><span class="line">    <span class="keyword">if</span> (argc != <span class="number">4</span>) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Usage\n\tfwd &lt;listen-port&gt; "</span></span><br><span class="line">                <span class="string">"&lt;forward-to-port&gt; &lt;forward-to-ip-address&gt;\n"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 忽略SIGPIPE这个信号，这个信号常出现在网络编程中，访问一个已经关闭的文件描述符时候出现。</span></span><br><span class="line">    signal(SIGPIPE, SIG_IGN);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//确定发送端口</span></span><br><span class="line">    forward_port = atoi(argv[<span class="number">2</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//监听本地端口</span></span><br><span class="line">    h = listen_socket(atoi(argv[<span class="number">1</span>]));</span><br><span class="line">    <span class="keyword">if</span> (h == <span class="number">-1</span>)</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">        <span class="keyword">int</span> r, nfds = <span class="number">0</span>;</span><br><span class="line">        fd_set rd, wr, er;</span><br><span class="line"></span><br><span class="line">        FD_ZERO(&amp;rd);</span><br><span class="line">        FD_ZERO(&amp;wr);</span><br><span class="line">        FD_ZERO(&amp;er);</span><br><span class="line">        FD_SET(h, &amp;rd);</span><br><span class="line">        <span class="comment">// 获取nfds的值。并把fd1,fd2分别加入到，可读，可写，异常监视集合中去。</span></span><br><span class="line">        nfds = max(nfds, h);</span><br><span class="line">        <span class="keyword">if</span> (fd1 &gt; <span class="number">0</span> &amp;&amp; buf1_avail &lt; BUF_SIZE) &#123;</span><br><span class="line">            FD_SET(fd1, &amp;rd);</span><br><span class="line">            nfds = max(nfds, fd1);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (fd2 &gt; <span class="number">0</span> &amp;&amp; buf2_avail &lt; BUF_SIZE) &#123;</span><br><span class="line">            FD_SET(fd2, &amp;rd);</span><br><span class="line">            nfds = max(nfds, fd2);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (fd1 &gt; <span class="number">0</span> &amp;&amp; buf2_avail - buf2_written &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            FD_SET(fd1, &amp;wr);</span><br><span class="line">            nfds = max(nfds, fd1);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (fd2 &gt; <span class="number">0</span> &amp;&amp; buf1_avail - buf1_written &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            FD_SET(fd2, &amp;wr);</span><br><span class="line">            nfds = max(nfds, fd2);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (fd1 &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            FD_SET(fd1, &amp;er);</span><br><span class="line">            nfds = max(nfds, fd1);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (fd2 &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            FD_SET(fd2, &amp;er);</span><br><span class="line">            nfds = max(nfds, fd2);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//开始监视</span></span><br><span class="line">        r = select(nfds + <span class="number">1</span>, &amp;rd, &amp;wr, &amp;er, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (r == <span class="number">-1</span> &amp;&amp; errno == EINTR)</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (r == <span class="number">-1</span>) &#123;</span><br><span class="line">            perror(<span class="string">"select()"</span>);</span><br><span class="line">            <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (FD_ISSET(h, &amp;rd)) &#123;</span><br><span class="line">            <span class="keyword">unsigned</span> <span class="keyword">int</span> l;</span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">client_address</span>;</span></span><br><span class="line"></span><br><span class="line">            <span class="built_in">memset</span>(&amp;client_address, <span class="number">0</span>, l = <span class="keyword">sizeof</span>(client_address));</span><br><span class="line">            r = accept(h, (struct sockaddr *) &amp;client_address, &amp;l);</span><br><span class="line">            <span class="keyword">if</span> (r == <span class="number">-1</span>) &#123;</span><br><span class="line">                perror(<span class="string">"accept()"</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                SHUT_FD1;</span><br><span class="line">                SHUT_FD2;</span><br><span class="line">                buf1_avail = buf1_written = <span class="number">0</span>;</span><br><span class="line">                buf2_avail = buf2_written = <span class="number">0</span>;</span><br><span class="line">                fd1 = r;</span><br><span class="line">                fd2 = connect_socket(forward_port, argv[<span class="number">3</span>]);</span><br><span class="line">                <span class="keyword">if</span> (fd2 == <span class="number">-1</span>)</span><br><span class="line">                    SHUT_FD1;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"connect from %s\n"</span>,</span><br><span class="line">                           inet_ntoa(client_address.sin_addr));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* NB: read oob data before normal reads */</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (fd1 &gt; <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">if</span> (FD_ISSET(fd1, &amp;er)) &#123;</span><br><span class="line">                <span class="keyword">char</span> c;</span><br><span class="line"></span><br><span class="line">                r = recv(fd1, &amp;c, <span class="number">1</span>, MSG_OOB);</span><br><span class="line">                <span class="keyword">if</span> (r &lt; <span class="number">1</span>)</span><br><span class="line">                    SHUT_FD1;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    send(fd2, &amp;c, <span class="number">1</span>, MSG_OOB);</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">if</span> (fd2 &gt; <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">if</span> (FD_ISSET(fd2, &amp;er)) &#123;</span><br><span class="line">                <span class="keyword">char</span> c;</span><br><span class="line"></span><br><span class="line">                r = recv(fd2, &amp;c, <span class="number">1</span>, MSG_OOB);</span><br><span class="line">                <span class="keyword">if</span> (r &lt; <span class="number">1</span>)</span><br><span class="line">                    SHUT_FD2;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    send(fd1, &amp;c, <span class="number">1</span>, MSG_OOB);</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">if</span> (fd1 &gt; <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">if</span> (FD_ISSET(fd1, &amp;rd)) &#123;</span><br><span class="line">                r = read(fd1, buf1 + buf1_avail,</span><br><span class="line">                         BUF_SIZE - buf1_avail);</span><br><span class="line">                <span class="keyword">if</span> (r &lt; <span class="number">1</span>)</span><br><span class="line">                    SHUT_FD1;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    buf1_avail += r;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">if</span> (fd2 &gt; <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">if</span> (FD_ISSET(fd2, &amp;rd)) &#123;</span><br><span class="line">                r = read(fd2, buf2 + buf2_avail,</span><br><span class="line">                         BUF_SIZE - buf2_avail);</span><br><span class="line">                <span class="keyword">if</span> (r &lt; <span class="number">1</span>)</span><br><span class="line">                    SHUT_FD2;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    buf2_avail += r;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">if</span> (fd1 &gt; <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">if</span> (FD_ISSET(fd1, &amp;wr)) &#123;</span><br><span class="line">                r = write(fd1, buf2 + buf2_written,</span><br><span class="line">                          buf2_avail - buf2_written);</span><br><span class="line">                <span class="keyword">if</span> (r &lt; <span class="number">1</span>)</span><br><span class="line">                    SHUT_FD1;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    buf2_written += r;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">if</span> (fd2 &gt; <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">if</span> (FD_ISSET(fd2, &amp;wr)) &#123;</span><br><span class="line">                r = write(fd2, buf1 + buf1_written,</span><br><span class="line">                          buf1_avail - buf1_written);</span><br><span class="line">                <span class="keyword">if</span> (r &lt; <span class="number">1</span>)</span><br><span class="line">                    SHUT_FD2;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    buf1_written += r;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* check if write data has caught read data */</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (buf1_written == buf1_avail)</span><br><span class="line">            buf1_written = buf1_avail = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (buf2_written == buf2_avail)</span><br><span class="line">            buf2_written = buf2_avail = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* one side has closed the connection, keep</span></span><br><span class="line"><span class="comment">                  writing to the other side until empty */</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (fd1 &lt; <span class="number">0</span> &amp;&amp; buf1_avail - buf1_written == <span class="number">0</span>)</span><br><span class="line">            SHUT_FD2;</span><br><span class="line">        <span class="keyword">if</span> (fd2 &lt; <span class="number">0</span> &amp;&amp; buf2_avail - buf2_written == <span class="number">0</span>)</span><br><span class="line">            SHUT_FD1;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">exit</span>(EXIT_SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的程序可以应用于大多数类型的TCP连接，包括telnet服务器对OOB信号的转发。它处理了同时在两个方向上流动这一棘手问题。你可能会想，使用连个进程不是更有效吗？事实上使用两个进程会更复杂。另一个想法是使用fcntl设置非阻塞的I/O使用，这也有弊端，因为它使用非常低效的超时。</p>
+<p>这个程序不能处理同时有多个连接的情况，但很容易扩展。你只需要为每个连接创建一个buffer。当前的程序中，新的连接会导致旧的连接被覆盖丢弃。</p>
+<a id="more"></a>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/C语言/" rel="tag"># C语言</a>
+          
+            <a href="/tags/linux网络编程/" rel="tag"># linux网络编程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/20/send/" rel="next" title="send函数详解">
+                <i class="fa fa-chevron-left"></i> send函数详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/25/popen/" rel="prev" title="popen详解">
+                popen详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Rita Wu">
+            
+              <p class="site-author-name" itemprop="name">Rita Wu</p>
+              <p class="site-description motion-element" itemprop="description">本站用于记录个人学习、工作经验</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#介绍、"><span class="nav-number">2.2.</span> <span class="nav-text">介绍、</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数说明"><span class="nav-number">2.3.</span> <span class="nav-text">参数说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#原理"><span class="nav-number">2.4.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值"><span class="nav-number">2.5.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#pselect"><span class="nav-number">2.6.</span> <span class="nav-text">pselect</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例"><span class="nav-number">4.</span> <span class="nav-text">案例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#案例1"><span class="nav-number">4.1.</span> <span class="nav-text">案例1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#案例2"><span class="nav-number">4.2.</span> <span class="nav-text">案例2</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rita Wu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
