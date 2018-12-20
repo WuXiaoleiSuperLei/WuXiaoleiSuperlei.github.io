@@ -87,7 +87,7 @@
 <meta property="og:description" content="有人说C++程序员可以分成两类，读过《Effective C++》和没读过的！">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/53bb1eaa40d9c68780bfaf5a7328ae07.jpg">
-<meta property="og:updated_time" content="2018-12-20T03:34:07.255Z">
+<meta property="og:updated_time" content="2018-12-20T07:53:09.057Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Effective C++》（一）让自己习惯C++">
 <meta name="twitter:description" content="有人说C++程序员可以分成两类，读过《Effective C++》和没读过的！">
@@ -345,12 +345,14 @@
 <p><strong>Effec C++</strong></p>
 <p><strong>改善程序与设计的55个具体做法</strong></p>
 <p><strong>[美] Scott Meyers 著</strong></p>
-<h4 id="译序"><a href="#译序" class="headerlink" title="译序"></a>译序</h4><p>C++是一个难学易用的语言</p>
+<p><strong>译序</strong></p>
+<p>C++是一个难学易用的语言</p>
 <p>C++语法广播，语法及语义背后又有深层思维，深层思维背后又有对象模型。</p>
 <p>C++还有四种不同而又相辅相成的编程泛型：基于过程，基于对象，面向对象，泛型编程。</p>
 <p>然而：一旦学成，妙用无穷。</p>
-<h4 id="1-让自己习惯C"><a href="#1-让自己习惯C" class="headerlink" title="1.让自己习惯C++"></a>1.让自己习惯C++</h4><p>驾驭C++之前要先习惯C++的办事方式。</p>
-<h5 id="条款1：视C-为一个语言联邦"><a href="#条款1：视C-为一个语言联邦" class="headerlink" title="条款1：视C++为一个语言联邦"></a>条款1：视C++为一个语言联邦</h5><p>最开始的C++，只是在C语言的基础上加了一些对象特性，他被称为C with Classes。但今天的C++已经发展成一种多重范型编程语言。他同时支持过程形式，面向对象形式，函数形式，泛型形式，元编程形式。这些弹性和能力使C++成为了一个无可匹敌的工具，但也造成了所有的“适当用法”似乎都有例外。我们应该如何理解这个语言？</p>
+<p><strong>让自己习惯C++</strong></p>
+<p>驾驭C++之前要先习惯C++的办事方式。</p>
+<h4 id="条款1：视C-为一个语言联邦"><a href="#条款1：视C-为一个语言联邦" class="headerlink" title="条款1：视C++为一个语言联邦"></a>条款1：视C++为一个语言联邦</h4><p>最开始的C++，只是在C语言的基础上加了一些对象特性，他被称为C with Classes。但今天的C++已经发展成一种多重范型编程语言。他同时支持过程形式，面向对象形式，函数形式，泛型形式，元编程形式。这些弹性和能力使C++成为了一个无可匹敌的工具，但也造成了所有的“适当用法”似乎都有例外。我们应该如何理解这个语言？</p>
 <p>最简单的方法就是讲C++是为一个由相关语言组成的联邦而非单一语言。我们叫他的相关语言为次语言。他只有四个次语言，而且每个次语言中守则和通例都倾向简单，直观易懂。然而当你从一个次语言移往另一个次语言，守则可能改变。</p>
 <p>次语言包括</p>
 <p><strong>C：</strong> 区块，语句，预处理器，内置数据类型，数组，指针等统统来自于C</p>
@@ -360,7 +362,7 @@
 <p>记住这四种次语言，当你从某个次语言切换到另一个，导致高效编程守则要求你改变策略时，不要感动惊讶。</p>
 <p>值传递(pass-by-value)与址传递(pass-by-reference)对于次语言C来讲，值传递比较高效。但对于Object-Oriented C++来讲，由于用户自定义的构造函数和析构函数的存在，址传递往往更好。Template C++更是如此。<strong>然而一旦跨入STL你就会了解，迭代器和函数对象都是C指针上塑造出来的，所以对STL的迭代器和函数对象而言，值传递再次适用了。</strong></p>
 <p><strong>请记住：C++高效编程守则视情况而定，取决于你使用C++的哪一部分。</strong></p>
-<h5 id="条款2：尽量以const，enum，inline替换-define"><a href="#条款2：尽量以const，enum，inline替换-define" class="headerlink" title="条款2：尽量以const，enum，inline替换#define"></a>条款2：尽量以const，enum，inline替换#define</h5><p>这句话理解为“宁可使用编译器，也不使用预处理器”，因为#define不被视为语言的一部分。</p>
+<h4 id="条款2：尽量以const，enum，inline替换-define"><a href="#条款2：尽量以const，enum，inline替换-define" class="headerlink" title="条款2：尽量以const，enum，inline替换#define"></a>条款2：尽量以const，enum，inline替换#define</h4><p>这句话理解为“宁可使用编译器，也不使用预处理器”，因为#define不被视为语言的一部分。</p>
 <p>当我们#define ASPECT_RATIO 1.653</p>
 <p>记号ASPECT_RATIO 也许从未被编译器看见，也许在编译器开始处理源码之前它就被预处理器移走了。由于记号ASPECT_RATIO 有可能没有进入记号表。于是你运用磁场量但获得一个编译错误信息时，可能会带来困惑。因为这个错误信息也许会提到1.653，而不是ASPECT_RATIO 。如果ASPECT_RATIO 被定义在非你所写的头文件内，会更加使人毫无概念，这个问题可能出现在记号式调试器中，原因相同：你所使用的名称可能并未进入记号表。</p>
 <p>使用：const double AspectRatio = 1.653来代替。</p>
@@ -395,7 +397,7 @@
 <p><strong>请记住：</strong></p>
 <p><strong>对于单纯常量，最好以const对象或者enum替换#define</strong></p>
 <p><strong>对于形似函数的宏，最好改用inline函数替换#define</strong></p>
-<h5 id="条款3：尽可能使用const"><a href="#条款3：尽可能使用const" class="headerlink" title="条款3：尽可能使用const"></a>条款3：尽可能使用const</h5><p>const的一件奇妙事情是，它允许你指定一个语义约束，也就是指定一个“不该被改动”的对象，而编译器会强制实施这项约束，他允许你告诉编译器和其他程序员某值应该保持不变，只要这个值保持不变是事实，你就该说出来，因为说出来可以获得编译器的帮助。确保这条约束不被违反。</p>
+<h4 id="条款3：尽可能使用const"><a href="#条款3：尽可能使用const" class="headerlink" title="条款3：尽可能使用const"></a>条款3：尽可能使用const</h4><p>const的一件奇妙事情是，它允许你指定一个语义约束，也就是指定一个“不该被改动”的对象，而编译器会强制实施这项约束，他允许你告诉编译器和其他程序员某值应该保持不变，只要这个值保持不变是事实，你就该说出来，因为说出来可以获得编译器的帮助。确保这条约束不被违反。</p>
 <p>关键字const多才多艺，你可以是用它在classes外部修饰global或namespace作用域中的常量，也就是我们在条款2中提到的。他可以修饰文件，函数，或者区块作用域中被声明为static的对象。你也可以用它修饰classes内部的static和non-static成员变量。面对指针，你也可以指出指针自身，指针所指物，或二者都（或都不）是const。</p>
 <p>const语法虽然变化多端，但并不高深莫测。如果const出现在*左边，表示被指的事物是常量，出现在右边，表示指针自身是常量。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> * pw;</span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> * pw;</span><br><span class="line"><span class="comment">//这两者是一样的。都表示指针所指的事物是常量。</span></span><br></pre></td></tr></table></figure>
@@ -408,7 +410,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Rational a,b,c;</span><br><span class="line">(a*b)=c;<span class="comment">//这本身没有意义，可是在出错的情况下就会有这种代码。也许本来是希望 if（（a*b）==c）。</span></span><br></pre></td></tr></table></figure>
 <p>const成员函数</p>
 <p>将const实施于成员函数的目的是为了确认该成员函数可用作于const对象身上。</p>
-<h5 id="条款4：确定对象被使用前已先被初始化。"><a href="#条款4：确定对象被使用前已先被初始化。" class="headerlink" title="条款4：确定对象被使用前已先被初始化。"></a>条款4：确定对象被使用前已先被初始化。</h5><h4 id="2-构造-析构-赋值运算"><a href="#2-构造-析构-赋值运算" class="headerlink" title="2.构造/析构/赋值运算"></a>2.构造/析构/赋值运算</h4><h4 id="3-资源管理"><a href="#3-资源管理" class="headerlink" title="3. 资源管理"></a>3. 资源管理</h4><h4 id="4-设计与声明"><a href="#4-设计与声明" class="headerlink" title="4. 设计与声明"></a>4. 设计与声明</h4><h4 id="5-实现"><a href="#5-实现" class="headerlink" title="5.实现"></a>5.实现</h4><h4 id="6-继承与面向对象设计"><a href="#6-继承与面向对象设计" class="headerlink" title="6.继承与面向对象设计"></a>6.继承与面向对象设计</h4><h4 id="7-模板与泛型编程"><a href="#7-模板与泛型编程" class="headerlink" title="7.模板与泛型编程"></a>7.模板与泛型编程</h4><h4 id="8-定制new和delete"><a href="#8-定制new和delete" class="headerlink" title="8.定制new和delete"></a>8.定制new和delete</h4><h4 id="9-杂项讨论"><a href="#9-杂项讨论" class="headerlink" title="9. 杂项讨论"></a>9. 杂项讨论</h4><a id="more"></a>
+<h4 id="条款4：确定对象被使用前已先被初始化。"><a href="#条款4：确定对象被使用前已先被初始化。" class="headerlink" title="条款4：确定对象被使用前已先被初始化。"></a>条款4：确定对象被使用前已先被初始化。</h4><a id="more"></a>
       
     </div>
     
@@ -584,7 +586,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#译序"><span class="nav-number">1.</span> <span class="nav-text">译序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-让自己习惯C"><span class="nav-number">2.</span> <span class="nav-text">1.让自己习惯C++</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#条款1：视C-为一个语言联邦"><span class="nav-number">2.1.</span> <span class="nav-text">条款1：视C++为一个语言联邦</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#条款2：尽量以const，enum，inline替换-define"><span class="nav-number">2.2.</span> <span class="nav-text">条款2：尽量以const，enum，inline替换#define</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#条款3：尽可能使用const"><span class="nav-number">2.3.</span> <span class="nav-text">条款3：尽可能使用const</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#条款4：确定对象被使用前已先被初始化。"><span class="nav-number">2.4.</span> <span class="nav-text">条款4：确定对象被使用前已先被初始化。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-构造-析构-赋值运算"><span class="nav-number">3.</span> <span class="nav-text">2.构造/析构/赋值运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-资源管理"><span class="nav-number">4.</span> <span class="nav-text">3. 资源管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-设计与声明"><span class="nav-number">5.</span> <span class="nav-text">4. 设计与声明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-实现"><span class="nav-number">6.</span> <span class="nav-text">5.实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-继承与面向对象设计"><span class="nav-number">7.</span> <span class="nav-text">6.继承与面向对象设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-模板与泛型编程"><span class="nav-number">8.</span> <span class="nav-text">7.模板与泛型编程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-定制new和delete"><span class="nav-number">9.</span> <span class="nav-text">8.定制new和delete</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-杂项讨论"><span class="nav-number">10.</span> <span class="nav-text">9. 杂项讨论</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#条款1：视C-为一个语言联邦"><span class="nav-number">1.</span> <span class="nav-text">条款1：视C++为一个语言联邦</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条款2：尽量以const，enum，inline替换-define"><span class="nav-number">2.</span> <span class="nav-text">条款2：尽量以const，enum，inline替换#define</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条款3：尽可能使用const"><span class="nav-number">3.</span> <span class="nav-text">条款3：尽可能使用const</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条款4：确定对象被使用前已先被初始化。"><span class="nav-number">4.</span> <span class="nav-text">条款4：确定对象被使用前已先被初始化。</span></a></li></ol></div>
             
 
           </div>
