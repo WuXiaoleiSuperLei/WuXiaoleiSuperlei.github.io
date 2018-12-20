@@ -78,19 +78,19 @@
 
 
 
-<meta name="description" content="本文设置了12到C语言面试题，快来挑战一下吧！">
+<meta name="description" content="有人说C++程序员可以分成两类，读过《Effective C++》和没读过的！">
 <meta name="keywords" content="C++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="the effect C++">
+<meta property="og:title" content="《Effective C++》">
 <meta property="og:url" content="wuxiaoleisuperlei.github.io/2018/05/05/effectiveCC/index.html">
 <meta property="og:site_name" content="Welcome to Rita&#39;s World">
-<meta property="og:description" content="本文设置了12到C语言面试题，快来挑战一下吧！">
+<meta property="og:description" content="有人说C++程序员可以分成两类，读过《Effective C++》和没读过的！">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/53bb1eaa40d9c68780bfaf5a7328ae07.jpg">
-<meta property="og:updated_time" content="2018-12-18T11:58:07.118Z">
+<meta property="og:updated_time" content="2018-12-20T03:22:49.711Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="the effect C++">
-<meta name="twitter:description" content="本文设置了12到C语言面试题，快来挑战一下吧！">
+<meta name="twitter:title" content="《Effective C++》">
+<meta name="twitter:description" content="有人说C++程序员可以分成两类，读过《Effective C++》和没读过的！">
 <meta name="twitter:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/53bb1eaa40d9c68780bfaf5a7328ae07.jpg">
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <title>the effect C++ | Welcome to Rita's World</title>
+  <title>《Effective C++》 | Welcome to Rita's World</title>
   
 
 
@@ -264,7 +264,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">the effect C++</h1>
+          <h1 class="post-title" itemprop="name headline">《Effective C++》</h1>
         
 
         <div class="post-meta">
@@ -323,7 +323,7 @@
 
           
               <div class="post-description">
-                  本文设置了12到C语言面试题，快来挑战一下吧！
+                  有人说C++程序员可以分成两类，读过《Effective C++》和没读过的！
               </div>
           
 
@@ -340,50 +340,75 @@
       
 
       
-        <p>说明：本文题目来源于牛客网，答案分析来源个人，仅为参考</p>
+        <p>读过这本书，就获得了迅速提升自己C++功力的契机，地位就是这么高。</p>
 <p><img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/53bb1eaa40d9c68780bfaf5a7328ae07.jpg" alt="fengjingtu"></p>
-<p>1、请问下面的程序最后会产生多少个进程：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(　）&#123; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">     <span class="keyword">int</span> i; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">     <span class="keyword">for</span>(i = <span class="number">0</span>; i&lt;<span class="number">5</span>;i++)&#123; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">int</span> pid = fork(); </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">if</span>(pid == <span class="number">0</span>)&#123; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="comment">//do something </span></span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        &#125; <span class="keyword">else</span> &#123; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="comment">//do something </span></span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        &#125; </span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        &#125;</span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="comment">// do somthing,sleep</span></span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">return</span> <span class="number">0</span>;</span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">&#125;</span></span></span><br></pre></td></tr></table></figure>
-<p>A、5  B、10  C、15 D、32</p>
-<p><br></p>
-<p>2、若有定义 int(<em>pt)[3]；则下列说法正确的是：<br>A、定义了基类型为int的三个指针变量<br>B、定义了基类型为int的具有三个元素的指针数组pt<br>C、定义了一个名为</em>pt、具有三个元素的整型数组<br>D、定义了一个名为pt的指针变量，它可以指向每行有三个整数元素的二维数组</p>
-<p><br>3、（不定项选择）若 a 是 float 型变量,b 是 unsigned 型变量,以下输入语句中合法的是：<br><code>A、scanf(&quot;%6.2f%d&quot;,&amp;a,&amp;b);</code><br><code>B、scanf(&quot;%f%n&quot;,&amp;a,&amp;b);</code><br><code>C、scanf(&quot;%f%3o&quot;,&amp;a,&amp;b);</code><br><code>D、scanf(&quot;%f%f&quot;,&amp;a,&amp;b);</code></p>
-<hr>
-<p><strong>答案与解析：</strong></p>
-<table>
-<thead>
-<tr>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>D</td>
-<td>D</td>
-<td>BC</td>
-</tr>
-</tbody>
-</table>
-<p>1、答案：D。<br>解析：第一题考察了关于进程的基本知识。</p>
-<p>首先，什么是进程？进程是程序的执行实体，是系统资源进行资源分配的基本单位，我们经常拿进程和线程进行对比。线程是任务调度和执行的基本单位，一个进程可以由多个线程组成。我们平时写的程序，一般都只是一个进程，除非程序员手动创建一个新的进程，比如使用fork函数（进程创建方式不止这一种）。</p>
-<p>由fork创建的新进程被称为子进程。fork函数被调用一次，但是返回两次，一次是父进程的返回值一次是子进程的，两次返回的区别是子进程的返回值是0，父进程的返回值则是新建子进程的进程ID。这时候的子进程就会共享父进程的代码资源，拷贝一份父进程的资源，然后创建属于自己的堆栈等数据空间。也就是说，这时候子进程和父进程都会继续执行fork调用之后的指令。</p>
-<p>说到这里，我们就可以解决第一个问题了。程序循环fork了5次，第一次只有一个父进程调用fork，创建一个子进程，这时候共有2个进程。然后第二次循环时，这两个进程分别创建一个子进程，共有4个进程。同理,3次循环有8个进程，4次有16,5次就有32个。</p>
-<p><br></p>
-<p>2、答案：D。<br>解析：第二题是一个基本的二级指针定义问题。</p>
-<p>既然是定义，记住就好。</p>
-<p>定义基类型为int的三个指针变量:int<em>pt1,int</em>pt2,int*pt3;</p>
-<p>定义一个基类型为int的具有三个元素的指针数组pt：int*pt[3]</p>
-<p>定义一个名为*pt、具有三个元素的整型数组:名字叫*pt的数组？没法定义。</p>
-<p>定义一个名为pt的指针变量，它可以指向每行有三个整数元素的二维数组:int (*pt)[3];</p>
-<p>所以：B和D的区别，就是*和谁在一起，和int在一起，就说明元素是指针，和变量在一起，就说明变量是指针。</p>
-<p><br></p>
-<p>3、答案：B C。</p>
-<p>解析：第三题考察了输入输出规则。</p>
-<p>对于浮点型和字符串%m.n含义不同。浮点型：m表示输出位数，n表示精度，也就是小数点后面几位。对于字符串，表示输出字符的个数。</p>
-<a id="more"></a>
-
+<p><strong>Effec C++</strong></p>
+<p><strong>改善程序与设计的55个具体做法</strong></p>
+<p><strong>[美] Scott Meyers 著</strong></p>
+<h4 id="译序"><a href="#译序" class="headerlink" title="译序"></a>译序</h4><p>C++是一个难学易用的语言</p>
+<p>C++语法广播，语法及语义背后又有深层思维，深层思维背后又有对象模型。</p>
+<p>C++还有四种不同而又相辅相成的编程泛型：基于过程，基于对象，面向对象，泛型编程。</p>
+<p>然而：一旦学成，妙用无穷。</p>
+<h4 id="1-让自己习惯C"><a href="#1-让自己习惯C" class="headerlink" title="1.让自己习惯C++"></a>1.让自己习惯C++</h4><p>驾驭C++之前要先习惯C++的办事方式。</p>
+<h5 id="条款1：视C-为一个语言联邦"><a href="#条款1：视C-为一个语言联邦" class="headerlink" title="条款1：视C++为一个语言联邦"></a>条款1：视C++为一个语言联邦</h5><p>最开始的C++，只是在C语言的基础上加了一些对象特性，他被称为C with Classes。但今天的C++已经发展成一种多重范型编程语言。他同时支持过程形式，面向对象形式，函数形式，泛型形式，元编程形式。这些弹性和能力使C++成为了一个无可匹敌的工具，但也造成了所有的“适当用法”似乎都有例外。我们应该如何理解这个语言？</p>
+<p>最简单的方法就是讲C++是为一个由相关语言组成的联邦而非单一语言。我们叫他的相关语言为次语言。他只有四个次语言，而且每个次语言中守则和通例都倾向简单，直观易懂。然而当你从一个次语言移往另一个次语言，守则可能改变。</p>
+<p>次语言包括</p>
+<p><strong>C：</strong> 区块，语句，预处理器，内置数据类型，数组，指针等统统来自于C</p>
+<p><strong>Object-Oriented C++：</strong>class，封装，继承，多态，动态绑定</p>
+<p><strong>Template C++：</strong>泛型编程部分，他十分强大，并带来一种新的编程范型，TMP——模板元编程。TMP的相关规则很少与C++主流编程互相影响。</p>
+<p><strong>STL：</strong>STL是templete程序库，它有自己特殊的办事方式，和它一起，必须遵守他的规约</p>
+<p>记住这四种次语言，当你从某个次语言切换到另一个，导致高效编程守则要求你改变策略时，不要感动惊讶。</p>
+<p>值传递(pass-by-value)与址传递(pass-by-reference)对于次语言C来讲，值传递比较高效。但对于Object-Oriented C++来讲，由于用户自定义的构造函数和析构函数的存在，址传递往往更好。Template C++更是如此。<strong>然而一旦跨入STL你就会了解，迭代器和函数对象都是C指针上塑造出来的，所以对STL的迭代器和函数对象而言，值传递再次适用了。</strong></p>
+<p><strong>请记住：C++高效编程守则视情况而定，取决于你使用C++的哪一部分。</strong></p>
+<h5 id="条款2：尽量以const，enum，inline替换-define"><a href="#条款2：尽量以const，enum，inline替换-define" class="headerlink" title="条款2：尽量以const，enum，inline替换#define"></a>条款2：尽量以const，enum，inline替换#define</h5><p>这句话理解为“宁可使用编译器，也不使用预处理器”，因为#define不被视为语言的一部分。</p>
+<p>当我们#define ASPECT_RATIO 1.653</p>
+<p>记号ASPECT_RATIO 也许从未被编译器看见，也许在编译器开始处理源码之前它就被预处理器移走了。由于记号ASPECT_RATIO 有可能没有进入记号表。于是你运用磁场量但获得一个编译错误信息时，可能会带来困惑。因为这个错误信息也许会提到1.653，而不是ASPECT_RATIO 。如果ASPECT_RATIO 被定义在非你所写的头文件内，会更加使人毫无概念，这个问题可能出现在记号式调试器中，原因相同：你所使用的名称可能并未进入记号表。</p>
+<p>使用：const double AspectRatio = 1.653来代替。</p>
+<p>作为一个语言常量，AspectRatio肯定会被编译器看到，当然就会进入记号表，此外，使用常量可能比使用#define导致较小量的代码，因为预处理器“盲目地将宏名称ASPECT_RATIO替换为1.653”可能导致目标码出现多份1.653。</p>
+<p>当我们使用常量替换#define，有两种情况值得说说。</p>
+<p>第一是定义常量指针。由于常量定义式通常被放在头文件中，以便被不同的源码含入，因此有必要将指针声明为const，例如若要在头文件内定一个常量的char * based字符串，你必须写const两次。</p>
+<p>const char * const authorName = “Scott Meyers”</p>
+<p>string对象更为合适：const std::string authorName (“Scott Meyers”);</p>
+<p>第二个值得注意的就是class专属常量。为了将常量的作用域限制在class内，你必须让他成为class的一个成员，而为了确保此常量至多只有一份实体，你必须让它成为一个static成员。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GamePlayer</span>&#123;</span></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    	<span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> NumTurns =<span class="number">5</span>;<span class="comment">//常量声明式</span></span><br><span class="line">    	<span class="keyword">int</span> scores[NumTurns]; <span class="comment">//使用该常量</span></span><br><span class="line">    	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们看到了NumTurns的声明式而非定义式，通常C++要求你对你所使用的任何东西提供一个定义式，但如果他是个class专属常量又是static且为整数类型（int ，char，bool），则需要特殊处理。只要不取他们的地址，你可以声明并使用它们，而无需提供定义式。但如果你取某个class专属常亮的地址，或纵使你不取地址而你的编译器却坚持要看到一个定义式，你就必须另外提供定义式如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> GamePlayer::NumTurns;<span class="comment">//NumTurns的定义。</span></span><br></pre></td></tr></table></figure>
+<p>请把这段代码放到一个实现文件而非头文件，由于class常量已经在声明时获得初值，因此在定义的时候不可以再设置初值。</p>
+<p>我们无法利用#define创建class专属常量，因为它并不重视作用域。一旦被定义，在使用#undef之前，都有效，这意味着它也不能提供任何封装性。</p>
+<p>如果你的编译器比较旧，你可能需要把初值放在定义式中，不放在声明式中</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GamePlayer</span>&#123;</span></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    	<span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> NumTurns;<span class="comment">//常量声明式</span></span><br><span class="line">    	<span class="keyword">int</span> scores[NumTurns]; <span class="comment">//使用该常量</span></span><br><span class="line">    	...</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> GamePlayer::NumTurns=<span class="number">5</span>;<span class="comment">//NumTurns的定义。</span></span><br></pre></td></tr></table></figure>
+<p>这时候，我们会有些疑虑，scores的数组声明式中，要求知道大小，这时候万一编译器不允许static整数型class常量完成int class的初值设定，可改用所谓的”the enum hack”补偿做法，其理论基础是：“一个枚举类型的数字可权充int类型被使用”</p>
+<p>于是我们可以：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GamePlayer</span>&#123;</span></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    	<span class="keyword">enum</span>&#123;NumTurns=<span class="number">5</span>&#125;;<span class="comment">//常量声明式</span></span><br><span class="line">    	<span class="keyword">int</span> scores[NumTurns]; <span class="comment">//使用该常量</span></span><br><span class="line">    	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>enum hack非常值得我们认识，理由如下：</p>
+<p>第一：enum hack的某些方面比较像#define而不像const，有时候这正是你想要的，例如取一个const的地址是合法的，但取一个enum的地址是不合法的。如果你不想别人的指针指向你的整数常量，enum可以帮助你实现这个约束。有些优秀的编译器不会为“const int”对象设定另外的存储空间，除非你创建一个指针或者引用指向该对象，不够优秀的编译器做不到这一点。enum和#define一样，绝不会导致非必要的内存分配。</p>
+<p>第二：enum hack非常实用。事实上，他是TMP的基础技术。</p>
+<p>我们接着说预编译器，另一个常见的#define误用情况是以他实现宏，宏看起来像个函数，但不会招致函数调用带来的额外开销，下面这个宏夹带着宏实参，调用函数f：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以a和b的较大值调用f</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CALL_WITH_MAX(a,b) f((a)&gt;(b)?(a):(b))</span></span><br></pre></td></tr></table></figure>
+<p>我们一定要记住，为宏中所有实参加上小括号，否则会有麻烦。但纵使加上小括号，也可能会有麻烦：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">5</span>,b = <span class="number">0</span>;</span><br><span class="line">CALL_WITH_MAX(++a,b);<span class="comment">//a被累加两次</span></span><br><span class="line">CALL_WITH_MAX(++a,b+<span class="number">10</span>);<span class="comment">//a被累加一次。</span></span><br></pre></td></tr></table></figure>
+<p>在这里，调用f之前，a的递增次数惊叹取决于“它被拿开和谁比较”。</p>
+<p>有一种方式，我们既可以免去这些麻烦，还能获得宏带来的效率以及一般函数的所有预料行为和类型安全性。这种方法就是“template inline”函数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">callWithMax</span><span class="params">(<span class="keyword">const</span> T&amp;a,<span class="keyword">const</span> T&amp;b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    f(a&gt;b ? a:b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个template产出一整群函数，每个函数都接收两个同型对象，并以其中较大者调用f，这里不需要在函数本体中为参数加上括号，也不需要操心参数被核算等等，此外，由于callWithMax是个真正的函数，它遵循作用域和访问规则，例如你绝对可以写出一个“class内的private inline函数”。一般而言宏无法完成此事。</p>
+<p>有了const，enum，和inline，我们对预处理器的需求降低了，但并没有完全消除，#include仍然是必需品，而#ifdef/#ifndef也继续扮演控制编译的重要角色，目前还不到预处理器全面隐退的时候，但你应该明确地给予他更长更频繁的假期。</p>
+<p><strong>请记住：</strong></p>
+<p><strong>对于单纯常量，最好以const对象或者enum替换#define</strong></p>
+<p><strong>对于形似函数的宏，最好改用inline函数替换#define</strong></p>
+<h5 id="条款3：尽可能使用const"><a href="#条款3：尽可能使用const" class="headerlink" title="条款3：尽可能使用const"></a>条款3：尽可能使用const</h5><p>const的一件奇妙事情是，它允许你指定一个语义约束，也就是指定一个“不该被改动”的对象，而编译器会强制实施这项约束，他允许你告诉编译器和其他程序员某值应该保持不变，只要这个值保持不变是事实，你就该说出来，因为说出来可以获得编译器的帮助。确保这条约束不被违反。</p>
+<p>关键字const多才多艺，你可以是用它在classes外部修饰global或namespace作用域中的常量，也就是我们在条款2中提到的。他可以修饰文件，函数，或者区块作用域中被声明为static的对象。你也可以用它修饰classes内部的static和non-static成员变量。面对指针，你也可以指出指针自身，指针所指物，或二者都（或都不）是const。</p>
+<p>const语法虽然变化多端，但并不高深莫测。如果const出现在*左边，表示被指的事物是常量，出现在右边，表示指针自身是常量。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> * pw;</span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> * pw;</span><br><span class="line"><span class="comment">//这两者是一样的。都表示指针所指的事物是常量。</span></span><br></pre></td></tr></table></figure>
+<p>STL迭代器系是以指针为根据塑模出来的，所以迭代器的作用就像个T<em>指针。声明迭代器为const就是声明指针为const一样。即：T </em> const pw，表示这个迭代器不能指向不同的东西，但他所指的东西的值是可以改动的。如果你希望迭代器所指向的东西不可被改动，你需要的是const_iterator;</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec;</span><br><span class="line">cosnt <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator iter=vec.begin();</span><br><span class="line">*iter=<span class="number">10</span>;<span class="comment">//正确</span></span><br><span class="line">++iter;<span class="comment">//错误</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator citer=vec.begin();</span><br><span class="line">*iter=<span class="number">10</span>;<span class="comment">//错误 </span></span><br><span class="line">++iter;<span class="comment">//正确</span></span><br></pre></td></tr></table></figure>
+<p>const最具为例的用法是面对函数声明时的应用，在函数声明式内，const可以和函数返回值，各参数，函数自身产生关联。</p>
+<p>令函数返回一个常量值，往往可以降低因客户错误而造成的意外，而又不至于放弃安全性和高效性。举个例子：考虑有理数的operator * 声明式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span>&#123;</span>&#125;；</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Rational <span class="keyword">operator</span>*(<span class="keyword">const</span> Rational &amp;lhs,cosnt Rational &amp; rhs);</span><br></pre></td></tr></table></figure>
+<p>如果这样，客户就不能出现下面这种情况：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Rational a,b,c;</span><br><span class="line">(a*b)=c;<span class="comment">//这本身没有意义，可是在出错的情况下就会有这种代码。也许本来是希望 if（（a*b）==c）。</span></span><br></pre></td></tr></table></figure>
+<p>const成员函数</p>
+<p>将const实施于成员函数的目的是为了确认该成员函数可用作于const对象身上。</p>
+<h5 id="条款4：确定对象被使用前已先被初始化。"><a href="#条款4：确定对象被使用前已先被初始化。" class="headerlink" title="条款4：确定对象被使用前已先被初始化。"></a>条款4：确定对象被使用前已先被初始化。</h5><h4 id="2-构造-析构-赋值运算"><a href="#2-构造-析构-赋值运算" class="headerlink" title="2.构造/析构/赋值运算"></a>2.构造/析构/赋值运算</h4><h4 id="3-资源管理"><a href="#3-资源管理" class="headerlink" title="3. 资源管理"></a>3. 资源管理</h4><h4 id="4-设计与声明"><a href="#4-设计与声明" class="headerlink" title="4. 设计与声明"></a>4. 设计与声明</h4><h4 id="5-实现"><a href="#5-实现" class="headerlink" title="5.实现"></a>5.实现</h4><h4 id="6-继承与面向对象设计"><a href="#6-继承与面向对象设计" class="headerlink" title="6.继承与面向对象设计"></a>6.继承与面向对象设计</h4><h4 id="7-模板与泛型编程"><a href="#7-模板与泛型编程" class="headerlink" title="7.模板与泛型编程"></a>7.模板与泛型编程</h4><h4 id="8-定制new和delete"><a href="#8-定制new和delete" class="headerlink" title="8.定制new和delete"></a>8.定制new和delete</h4><h4 id="9-杂项讨论"><a href="#9-杂项讨论" class="headerlink" title="9. 杂项讨论"></a>9. 杂项讨论</h4><a id="more"></a>
       
     </div>
     
@@ -477,8 +502,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -540,6 +574,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#译序"><span class="nav-number">1.</span> <span class="nav-text">译序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-让自己习惯C"><span class="nav-number">2.</span> <span class="nav-text">1.让自己习惯C++</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#条款1：视C-为一个语言联邦"><span class="nav-number">2.1.</span> <span class="nav-text">条款1：视C++为一个语言联邦</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#条款2：尽量以const，enum，inline替换-define"><span class="nav-number">2.2.</span> <span class="nav-text">条款2：尽量以const，enum，inline替换#define</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#条款3：尽可能使用const"><span class="nav-number">2.3.</span> <span class="nav-text">条款3：尽可能使用const</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#条款4：确定对象被使用前已先被初始化。"><span class="nav-number">2.4.</span> <span class="nav-text">条款4：确定对象被使用前已先被初始化。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-构造-析构-赋值运算"><span class="nav-number">3.</span> <span class="nav-text">2.构造/析构/赋值运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-资源管理"><span class="nav-number">4.</span> <span class="nav-text">3. 资源管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-设计与声明"><span class="nav-number">5.</span> <span class="nav-text">4. 设计与声明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-实现"><span class="nav-number">6.</span> <span class="nav-text">5.实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-继承与面向对象设计"><span class="nav-number">7.</span> <span class="nav-text">6.继承与面向对象设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-模板与泛型编程"><span class="nav-number">8.</span> <span class="nav-text">7.模板与泛型编程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-定制new和delete"><span class="nav-number">9.</span> <span class="nav-text">8.定制new和delete</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-杂项讨论"><span class="nav-number">10.</span> <span class="nav-text">9. 杂项讨论</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
