@@ -78,19 +78,19 @@
 
 
 
-<meta name="description" content="在C++中new和delete快速了解一下！">
+<meta name="description" content="在C++中静态成员变量和成员函数快速了解一下！">
 <meta name="keywords" content="C++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++基础知识之&quot;new和delete&quot;">
+<meta property="og:title" content="C++基础知识之&quot;static&quot;">
 <meta property="og:url" content="wuxiaoleisuperlei.github.io/2018/05/13/based-cc12/index.html">
 <meta property="og:site_name" content="Welcome to Rita&#39;s World">
-<meta property="og:description" content="在C++中new和delete快速了解一下！">
+<meta property="og:description" content="在C++中静态成员变量和成员函数快速了解一下！">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/d12ed30b4075c71980ca61648d0f853d.jpg">
-<meta property="og:updated_time" content="2018-12-21T06:15:32.300Z">
+<meta property="og:updated_time" content="2018-12-21T06:34:15.778Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++基础知识之&quot;new和delete&quot;">
-<meta name="twitter:description" content="在C++中new和delete快速了解一下！">
+<meta name="twitter:title" content="C++基础知识之&quot;static&quot;">
+<meta name="twitter:description" content="在C++中静态成员变量和成员函数快速了解一下！">
 <meta name="twitter:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/d12ed30b4075c71980ca61648d0f853d.jpg">
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <title>C++基础知识之"new和delete" | Welcome to Rita's World</title>
+  <title>C++基础知识之"static" | Welcome to Rita's World</title>
   
 
 
@@ -264,7 +264,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">C++基础知识之"new和delete"</h1>
+          <h1 class="post-title" itemprop="name headline">C++基础知识之"static"</h1>
         
 
         <div class="post-meta">
@@ -323,7 +323,7 @@
 
           
               <div class="post-description">
-                  在C++中new和delete快速了解一下！
+                  在C++中静态成员变量和成员函数快速了解一下！
               </div>
           
 
@@ -341,10 +341,14 @@
 
       
         <p><img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/d12ed30b4075c71980ca61648d0f853d.jpg" alt="fengjingtu"></p>
-<p>在软件开发过程中，常常需要动态地分配和撤销内存空间，例如对动态链表中结点的插入与删除。</p>
-<p>在C语言中是利用库函数malloc和free来分配和撤销内存空间的。</p>
-<p>C++提供了较简便而功能较强的运算符new和delete来取代malloc和free函数。</p>
-<h4 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h4><a id="more"></a>
+<h4 id="静态成员变量"><a href="#静态成员变量" class="headerlink" title="静态成员变量"></a>静态成员变量</h4><p>静态成员提供了一个同类对象的共享机制</p>
+<p>把一个类的成员说明为 <strong>static</strong> 时，这个类无论有多少个对象被创建，这些对象共享这个 <strong>static</strong> 成员</p>
+<p>静态成员变量可以通过类和成员函数两种方式进行访问`</p>
+<h4 id="静态成员函数"><a href="#静态成员函数" class="headerlink" title="静态成员函数"></a>静态成员函数</h4><p>静态成员函数提供不依赖于类数据结构的共同操作，它没有this指针</p>
+<p>在类外调用静态成员函数用 “<strong>类名</strong> <strong>::</strong> ”作限定词，或通过对象调用。</p>
+<p>静态成员函数中不能有普通成员变量</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//static可以用来说明一个类的成员，表示所有对象的共享机制</span></span><br><span class="line"><span class="comment">//静态成员变量可以通过类和成员函数两种方式进行访问</span></span><br><span class="line"><span class="comment">//静态成员函数没有this指针，不依赖类，通过对象，类作用符，在类外面访问。</span></span><br><span class="line"><span class="comment">//静态成员函数中不能有普通成员变量</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Counter</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> num2;<span class="comment">//声明和定义公有静态数据成员</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setnum</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> i2)</span><span class="comment">//成员函数访问数据成员</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		num = i;</span><br><span class="line">		num2 = i2;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">shownum</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"num="</span> &lt;&lt; num &lt;&lt;<span class="string">" num2="</span>&lt;&lt;num2&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"num="</span> &lt;&lt; num &lt;&lt; <span class="string">" num2="</span> &lt;&lt; num2 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="comment">//cout &lt;&lt; a;//error,静态成员函数中不能有普通成员变量</span></span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> num;<span class="comment">//声明和定义私有静态数据成员</span></span><br><span class="line">	<span class="keyword">int</span> a;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Counter:: num = <span class="number">0</span>;<span class="comment">//声明并分配内存</span></span><br><span class="line"><span class="keyword">int</span> Counter:: num2 = <span class="number">0</span>;<span class="comment">//声明并分配内存</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">static_class_test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Counter c;</span><br><span class="line">	Counter c2;</span><br><span class="line">	c.shownum();</span><br><span class="line">	c2.shownum();<span class="comment">//c和c2的结果相同，访问的是同一个</span></span><br><span class="line">	c.setnum(<span class="number">1</span>, <span class="number">2</span>);<span class="comment">//通过对象，使用成员函数进行静态成员变量的访问。</span></span><br><span class="line">	c.shownum();</span><br><span class="line">	c2.shownum();<span class="comment">//通过c1设置，通过c2访问。</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; Counter::num2 &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//通过类访问公有的static成员</span></span><br><span class="line">	<span class="comment">//cout &lt;&lt; Counter::num &lt;&lt; endl;//error不能访问私有的</span></span><br><span class="line"></span><br><span class="line">	Counter::show();</span><br><span class="line">	c.show();</span><br><span class="line">	c2.show();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main_static_class_test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	static_class_test();</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"hello world"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
       
     </div>
     
@@ -384,8 +388,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/02/effectiveCC/" rel="prev" title="《Effective C++》（一）让自己习惯C++">
-                《Effective C++》（一）让自己习惯C++ <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/14/based-cc13/" rel="prev" title="C++基础知识之" 面向对象模型理解""="">
+                C++基础知识之"面向对象模型理解" <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -465,7 +469,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -520,7 +524,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本语法"><span class="nav-number">1.</span> <span class="nav-text">基本语法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#静态成员变量"><span class="nav-number">1.</span> <span class="nav-text">静态成员变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#静态成员函数"><span class="nav-number">2.</span> <span class="nav-text">静态成员函数</span></a></li></ol></div>
             
 
           </div>
