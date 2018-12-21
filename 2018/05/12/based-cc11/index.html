@@ -78,19 +78,19 @@
 
 
 
-<meta name="description" content="在C++中重载，重写，重定义，不要迷惑哟！">
+<meta name="description" content="在C++中new和delete快速了解一下！">
 <meta name="keywords" content="C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++基础知识之&quot;new和delete&quot;">
 <meta property="og:url" content="wuxiaoleisuperlei.github.io/2018/05/12/based-cc11/index.html">
 <meta property="og:site_name" content="Welcome to Rita&#39;s World">
-<meta property="og:description" content="在C++中重载，重写，重定义，不要迷惑哟！">
+<meta property="og:description" content="在C++中new和delete快速了解一下！">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/d12ed30b4075c71980ca61648d0f853d.jpg">
-<meta property="og:updated_time" content="2018-12-20T12:43:02.616Z">
+<meta property="og:updated_time" content="2018-12-21T06:11:57.951Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++基础知识之&quot;new和delete&quot;">
-<meta name="twitter:description" content="在C++中重载，重写，重定义，不要迷惑哟！">
+<meta name="twitter:description" content="在C++中new和delete快速了解一下！">
 <meta name="twitter:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/d12ed30b4075c71980ca61648d0f853d.jpg">
 
 
@@ -323,7 +323,7 @@
 
           
               <div class="post-description">
-                  在C++中重载，重写，重定义，不要迷惑哟！
+                  在C++中new和delete快速了解一下！
               </div>
           
 
@@ -341,7 +341,27 @@
 
       
         <p><img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/d12ed30b4075c71980ca61648d0f853d.jpg" alt="fengjingtu"></p>
-<p>fffffffff</p>
+<p>在软件开发过程中，常常需要动态地分配和撤销内存空间，例如对动态链表中结点的插入与删除。</p>
+<p>在C语言中是利用库函数malloc和free来分配和撤销内存空间的。</p>
+<p>C++提供了较简便而功能较强的运算符new和delete来取代malloc和free函数。</p>
+<h4 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h4><p><strong>注意： new和delete是运算符，不是函数，因此执行效率高。</strong></p>
+<p>虽然为了与C语言兼容，C++仍保留malloc和free函数，但建议用户不用malloc和free函数，而用new和delete运算符。</p>
+<p>new运算符动态分配堆内存使用形式：</p>
+<p>指针变量=new  类型（初始值）；//初始化值可缺省</p>
+<p>指针变量=new  类型 [表达式]；// 创建数组时候，</p>
+<p>作用：从堆分配一块“类型”大小的存储空间，返回首地址。</p>
+<p>分配失败时候返回NULL；</p>
+<p>delete运算符释放已分配的内存使用形式：</p>
+<p>delete 指针变量；</p>
+<p>delete[] 指针数组变量；</p>
+<p>使用例子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> * pint=<span class="keyword">new</span> <span class="keyword">int</span>; </span><br><span class="line"><span class="comment">//开辟一个存放整数的存储空间，返回一个指向该存储空间的地址(即指针)</span></span><br><span class="line"><span class="keyword">int</span> *pint=<span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">100</span>);</span><br><span class="line"><span class="comment">//开辟一个存放整数的空间，初值为100，返回一个指向该存储空间的地址</span></span><br><span class="line"><span class="keyword">char</span> *pArrayChar=<span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">10</span>];</span><br><span class="line"><span class="comment">//开辟一个存放字符数组(包括10个元素)的空间，返回首元素的地址</span></span><br><span class="line"><span class="keyword">int</span> * pArrayInt=<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>][<span class="number">4</span>];</span><br><span class="line"><span class="comment">//开辟一个存放二维整型数组(大小为5*4)的空间，返回首元素的地址</span></span><br><span class="line"><span class="keyword">float</span> *pfloat=<span class="keyword">new</span> <span class="keyword">float</span>(<span class="number">3.14159</span>);</span><br><span class="line"><span class="comment">//开辟一个存放单精度数的空间，并指定该实数的初值为//3.14159，将返回的该空间的地址赋给指针变量p</span></span><br><span class="line"><span class="keyword">delete</span> pint；</span><br><span class="line"><span class="keyword">delete</span>  [] pArrayChar;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//基本对象的开辟与释放</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">new_and_delete</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *a = <span class="keyword">new</span> <span class="keyword">int</span>;<span class="comment">//开辟一个整数空间，返回指针</span></span><br><span class="line">	<span class="keyword">int</span> *b = <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">10</span>);<span class="comment">//开辟一个整数空间，并初始化为10，返回指针</span></span><br><span class="line">	<span class="keyword">char</span> *c = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">10</span>]();</span><br><span class="line">    <span class="comment">//开辟一个字符数组，长度为10,并初始化为空（整形初始化为0），只能这样初始化；</span></span><br><span class="line">	<span class="keyword">float</span> *p = <span class="keyword">new</span> <span class="keyword">float</span>(<span class="number">3.14</span>);<span class="comment">//开辟一个浮点型的空间，初始化为3.14</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"*c="</span> &lt;&lt; c &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	*a = <span class="number">10</span>;<span class="comment">//</span></span><br><span class="line">	c[<span class="number">0</span>] = <span class="string">'a'</span>;</span><br><span class="line">	c[<span class="number">1</span>] = <span class="string">'b'</span>;</span><br><span class="line">	c[<span class="number">2</span>] = <span class="string">'c'</span>;</span><br><span class="line">	c[<span class="number">3</span>] = <span class="string">'\0'</span>;<span class="comment">//</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"*a="</span> &lt;&lt; *a &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"*b="</span> &lt;&lt; *b &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"*c="</span> &lt;&lt; c &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"*p="</span> &lt;&lt; *p &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">delete</span> a;</span><br><span class="line">	<span class="keyword">delete</span> b;</span><br><span class="line">	<span class="keyword">delete</span>[]c;<span class="comment">//释放数组空间。</span></span><br><span class="line">	<span class="keyword">delete</span> p;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="类对象的动态建立和释放"><a href="#类对象的动态建立和释放" class="headerlink" title="类对象的动态建立和释放"></a>类对象的动态建立和释放</h4><p>使用类名定义的对象都是静态的，在程序运行过程中，对象所占的空间是不能随时释放的。但有时人们希望在需要用到对象时才建立对象，在不需要用该对象时就撤销它，释放它所占的内存空间以供别的数据使用。这样可提高内存空间的利用率。</p>
+<p>C++中，可以用new运算符动态建立对象，用delete运算符撤销对象</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Box *pt; <span class="comment">//定义一个指向Box类对象的指针变量pt</span></span><br><span class="line">pt=<span class="keyword">new</span> Box; <span class="comment">//在pt中存放了新建对象的起始地址</span></span><br><span class="line">Box *pt=<span class="keyword">new</span> Box(<span class="number">12</span>,<span class="number">15</span>,<span class="number">18</span>); <span class="comment">//执行new时，对新建立的对象进行初始化</span></span><br></pre></td></tr></table></figure>
+<p>在执行delete运算符时，在释放内存空间之前，自动调用析构函数，完成有关善后清理工作。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//类对象的开辟与释放</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	A(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> c)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">this</span>-&gt;a = a;</span><br><span class="line">		<span class="keyword">this</span>-&gt;b = b;</span><br><span class="line">		<span class="keyword">this</span>-&gt;c = c;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"A:: construct"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"A-&gt;print:a="</span>&lt;&lt;a&lt;&lt;<span class="string">" b="</span>&lt;&lt;b&lt;&lt;<span class="string">" c="</span>&lt;&lt;c &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	~A()</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"A::destroy "</span> &lt;&lt; a &lt;&lt; b &lt;&lt; c &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> a;</span><br><span class="line">	<span class="keyword">int</span> b;</span><br><span class="line">	<span class="keyword">int</span> c;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">new_and_delete2</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	A *a;</span><br><span class="line">	<span class="comment">//a = new A;//因为A不存在默认构造方法而出错。</span></span><br><span class="line">	a = <span class="keyword">new</span> A(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);<span class="comment">//new自动调用构造函数</span></span><br><span class="line">	<span class="keyword">delete</span> a;<span class="comment">//delete自动调用析构函数函数</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">new_and_delete3</span><span class="params">()</span><span class="comment">//与malloc和free比较</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	A *a;</span><br><span class="line">	A *b;</span><br><span class="line">	A *c;</span><br><span class="line">	A *d;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//以下这四种情况都符合语法，只有在构造函数和析构函数中动态开辟和释放的时候才会出问题</span></span><br><span class="line">	<span class="comment">//下面自重情况均没有内存泄漏。</span></span><br><span class="line"></span><br><span class="line">	a = <span class="keyword">new</span> A(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">	a-&gt;a = <span class="number">5</span>;</span><br><span class="line">	a-&gt;b = <span class="number">5</span>;</span><br><span class="line">	a-&gt;c = <span class="number">5</span>;</span><br><span class="line">	a-&gt;print();</span><br><span class="line">	<span class="keyword">delete</span> a;<span class="comment">//new开辟，delete释放</span></span><br><span class="line">	<span class="comment">//正常构造，析构。</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"-----------------------------"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	b = <span class="keyword">new</span> A(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">	b-&gt;a = <span class="number">5</span>;</span><br><span class="line">	b-&gt;b = <span class="number">5</span>;</span><br><span class="line">	b-&gt;c = <span class="number">5</span>;</span><br><span class="line">	b-&gt;print();</span><br><span class="line">	<span class="built_in">free</span>(b);<span class="comment">//new开辟，free释放</span></span><br><span class="line">	<span class="comment">//正常构造，没有析构。</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"-----------------------------"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	c = (A *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(A));<span class="comment">//既然可以开辟，即便A没有默认构造函数</span></span><br><span class="line">	c-&gt;a = <span class="number">5</span>;</span><br><span class="line">	c-&gt;b = <span class="number">5</span>;</span><br><span class="line">	c-&gt;c = <span class="number">5</span>;</span><br><span class="line">	c-&gt;print();</span><br><span class="line">	<span class="built_in">free</span>(c);<span class="comment">//malloc开辟，free释放</span></span><br><span class="line">	<span class="comment">//不构造，不析构。</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"-----------------------------"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	d = (A *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(A));<span class="comment">//既然可以开辟，即便A没有默认构造函数</span></span><br><span class="line">	d-&gt;a = <span class="number">5</span>;</span><br><span class="line">	d-&gt;b = <span class="number">5</span>;</span><br><span class="line">	d-&gt;c = <span class="number">5</span>;</span><br><span class="line">	d-&gt;print();</span><br><span class="line">	<span class="keyword">delete</span> d;<span class="comment">//malloc开辟，delete释放</span></span><br><span class="line">    <span class="comment">//不构造，析构。</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"-----------------------------"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main_new_and_delete</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	new_and_delete();</span><br><span class="line">	new_and_delete2();</span><br><span class="line">	new_and_delete3();</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"hello world"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
       
     </div>
@@ -382,8 +402,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/02/effectiveCC/" rel="prev" title="《Effective C++》（一）让自己习惯C++">
-                《Effective C++》（一）让自己习惯C++ <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/13/based-cc12/" rel="prev" title="C++基础知识之" new和delete""="">
+                C++基础知识之"new和delete" <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -436,8 +456,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -454,7 +483,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -499,6 +528,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本语法"><span class="nav-number">1.</span> <span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类对象的动态建立和释放"><span class="nav-number">2.</span> <span class="nav-text">类对象的动态建立和释放</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
