@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C++,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在C++中的继承，很重要哟！">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++基础知识之&quot;继承概念&quot;">
+<meta property="og:url" content="wuxiaoleisuperlei.github.io/2018/05/17/based-cc16/index.html">
+<meta property="og:site_name" content="Welcome to Rita&#39;s World">
+<meta property="og:description" content="在C++中的继承，很重要哟！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/d12ed30b4075c71980ca61648d0f853d.jpg">
+<meta property="og:updated_time" content="2018-12-24T06:54:19.586Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++基础知识之&quot;继承概念&quot;">
+<meta name="twitter:description" content="在C++中的继承，很重要哟！">
+<meta name="twitter:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/d12ed30b4075c71980ca61648d0f853d.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="wuxiaoleisuperlei.github.io/2018/05/17/based-cc16/">
+
+
+
+
+
+  <title>C++基础知识之"继承概念" | Welcome to Rita's World</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  <script type="text/javascript" color="0,0,255" opacity="0.4" zindex="-2" count="5" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Welcome to Rita's World</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">知识的搬运工</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="wuxiaoleisuperlei.github.io/2018/05/17/based-cc16/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Rita Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome to Rita's World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++基础知识之"继承概念"</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-17T18:15:22+08:00">
+                2018-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  在C++中的继承，很重要哟！
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/d12ed30b4075c71980ca61648d0f853d.jpg" alt="fengjingtu"></p>
+<p>面向对象程序设计有4个主要特点：抽象、封装、继承和多态性。</p>
+<p>继承性是面向对象程序设计最重要的特征，可以说，如果没有掌握继承性，就等于没有掌握类和对象的精华，就是没有掌握面向对象程序设计的真谛。</p>
+<h4 id="类之间的关系"><a href="#类之间的关系" class="headerlink" title="类之间的关系"></a>类之间的关系</h4><p>has-A，uses-A 和 is-A三种关系。</p>
+<p>has-A：包含关系，用以描述一个类由多个“部件类”构成。实现has-A关系用类成员表示，即一个类中的数据成员是另一种已经定义的类。</p>
+<p>uses-A :一个类部分地使用另一个类。通过类之间成员函数的相互联系，定义友员或对象参数传递实现。</p>
+<p>is-A: 机制称为“继承”。关系具有传递性,不具有对称性。</p>
+<h4 id="继承相关概念"><a href="#继承相关概念" class="headerlink" title="继承相关概念"></a>继承相关概念</h4><p>继承：是类之间定义的一种重要关系。</p>
+<p>一个B类继承A类，或称从类A派生类B，类A称为基类或者父类，类B称为派生类或者子类。</p>
+<h4 id="派生类的定义"><a href="#派生类的定义" class="headerlink" title="派生类的定义"></a>派生类的定义</h4><p>类继承关系的语法形式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 派生类名:</span>基类名</span><br><span class="line">&#123;</span><br><span class="line">	数据成员和成员函数声明</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>基类名表构成<br>​    访问控制 基类名1，访问控制 基类名2，……访问控制 基类名n</p>
+<p>访问控制表示派生类对基类的继承方式使用关键字：</p>
+<p>public：公有继承</p>
+<p>private：私有继承</p>
+<p>protected：保护继承</p>
+<h4 id="派生类的访问控制"><a href="#派生类的访问控制" class="headerlink" title="派生类的访问控制"></a>派生类的访问控制</h4><p>说明：</p>
+<p>子类拥有父类的所有成员变量和成员函数 </p>
+<p>子类可以拥有父类没有的方法和属性</p>
+<p>子类就是一种特殊的父类</p>
+<p>子类对象可以当作父类对象使用</p>
+<p>派生类继承了基类的全部成员变量和成员方法（除了构造和析构之外的成员方法），但是这些成员的访问属性，在派生过程中是可以调整的。</p>
+<p>C++中的继承方式会影响子类的对外访问属性<br>public继承：父类成员在子类中保持原有访问级别<br>private继承：父类成员在子类中变为private成员<br>protected继承：父类中public成员会变成protected<br>​            父类中protected成员仍然为protected<br>​            父类中private成员仍然为private<br>private成员在子类中依然存在，但是却无法访问到。不论种方式继承基类，派生类都不能直接使用基类的私有成员。</p>
+<p>C++中的继承方式会影响子类的对外访问属性<br>public继承：父类成员在子类中保持原有访问级别<br>private继承：父类成员在子类中变为private成员<br>protected继承：父类中public成员会变成protected<br>​              父类中protected成员仍然为protected<br>​              父类中private成员仍然为private</p>
+<p>private成员在子类中依然存在，但是却无法访问到。不论种方式继承基类，派生类都不能直接使用基类的私有成员 。</p>
+<h4 id="“三看”原则"><a href="#“三看”原则" class="headerlink" title="“三看”原则"></a>“三看”原则</h4><p>C++中的继承方式（public、private、protected）会影响子类的对外访问属性    </p>
+<p>判断某一句话，能否被访问</p>
+<p>1）看调用语句，这句话写在子类的内部、外部</p>
+<p>2）看子类如何从父类继承（public、private、protected）    </p>
+<p>3）看父类中的访问级别（public、private、protected）</p>
+<h4 id="派生类类成员访问级别设置的原则"><a href="#派生类类成员访问级别设置的原则" class="headerlink" title="派生类类成员访问级别设置的原则"></a>派生类类成员访问级别设置的原则</h4><p>思考：如何恰当的使用public，protected和private为成员声明访问级别？</p>
+<p>1、需要被外界访问的成员直接设置为public</p>
+<p>2、只能在当前类中访问的成员设置为private</p>
+<p>3、只能在当前类和子类中访问的成员设置为protected，protected成员的访问权限介于public和private之间。</p>
+<h4 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//类的继承基础</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Father</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span> :</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">int</span> a;</span><br><span class="line">	<span class="keyword">int</span> b;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">printF</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"a="</span> &lt;&lt; a;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"b="</span> &lt;&lt; b;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//class Son :public Father</span></span><br><span class="line"><span class="comment">//class Son :protected Father</span></span><br><span class="line"><span class="comment">//class Son :private Father</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Son</span> :</span><span class="keyword">public</span> Father</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span> :</span><br><span class="line">	<span class="keyword">int</span> c;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setSon</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b,<span class="keyword">int</span> c)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>-&gt;a = a;</span><br><span class="line">		<span class="keyword">this</span>-&gt;b = b;</span><br><span class="line">		<span class="keyword">this</span>-&gt;c = c;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">printS</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"a="</span> &lt;&lt; a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"b="</span> &lt;&lt; b&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"c="</span> &lt;&lt; c&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inherit_test1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Son son1;</span><br><span class="line">	son1.setSon(<span class="number">10</span>, <span class="number">11</span>,<span class="number">12</span>);</span><br><span class="line">	son1.printS();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//访问控制</span></span><br><span class="line"><span class="comment">//三看原则：</span></span><br><span class="line"><span class="comment">//1）看调用语句，这句话写在子类的内部、外部</span></span><br><span class="line"><span class="comment">//2）看子类如何从父类继承（public、private、protected）</span></span><br><span class="line"><span class="comment">//3）看父类中的访问级别（public、private、protected）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//private:类内部使用</span></span><br><span class="line"><span class="comment">//protected:类内部和派生类中使用,是为了继承为了在家族中使用的！！！</span></span><br><span class="line"><span class="comment">//public:类内类外都可以使用</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Father2</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:<span class="comment">//只有自己知道</span></span><br><span class="line">	<span class="keyword">int</span> a;</span><br><span class="line"><span class="keyword">protected</span>:<span class="comment">//家庭人员可知道</span></span><br><span class="line">	<span class="keyword">int</span> b;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">int</span> c;<span class="comment">//所有人都可以知道</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">printF</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"a="</span> &lt;&lt; a;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"b="</span> &lt;&lt; b;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"c="</span> &lt;&lt; b;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//class Son :public Father 父类的成员除了private不能访问之外，其他保持原样</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Son1</span> :</span><span class="keyword">public</span> Father2</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setSon</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="comment">//a = 0;//error </span></span><br><span class="line">		b = <span class="number">0</span>;<span class="comment">//protected</span></span><br><span class="line">		c = <span class="number">0</span>;<span class="comment">//public</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//class Son :protected Father类的成员除了private不能访问之外，其他保持变为自己的protected</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Son2</span> :</span><span class="keyword">protected</span> Father2</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setSon</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="comment">//a = 0;//error </span></span><br><span class="line">		b = <span class="number">0</span>;<span class="comment">//protected</span></span><br><span class="line">		c = <span class="number">0</span>;<span class="comment">//protected</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//class Son :private Father父类的成员除了private不能访问之外，其他保持变为自己的private</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Son3</span> :</span><span class="keyword">protected</span> Father2</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setSon</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="comment">//a = 0;//error </span></span><br><span class="line">		b = <span class="number">0</span>;<span class="comment">//private</span></span><br><span class="line">		c = <span class="number">0</span>;<span class="comment">//private</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inherit_test2</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Son1 son1;</span><br><span class="line">	<span class="comment">//son1.a = 0;//error</span></span><br><span class="line">	<span class="comment">//son1.b = 0;</span></span><br><span class="line">	son1.c = <span class="number">0</span>;</span><br><span class="line">	Son2 son2;</span><br><span class="line">	<span class="comment">//son2.a = 0;//error</span></span><br><span class="line">	<span class="comment">//son2.b = 0;//error</span></span><br><span class="line">	<span class="comment">//son2.c = 0;//error</span></span><br><span class="line">	Son3 son3;</span><br><span class="line">	<span class="comment">//son3.a = 0;//error</span></span><br><span class="line">	<span class="comment">//son3.b = 0;//error</span></span><br><span class="line">	<span class="comment">//son3.c = 0;//error</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//派生类访问控制权限的设置原则</span></span><br><span class="line"><span class="comment">//一般情况下都是public继承</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main_inherit_test2</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	inherit_test2();</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"hello world"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/16/based-cc15/" rel="next" title="C++基础知识之" 运算符重载""="">
+                <i class="fa fa-chevron-left"></i> C++基础知识之"运算符重载"
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/18/based-cc17/" rel="prev" title="C++基础知识之" 继承中的构造与析构""="">
+                C++基础知识之"继承中的构造与析构" <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Rita Wu">
+            
+              <p class="site-author-name" itemprop="name">Rita Wu</p>
+              <p class="site-description motion-element" itemprop="description">本站用于记录个人学习、工作经验</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#类之间的关系"><span class="nav-number">1.</span> <span class="nav-text">类之间的关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#继承相关概念"><span class="nav-number">2.</span> <span class="nav-text">继承相关概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#派生类的定义"><span class="nav-number">3.</span> <span class="nav-text">派生类的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#派生类的访问控制"><span class="nav-number">4.</span> <span class="nav-text">派生类的访问控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#“三看”原则"><span class="nav-number">5.</span> <span class="nav-text">“三看”原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#派生类类成员访问级别设置的原则"><span class="nav-number">6.</span> <span class="nav-text">派生类类成员访问级别设置的原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#练习"><span class="nav-number">7.</span> <span class="nav-text">练习</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rita Wu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

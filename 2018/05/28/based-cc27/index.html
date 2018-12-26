@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C++,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在C++中的类型转换快速了解！">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++基础知识之&quot;类型转换&quot;">
+<meta property="og:url" content="wuxiaoleisuperlei.github.io/2018/05/28/based-cc27/index.html">
+<meta property="og:site_name" content="Welcome to Rita&#39;s World">
+<meta property="og:description" content="在C++中的类型转换快速了解！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/d12ed30b4075c71980ca61648d0f853d.jpg">
+<meta property="og:updated_time" content="2018-12-25T02:54:21.720Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++基础知识之&quot;类型转换&quot;">
+<meta name="twitter:description" content="在C++中的类型转换快速了解！">
+<meta name="twitter:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/d12ed30b4075c71980ca61648d0f853d.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="wuxiaoleisuperlei.github.io/2018/05/28/based-cc27/">
+
+
+
+
+
+  <title>C++基础知识之"类型转换" | Welcome to Rita's World</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  <script type="text/javascript" color="0,0,255" opacity="0.4" zindex="-2" count="5" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Welcome to Rita's World</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">知识的搬运工</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="wuxiaoleisuperlei.github.io/2018/05/28/based-cc27/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Rita Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome to Rita's World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++基础知识之"类型转换"</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-28T18:15:22+08:00">
+                2018-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  在C++中的类型转换快速了解！
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/d12ed30b4075c71980ca61648d0f853d.jpg" alt="fengjingtu"></p>
+<h4 id="类型转换名称和语法"><a href="#类型转换名称和语法" class="headerlink" title="类型转换名称和语法"></a>类型转换名称和语法</h4><p>C风格的强制类型转换(Type Cast)很简单，不管什么类型的转换统统是：TYPE b = (TYPE) a;</p>
+<p>C++风格的类型转换提供了4种类型转换操作符来应对不同场合的应用。</p>
+<p>static_cast:静态类型转换。如int转换成char</p>
+<p>reinterpreter_cast:重新解释类型 </p>
+<p>dynamic_cast:命名上理解是动态类型转换。如子类和父类之间的多态类型转换。</p>
+<p>const_cast:字面上理解就是去const属性。</p>
+<p>TYPE b =static_cast <type> a;</type></p>
+<h4 id="类型转换一般性"><a href="#类型转换一般性" class="headerlink" title="类型转换一般性"></a>类型转换一般性</h4><p>1）static_cast&lt;&gt;()    静态类型转换，编译的时c++编译器会做类型检查；基本类型能转换 但是不能转换指针类型</p>
+<p>2）若不同类型之间，进行强制类型转换，用reinterpret_cast&lt;&gt;() 进行重新解释</p>
+<p>3）一般性结论：</p>
+<p>C语言中  能隐式类型转换的，在c++中可用 static_cast&lt;&gt;()进行类型转换。因C++编译器在编译检查一般都能通过；C语言中不能隐式类型转换的，在c++中可以用 reinterpret_cast&lt;&gt;() 进行强行类型 解释。</p>
+<p>总结：</p>
+<p>static_cast&lt;&gt;()和reinterpret_cast&lt;&gt;() 基本上把C语言中的 强制类型转换给覆盖</p>
+<p>reinterpret_cast&lt;&gt;()很难保证移植性。</p>
+<p>dynamic_cast&lt;&gt;()，动态类型转换，安全的基类和子类之间转换；运行时类型检查</p>
+<p>const_cast&lt;&gt;()，去除变量的只读属性**    </p>
+<h4 id="典型用法"><a href="#典型用法" class="headerlink" title="典型用法"></a>典型用法</h4><h5 id="static-cast和reinterpret-cast"><a href="#static-cast和reinterpret-cast" class="headerlink" title="static_cast和reinterpret_cast"></a>static_cast和reinterpret_cast</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">double</span> dPi = <span class="number">3.1415926</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//静态的类型转换:在编译的时进行基本类型的转换能替代c风格的类型转换可以进行一部分检查</span></span><br><span class="line">	<span class="keyword">int</span> num1 = <span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&gt; (dPi); <span class="comment">//c++的新式的类型转换运算符  </span></span><br><span class="line">	<span class="keyword">int</span> num2 = (<span class="keyword">int</span>)dPi;			   <span class="comment">//c语言的旧式类型转换 </span></span><br><span class="line">	<span class="keyword">int</span> num3 = dPi;					   <span class="comment">//隐士类型转换</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"num1:"</span> &lt;&lt; num1 &lt;&lt; <span class="string">" num2:"</span> &lt;&lt; num2 &lt;&lt; <span class="string">" num3:"</span> &lt;&lt; num3 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> *p1 = <span class="string">"hello Rita "</span> ;</span><br><span class="line">	<span class="keyword">int</span> *p2 = <span class="literal">NULL</span>;</span><br><span class="line">	p2 = (<span class="keyword">int</span> *)p1;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//基本类型能转换 但是不能转换指针类型</span></span><br><span class="line">	<span class="comment">//p2 = static_cast&lt;int *&gt; (p1); //“static_cast”: 无法从“char *”转换为“int *”</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//可以使用reinterpret_cast进行重新解释 </span></span><br><span class="line">	p2 = <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">int</span> *&gt; (p1);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"p1 "</span> &lt;&lt; p1 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"p2 "</span> &lt;&lt; p2 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//一般性的结论：c语言中能隐式类型转换的在c++中可以用 static_cast&lt;&gt;()进行类型转换  </span></span><br><span class="line">    <span class="comment">//C++编译器在编译检查一般都能通过</span></span><br><span class="line">	<span class="comment">//c语言中不能隐式类型转换的,在c++中可以用 reinterpret_cast&lt;&gt;() 进行强行类型解释 </span></span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="const-cast用法"><a href="#const-cast用法" class="headerlink" title="const_cast用法"></a>const_cast用法</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//典型用法 把形参的只读属性去掉</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Opbuf</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; p &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">char</span> *p2 = <span class="keyword">const_cast</span>&lt;<span class="keyword">char</span>*&gt;(p);</span><br><span class="line">	p2[<span class="number">0</span>] = <span class="string">'b'</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; p &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span> *p1 = <span class="string">"11111111111"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> *p2 = <span class="string">"22222222"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> *p3 = <span class="keyword">const_cast</span>&lt;<span class="keyword">char</span> *&gt;(p1);</span><br><span class="line">	<span class="keyword">char</span> buf[<span class="number">100</span>] = <span class="string">"aaaaaaaaaaaa"</span>;</span><br><span class="line"></span><br><span class="line">	Opbuf(buf);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//要保证指针所执行的内存空间能修改才行 若不能修改 还是会引起程序异常</span></span><br><span class="line">	<span class="comment">//Opbuf("dddddddddddsssssssssssssss");</span></span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h5><p>程序员要清除的知道: 要转的变量，类型转换前是什么类型，类型转换后是什么类型。转换后有什么后果。</p>
+<p>一般情况下，不建议进行类型转换；避免进行类型转换。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//C++中的类型转换</span></span><br><span class="line"><span class="comment">//方式 TYPE b = (TYPE)a</span></span><br><span class="line"><span class="comment">//C语言中有隐式转换和强制转换</span></span><br><span class="line"><span class="comment">//C++风格中有四种转换类型</span></span><br><span class="line"><span class="comment">//static_cast:静态转换C中能够进行隐式转换的类型之间，可以使用静态转换，基本类型可以，指针不可以。发生在编译时候。</span></span><br><span class="line"><span class="comment">//reinterpreter_cast:重新解释类型转换，相当于C语言中的强制转换。</span></span><br><span class="line"><span class="comment">//dynamic_cast:动态类型转换，如父类和子类之间的多态类型转换，发生在运行时候</span></span><br><span class="line"><span class="comment">//const_cast:去除变量的const属性。</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">static_reinterpret_cast_test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">97</span>;</span><br><span class="line">	<span class="keyword">char</span> b1 = <span class="keyword">static_cast</span>&lt;<span class="keyword">char</span>&gt;(a);<span class="comment">//c++静态</span></span><br><span class="line">	<span class="keyword">char</span> b2 = (<span class="keyword">char</span>)a;<span class="comment">//c风格</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"b1="</span>&lt;&lt;b1&lt;&lt;<span class="string">" b2="</span>&lt;&lt;b2 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> * name = <span class="string">"wulei"</span>;</span><br><span class="line">	<span class="keyword">int</span> * pname1 = (<span class="keyword">int</span> *)name;</span><br><span class="line">	<span class="comment">//int * pname2 = static_cast&lt;int *&gt;(name);//类型转换无法实现</span></span><br><span class="line">	<span class="keyword">int</span> * pname2 = <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">int</span> *&gt;(name);<span class="comment">//同C类型的强制转换</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"name="</span> &lt;&lt; name &lt;&lt; <span class="string">",pname1="</span> &lt;&lt; pname1 &lt;&lt; <span class="string">",pname2="</span> &lt;&lt; pname2 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">cry</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> :</span><span class="keyword">public</span> Animal</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">cry</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"wang wang"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">doswim</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"swim"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> :</span><span class="keyword">public</span> Animal</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">cry</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"miao miao"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">dosleep</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"sleep all day"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">printBook</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"book"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">objplay</span><span class="params">(Animal *animal)</span><span class="comment">//会发生多态</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	animal-&gt;cry();</span><br><span class="line">	<span class="comment">//如果是不同的子类，可以执行子类自己特有的函数</span></span><br><span class="line">	Dog *pdog = <span class="keyword">dynamic_cast</span>&lt;Dog *&gt;(animal);</span><br><span class="line">    <span class="comment">//如果animal是Dog类型的指针，那么pdog就不会为NULL，否则会</span></span><br><span class="line">	<span class="keyword">if</span> (pdog!=<span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		pdog-&gt;cry();</span><br><span class="line">		pdog-&gt;doswim();</span><br><span class="line">	&#125;</span><br><span class="line">	Cat *pcat = <span class="keyword">dynamic_cast</span>&lt;Cat *&gt;(animal);<span class="comment">//同上</span></span><br><span class="line">	<span class="keyword">if</span> (pcat!=<span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		pcat-&gt;cry();</span><br><span class="line">		pcat-&gt;dosleep();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dynamic_cast_test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Animal *animal = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="comment">//可以使用静态类型转换将父类转换成子类。</span></span><br><span class="line">	Dog *pdog = <span class="keyword">static_cast</span>&lt;Dog *&gt;(animal);</span><br><span class="line">	Cat *pcat = <span class="keyword">static_cast</span>&lt;Cat *&gt;(animal);</span><br><span class="line">	<span class="comment">//不可以将一个类静态转换成其他不相关类，可以使用强制类型转换。</span></span><br><span class="line">	Book *pbook = <span class="keyword">reinterpret_cast</span>&lt;Book *&gt;(animal);</span><br><span class="line"></span><br><span class="line">	objplay(<span class="keyword">new</span> Cat);</span><br><span class="line">	objplay(<span class="keyword">new</span> Dog);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">const_cast_test</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *p)</span><span class="comment">//典型用法，把形参的只读属性去掉</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"p="</span> &lt;&lt; p &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">char</span> *p2 = <span class="keyword">const_cast</span>&lt;<span class="keyword">char</span> *&gt;(p);</span><br><span class="line">	p2[<span class="number">0</span>] = <span class="string">'b'</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"p="</span> &lt;&lt; p &lt;&lt; <span class="string">" ,p2="</span> &lt;&lt; p2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main_cast</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	static_reinterpret_cast_test();</span><br><span class="line">	dynamic_cast_test();</span><br><span class="line">	<span class="keyword">char</span> p[<span class="number">10</span>] = <span class="string">"hello"</span>;<span class="comment">//修改的时候要确保至变量确实可以修改</span></span><br><span class="line">	const_cast_test(p);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/27/based-cc26/" rel="next" title="C++基础知识之" 类模板""="">
+                <i class="fa fa-chevron-left"></i> C++基础知识之"类模板"
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/02/effectiveCC/" rel="prev" title="《Effective C++》（一）让自己习惯C++">
+                《Effective C++》（一）让自己习惯C++ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Rita Wu">
+            
+              <p class="site-author-name" itemprop="name">Rita Wu</p>
+              <p class="site-description motion-element" itemprop="description">本站用于记录个人学习、工作经验</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#类型转换名称和语法"><span class="nav-number">1.</span> <span class="nav-text">类型转换名称和语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类型转换一般性"><span class="nav-number">2.</span> <span class="nav-text">类型转换一般性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#典型用法"><span class="nav-number">3.</span> <span class="nav-text">典型用法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#static-cast和reinterpret-cast"><span class="nav-number">3.1.</span> <span class="nav-text">static_cast和reinterpret_cast</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#const-cast用法"><span class="nav-number">3.2.</span> <span class="nav-text">const_cast用法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#注意"><span class="nav-number">3.3.</span> <span class="nav-text">注意</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rita Wu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

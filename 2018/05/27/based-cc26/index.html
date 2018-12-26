@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C++,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在C++中的类模板快速了解！">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++基础知识之&quot;类模板&quot;">
+<meta property="og:url" content="wuxiaoleisuperlei.github.io/2018/05/27/based-cc26/index.html">
+<meta property="og:site_name" content="Welcome to Rita&#39;s World">
+<meta property="og:description" content="在C++中的类模板快速了解！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/d12ed30b4075c71980ca61648d0f853d.jpg">
+<meta property="og:updated_time" content="2018-12-25T06:49:16.466Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++基础知识之&quot;类模板&quot;">
+<meta name="twitter:description" content="在C++中的类模板快速了解！">
+<meta name="twitter:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/d12ed30b4075c71980ca61648d0f853d.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="wuxiaoleisuperlei.github.io/2018/05/27/based-cc26/">
+
+
+
+
+
+  <title>C++基础知识之"类模板" | Welcome to Rita's World</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  <script type="text/javascript" color="0,0,255" opacity="0.4" zindex="-2" count="5" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Welcome to Rita's World</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">知识的搬运工</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="wuxiaoleisuperlei.github.io/2018/05/27/based-cc26/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Rita Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome to Rita's World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++基础知识之"类模板"</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-27T18:15:22+08:00">
+                2018-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  在C++中的类模板快速了解！
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/d12ed30b4075c71980ca61648d0f853d.jpg" alt="fengjingtu"></p>
+<h4 id="为什么需要类模板"><a href="#为什么需要类模板" class="headerlink" title="为什么需要类模板"></a>为什么需要类模板</h4><p>类模板与函数模板的定义和使用类似，我们已经进行了介绍。 有时，有两个或多个类，其功能是相同的，仅仅是数据类型不同，如下面语句声明了一个类：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//类模板由模板说明和类说明构成</span></span><br><span class="line"><span class="comment">//template &lt;类型形式参数表&gt;</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TClass</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	Type DateMember;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>类模板用于实现类所需数据的类型参数化</p>
+<p>类模板在表示如数组、表、图等数据结构显得特别重要，这些数据结构的表示和算法不受所包含的元素类型的影响</p>
+<h4 id="单个类模板语法"><a href="#单个类模板语法" class="headerlink" title="单个类模板语法"></a>单个类模板语法</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//类的类型参数化抽象的类</span></span><br><span class="line"><span class="comment">//单个类模板</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	A(T t)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">this</span>-&gt;t = t;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function">T &amp;<span class="title">getT</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> t;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	T t;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="comment">//模板了中如果使用了构造函数,则遵守以前的类的构造函数的调用规则</span></span><br><span class="line">	A&lt;<span class="keyword">int</span>&gt;  a(<span class="number">100</span>); </span><br><span class="line">	a.getT();</span><br><span class="line">	printAA(a);</span><br><span class="line">	<span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="继承中的类模板语法"><a href="#继承中的类模板语法" class="headerlink" title="继承中的类模板语法"></a>继承中的类模板语法</h4><p>子类从模板类继承的时候,需要让编译器知道父类的数据类型具体是什么(数据类型的本质:固定大小内存块的别名）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> :</span> <span class="keyword">public</span> A&lt;<span class="keyword">int</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	B(<span class="keyword">int</span> i) : A&lt;<span class="keyword">int</span>&gt;(i)</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">printB</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"A:"</span>&lt;&lt;t&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//模板与上继承</span></span><br><span class="line"><span class="comment">//怎么样从基类继承  </span></span><br><span class="line"><span class="comment">//若基类只有一个带参数的构造函数,子类是如何启动父类的构造函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pintBB</span><span class="params">(B &amp;b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	b.printB();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printAA</span><span class="params">(A&lt;<span class="keyword">int</span>&gt; &amp;a)</span>  <span class="comment">//类模板做函数参数 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	 <span class="comment">//</span></span><br><span class="line">	a.getT();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	A&lt;<span class="keyword">int</span>&gt;  a(<span class="number">100</span>); <span class="comment">//模板了中如果使用了构造函数,则遵守以前的类的构造函数的调用规则 </span></span><br><span class="line">	a.getT();</span><br><span class="line">	printAA(a);</span><br><span class="line"></span><br><span class="line">	<span class="function">B <span class="title">b</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line">	b.printB();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"hello..."</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="知识体系"><a href="#知识体系" class="headerlink" title="知识体系"></a>知识体系</h4><h5 id="所有的类模板函数写在类的内部"><a href="#所有的类模板函数写在类的内部" class="headerlink" title="所有的类模板函数写在类的内部"></a>所有的类模板函数写在类的内部</h5><h5 id="所有的类模板函数写在类的外部，在一个cpp中"><a href="#所有的类模板函数写在类的外部，在一个cpp中" class="headerlink" title="所有的类模板函数写在类的外部，在一个cpp中"></a>所有的类模板函数写在类的外部，在一个cpp中</h5><p>构造函数 没有问题<br>普通函数 没有问题<br>友元函数：用友元函数重载 &lt;&lt; &gt;&gt;<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">friend</span> ostream&amp; <span class="keyword">operator</span>&lt;&lt; &lt;T&gt; (ostream &amp;out, Complex&lt;T&gt; &amp;c3) ;</span><br></pre></td></tr></table></figure></p>
+<p>友元函数：友元函数不是实现函数重载（非 &lt;&lt; &gt;&gt;）<br>1）需要在类前增加类的前置声明函数的前置声明 </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span>;</span>  </span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">Complex&lt;T&gt; mySub(Complex&lt;T&gt; &amp;c1, Complex&lt;T&gt; &amp;c2);</span><br></pre></td></tr></table></figure>
+<p>2）类的内部声明必须写成: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">friend</span> Complex&lt;T&gt; mySub &lt;T&gt; (Complex&lt;T&gt; &amp;c1, Complex&lt;T&gt; &amp;c2);</span><br></pre></td></tr></table></figure>
+<p>3）友元函数实现必须写成</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">Complex&lt;T&gt; mySub(Complex&lt;T&gt; &amp;c1, Complex&lt;T&gt; &amp;c2)</span><br><span class="line">&#123;</span><br><span class="line">	Complex&lt;T&gt; tmp(c1.a - c2.a, c1.b-c2.b);</span><br><span class="line">	<span class="keyword">return</span> tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4）友元函数调用 必须写成:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Complex&lt;<span class="keyword">int</span>&gt; c4 = mySub&lt;<span class="keyword">int</span>&gt;(c1, c2);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;c4;</span><br></pre></td></tr></table></figure>
+<p>结论：友元函数只用来进行左移友移操作符重载。</p>
+<h5 id="所有的类模板函数写在类的外部，在不同的-h和-cpp中"><a href="#所有的类模板函数写在类的外部，在不同的-h和-cpp中" class="headerlink" title="所有的类模板函数写在类的外部，在不同的.h和.cpp中"></a>所有的类模板函数写在类的外部，在不同的.h和.cpp中</h5><p>也就是类模板函数说明和类模板实现分开</p>
+<p>类模板函数</p>
+<p>构造函数</p>
+<p>普通成员函数</p>
+<p>友元函数</p>
+<p>用友元函数重载&lt;&lt;&gt;&gt;; </p>
+<p>用友元函数重载非&lt;&lt; &gt;&gt;</p>
+<p>要包含.cpp</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p><strong>归纳以上的介绍，可以这样声明和使用类模板：</strong></p>
+<p>1) 先写出一个实际的类。由于其语义明确，含义清楚，一般不会出错。</p>
+<p>2) 将此类中准备改变的类型名(如int要改变为float或char)改用一个自己指定的虚拟类型名(如上例中的numtype)。</p>
+<p>3) 在类声明前面加入一行，格式为：</p>
+<p>​    template <class 虚拟类型参数=""></class></p>
+<p>如：</p>
+<p>​    template <class numtype=""> //注意本行末尾无分号</class></p>
+<p>​    class Compare</p>
+<p>​    {…}; //类体</p>
+<p>4) 用类模板定义对象时用以下形式：</p>
+<p>​    类模板名&lt;实际类型名&gt; 对象名;</p>
+<p>​    类模板名&lt;实际类型名&gt; 对象名(实参表列);</p>
+<p>如：</p>
+<p>​    Compare<int> cmp;</int></p>
+<p>​    Compare<int> cmp(3,7);</int></p>
+<p>5) 如果在类模板外定义成员函数，应写成类模板形式：</p>
+<p>   template <class 虚拟类型参数=""></class></p>
+<p>   函数类型 类模板名&lt;虚拟类型参数&gt;::成员函数名(函数形参表列) {…}</p>
+<p><strong>关于类模板的几点说明：</strong></p>
+<p>1) 类模板的类型参数可以有一个或多个，每个类型前面都必须加class，如：</p>
+<p>​    template <class t1,class="" t2=""></class></p>
+<p>​    class someclass</p>
+<p>​    {…};</p>
+<p>在定义对象时分别代入实际的类型名，如：</p>
+<p>​    someclass&lt;int,double&gt; obj;</p>
+<p>2) 和使用类一样，使用类模板时要注意其作用域，只能在其有效作用域内用它定义对象。</p>
+<p>3) 模板可以有层次，一个类模板可以作为基类，派生出派生模板类。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//类B和类A十分相似</span></span><br><span class="line"><span class="comment">//类中的成员可以类属</span></span><br><span class="line"><span class="comment">//让数据结构的表示和算法不受所包含的元素类型的影响</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//单个类模板</span></span><br><span class="line"><span class="comment">//继承中的类模板</span></span><br><span class="line"><span class="comment">//能够使数据结构和算法分离</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TClass</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Type t;</span><br><span class="line">	TClass(Type a=<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		t = a;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"构造函数"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	~TClass()</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"析构函数"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">printfT</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"t="</span> &lt;&lt; t &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//类模板做函数参数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">useTClass</span><span class="params">(TClass&lt;<span class="keyword">int</span>&gt; &amp;a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	a.printfT();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">class_template_test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//模板类本身就是类型化的，由他生成具体的类，再有具体类生成对象</span></span><br><span class="line">	TClass&lt;<span class="keyword">int</span>&gt; t1(<span class="number">11</span>);<span class="comment">//模板类是抽象的，需要进行类型具体化</span></span><br><span class="line">	t1.printfT();</span><br><span class="line">	TClass&lt;<span class="keyword">float</span>&gt; t2(<span class="number">11.11</span>);</span><br><span class="line">	t2.printfT();</span><br><span class="line">	TClass&lt;<span class="keyword">char</span>&gt; t3(<span class="string">'a'</span>);</span><br><span class="line">	t3.printfT();</span><br><span class="line">	useTClass(t1);<span class="comment">//类模板做函数参数的调用</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main_class_template_test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	class_template_test();</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="继承中的类模板"><a href="#继承中的类模板" class="headerlink" title="继承中的类模板"></a>继承中的类模板</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TClassA</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Type t;</span><br><span class="line">	TClassA(Type a = <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		t = a;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"构造函数"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	~TClassA()</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"析构函数"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">printfT</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"t="</span> &lt;&lt; t &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TClassB</span>:</span><span class="keyword">public</span> TClassA &lt;Type&gt;</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Type m;</span><br><span class="line">	TClassB(Type a ,Type b):TClassA&lt;Type&gt;(a)</span><br><span class="line">	&#123;</span><br><span class="line">		m = b;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"构造函数"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	~TClassB()</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"析构函数"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">printfM</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"m="</span> &lt;&lt; m &lt;&lt; <span class="string">" t="</span> &lt;&lt; t &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">temp_inherit_temp</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	TClassB&lt;<span class="keyword">int</span>&gt; b1(<span class="number">10</span>, <span class="number">20</span>);</span><br><span class="line">	TClassB&lt;<span class="keyword">float</span>&gt; b2(<span class="number">10.5</span>, <span class="number">20.5</span>);</span><br><span class="line">	TClassB&lt;<span class="keyword">char</span>&gt; b3(<span class="string">'a'</span>,<span class="string">'b'</span>);</span><br><span class="line"></span><br><span class="line">	b1.printfM();</span><br><span class="line">	b2.printfM();</span><br><span class="line">	b3.printfM();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main_temp_inherit_temp</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	temp_inherit_temp();</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="类模板中的static关键字"><a href="#类模板中的static关键字" class="headerlink" title="类模板中的static关键字"></a>类模板中的static关键字</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//子模板类派生时，需要具体化模板类。C++编译器需要知道父类的数据类型具体是什么样子的。</span></span><br><span class="line"><span class="comment">//要知道父类所占的内存大小是多少。</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TClass2</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Type t;</span><br><span class="line">	TClass2(Type a = <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		t = a;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"构造函数"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	~TClass2()</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"析构函数"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">printfT</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"t="</span> &lt;&lt; t &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//派生</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TClass3</span> :</span><span class="keyword">public</span> TClass2&lt;<span class="keyword">int</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	TClass3(<span class="keyword">int</span> a=<span class="number">10</span>,<span class="keyword">int</span> b=<span class="number">20</span>):TClass2&lt;<span class="keyword">int</span>&gt;(a)<span class="comment">//使用父类的构造函数的时候需要使用</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">this</span>-&gt;b = b;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">printfB</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"b="</span> &lt;&lt; b &lt;&lt; <span class="string">"  t="</span> &lt;&lt; t &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> b;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inherit_class_template_test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">TClass3 <span class="title">b1</span><span class="params">(<span class="number">1</span>, <span class="number">2</span>)</span></span>;</span><br><span class="line">	b1.printfB();</span><br><span class="line">	b1.printfT();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main_inherit_class_template_test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	inherit_class_template_test();</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="类模板中的static关键字-1"><a href="#类模板中的static关键字-1" class="headerlink" title="类模板中的static关键字"></a>类模板中的static关键字</h5><p>从类模板实例化的每个模板类有自己的类模板数据成员，该模板类的所有对象共享一个static数据成员</p>
+<p>和非模板类的static数据成员一样，模板类的static数据成员也应该在文件范围定义和初始化</p>
+<p>每个模板类有自己的类模板的static数据成员副本</p>
+<h4 id="类模板在项目开发中的应用"><a href="#类模板在项目开发中的应用" class="headerlink" title="类模板在项目开发中的应用"></a>类模板在项目开发中的应用</h4><p>小结</p>
+<p>模板是C++类型参数化的多态工具。C++提供函数模板和类模板。</p>
+<p>模板定义以模板说明开始。类属参数必须在模板定义中至少出现一次。</p>
+<p>同一个类属参数可以用于多个模板。</p>
+<p>类属参数可用于函数的参数类型、返回类型和声明函数中的变量。</p>
+<p>模板由编译器根据实际数据类型实例化，生成可执行代码。实例化的函数。</p>
+<p>​    模板称为模板函数；实例化的类模板称为模板类。</p>
+<p>函数模板可以用多种方式重载。</p>
+<p>类模板可以在类层次中使用 。</p>
+<a id="more"></a>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/26/based-cc25/" rel="next" title="C++基础知识之" 函数模板""="">
+                <i class="fa fa-chevron-left"></i> C++基础知识之"函数模板"
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/28/based-cc27/" rel="prev" title="C++基础知识之" 类型转换""="">
+                C++基础知识之"类型转换" <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Rita Wu">
+            
+              <p class="site-author-name" itemprop="name">Rita Wu</p>
+              <p class="site-description motion-element" itemprop="description">本站用于记录个人学习、工作经验</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么需要类模板"><span class="nav-number">1.</span> <span class="nav-text">为什么需要类模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单个类模板语法"><span class="nav-number">2.</span> <span class="nav-text">单个类模板语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#继承中的类模板语法"><span class="nav-number">3.</span> <span class="nav-text">继承中的类模板语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#知识体系"><span class="nav-number">4.</span> <span class="nav-text">知识体系</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#所有的类模板函数写在类的内部"><span class="nav-number">4.1.</span> <span class="nav-text">所有的类模板函数写在类的内部</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#所有的类模板函数写在类的外部，在一个cpp中"><span class="nav-number">4.2.</span> <span class="nav-text">所有的类模板函数写在类的外部，在一个cpp中</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#所有的类模板函数写在类的外部，在不同的-h和-cpp中"><span class="nav-number">4.3.</span> <span class="nav-text">所有的类模板函数写在类的外部，在不同的.h和.cpp中</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#继承中的类模板"><span class="nav-number">6.</span> <span class="nav-text">继承中的类模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类模板中的static关键字"><span class="nav-number">7.</span> <span class="nav-text">类模板中的static关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#类模板中的static关键字-1"><span class="nav-number">7.1.</span> <span class="nav-text">类模板中的static关键字</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类模板在项目开发中的应用"><span class="nav-number">8.</span> <span class="nav-text">类模板在项目开发中的应用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rita Wu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
