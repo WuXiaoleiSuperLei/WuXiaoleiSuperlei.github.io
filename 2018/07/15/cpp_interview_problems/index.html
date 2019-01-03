@@ -87,7 +87,7 @@
 <meta property="og:description" content="本文设置了1到C++面试题，快来挑战一下吧！">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/05/153951b9408aee0780bdf7e66a1777ab.jpg">
-<meta property="og:updated_time" content="2018-12-18T12:03:48.066Z">
+<meta property="og:updated_time" content="2018-12-27T03:49:40.229Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++面试题">
 <meta name="twitter:description" content="本文设置了1到C++面试题，快来挑战一下吧！">
@@ -358,6 +358,19 @@
 <p>B、hashtable,heap</p>
 <p>C、rbtree,heap</p>
 <p>D、hashtable,queue</p>
+<h5 id="new、delete、malloc、free关系"><a href="#new、delete、malloc、free关系" class="headerlink" title="new、delete、malloc、free关系"></a>new、delete、malloc、free关系</h5><p>new和malloc在动态开辟空间的时候使用，delete和free在释放动态开辟的空间时候使用，new和delete对应，malloc和free对应。</p>
+<p>new和delete是运算符，malloc和free是函数。</p>
+<p>new一个类的时候，会调用构造函数，delete一个类的时候调用析构函数。malloc和free不会调用构造函数和析构函数，原因是：malloc和free是库函数不是运算符，他们不再编译器的控制权限之内。不能够把构造和析构的任务强加于他们。</p>
+<p>对于非内部数据类型的对象而言，malloc和free是不够用的。</p>
+<h5 id="delete和delete"><a href="#delete和delete" class="headerlink" title="delete和delete[]"></a>delete和delete[]</h5><p>delete只会调用一次析构函数，而delete[]会调用每一个成员的析构函数。delete和new配合，delete[]和new[]配合。当delete操作符用于数组时，它为每一个数组成员调用析构函数。</p>
+<h5 id="子类析构的时候要调用父类的析构函数吗"><a href="#子类析构的时候要调用父类的析构函数吗" class="headerlink" title="子类析构的时候要调用父类的析构函数吗"></a>子类析构的时候要调用父类的析构函数吗</h5><p>析构函数的调用顺序与构造函数的调用顺序相反，构造时先调用父类的构造函数，然后调用子类的构造函数，析构时候先调用子类的析构函数，再调用父类的析构函数。</p>
+<h5 id="多态，虚函数，纯虚函数"><a href="#多态，虚函数，纯虚函数" class="headerlink" title="多态，虚函数，纯虚函数"></a>多态，虚函数，纯虚函数</h5><p>多态：对于不同的对象接收相同的消息时候产生不同的动作，C++的多态性具体体现在运行和编译两个方面：在程序运行时的多态通过集成和虚函数来体现，在程序编译时候的多态性体现在函数和运算符的重载上。</p>
+<p>虚函数：在基类中，用关键字virtual修饰的函数，就是虚函数。允许在派生类中对基类的虚函数重新定义。</p>
+<p>纯虚函数：在基类中没有定义，只有声明的虚函数，就是纯虚函数，含有虚函数的基类称为抽象类，抽象类不能被实例化。抽象类可以定义引用和指针。</p>
+<h5 id="什么是引用，声明和使用引用要注意什么问题"><a href="#什么是引用，声明和使用引用要注意什么问题" class="headerlink" title="什么是引用，声明和使用引用要注意什么问题"></a>什么是引用，声明和使用引用要注意什么问题</h5><p>引用就是某个变量的别名，对应的操作与直接操作变量的效果相同。声明一个引用的时候，必须对他进行初始化，使用时，不能把引用作为其他变量的别名，不可以再被赋值。不能建立数组的引用。</p>
+<h5 id="将引用作为函数参数有哪儿些特点"><a href="#将引用作为函数参数有哪儿些特点" class="headerlink" title="将引用作为函数参数有哪儿些特点"></a>将引用作为函数参数有哪儿些特点</h5><p>传递引用和传递指针的效果是一样的，形参是实参的一个别名。</p>
+<p>因为不需要创建新的对象，在内存空间，和拷贝构造函数方面效率高。</p>
+<h5 id="在什么时候需要使用常引用"><a href="#在什么时候需要使用常引用" class="headerlink" title="在什么时候需要使用常引用"></a>在什么时候需要使用常引用</h5><p>在希望传递给函数的数据在函数中不要被改变的时候，就应该使用常引用。</p>
 <h4 id="答案与解析："><a href="#答案与解析：" class="headerlink" title="答案与解析："></a>答案与解析：</h4><table>
 <thead>
 <tr>
@@ -596,7 +609,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、（不定项选择）引用与指针有什么区别？"><span class="nav-number">1.1.</span> <span class="nav-text">1、（不定项选择）引用与指针有什么区别？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、如果是类-B-在类-A-的基础上构造，那么就称（-）。"><span class="nav-number">1.2.</span> <span class="nav-text">2、如果是类 B 在类 A 的基础上构造，那么就称（   ）。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、下面程序的输出是（）"><span class="nav-number">1.3.</span> <span class="nav-text">3、下面程序的输出是（）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、STL中的unordered-map和priority-queue使用的底层数据结构分别是什么"><span class="nav-number">1.4.</span> <span class="nav-text">4、STL中的unordered_map和priority_queue使用的底层数据结构分别是什么?()</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#答案与解析："><span class="nav-number">2.</span> <span class="nav-text">答案与解析：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、答案：ACD。"><span class="nav-number">2.1.</span> <span class="nav-text">1、答案：ACD。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、答案：B。"><span class="nav-number">2.2.</span> <span class="nav-text">2、答案：B。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、答案：B"><span class="nav-number">2.3.</span> <span class="nav-text">3、答案：B</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、答案：B"><span class="nav-number">2.4.</span> <span class="nav-text">4、答案：B</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、（不定项选择）引用与指针有什么区别？"><span class="nav-number">1.1.</span> <span class="nav-text">1、（不定项选择）引用与指针有什么区别？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、如果是类-B-在类-A-的基础上构造，那么就称（-）。"><span class="nav-number">1.2.</span> <span class="nav-text">2、如果是类 B 在类 A 的基础上构造，那么就称（   ）。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、下面程序的输出是（）"><span class="nav-number">1.3.</span> <span class="nav-text">3、下面程序的输出是（）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、STL中的unordered-map和priority-queue使用的底层数据结构分别是什么"><span class="nav-number">1.4.</span> <span class="nav-text">4、STL中的unordered_map和priority_queue使用的底层数据结构分别是什么?()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#new、delete、malloc、free关系"><span class="nav-number">1.5.</span> <span class="nav-text">new、delete、malloc、free关系</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#delete和delete"><span class="nav-number">1.6.</span> <span class="nav-text">delete和delete[]</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#子类析构的时候要调用父类的析构函数吗"><span class="nav-number">1.7.</span> <span class="nav-text">子类析构的时候要调用父类的析构函数吗</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#多态，虚函数，纯虚函数"><span class="nav-number">1.8.</span> <span class="nav-text">多态，虚函数，纯虚函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是引用，声明和使用引用要注意什么问题"><span class="nav-number">1.9.</span> <span class="nav-text">什么是引用，声明和使用引用要注意什么问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#将引用作为函数参数有哪儿些特点"><span class="nav-number">1.10.</span> <span class="nav-text">将引用作为函数参数有哪儿些特点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在什么时候需要使用常引用"><span class="nav-number">1.11.</span> <span class="nav-text">在什么时候需要使用常引用</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#答案与解析："><span class="nav-number">2.</span> <span class="nav-text">答案与解析：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、答案：ACD。"><span class="nav-number">2.1.</span> <span class="nav-text">1、答案：ACD。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、答案：B。"><span class="nav-number">2.2.</span> <span class="nav-text">2、答案：B。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、答案：B"><span class="nav-number">2.3.</span> <span class="nav-text">3、答案：B</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、答案：B"><span class="nav-number">2.4.</span> <span class="nav-text">4、答案：B</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -616,7 +629,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
