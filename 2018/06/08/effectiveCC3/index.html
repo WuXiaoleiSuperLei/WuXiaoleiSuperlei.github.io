@@ -87,7 +87,7 @@
 <meta property="og:description" content="有人说C++程序员可以分成两类，读过《Effective C++》和没读过的！">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/53bb1eaa40d9c68780bfaf5a7328ae07.jpg">
-<meta property="og:updated_time" content="2018-12-20T03:36:01.190Z">
+<meta property="og:updated_time" content="2019-01-04T01:38:55.343Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Effective C++》（三）资源管理">
 <meta name="twitter:description" content="有人说C++程序员可以分成两类，读过《Effective C++》和没读过的！">
@@ -342,10 +342,10 @@
       
         <p>读过这本书，就获得了迅速提升自己C++功力的契机，地位就是这么高。</p>
 <p><img src="http://bmob-cdn-22211.b0.upaiyun.com/2018/11/02/53bb1eaa40d9c68780bfaf5a7328ae07.jpg" alt="fengjingtu"></p>
-<p><strong>Effec C++</strong></p>
-<p><strong>改善程序与设计的55个具体做法</strong></p>
-<p><strong>[美] Scott Meyers 著</strong></p>
-<h4 id="3-资源管理"><a href="#3-资源管理" class="headerlink" title="3. 资源管理"></a>3. 资源管理</h4><h4 id="4-设计与声明"><a href="#4-设计与声明" class="headerlink" title="4. 设计与声明"></a>4. 设计与声明</h4><h4 id="5-实现"><a href="#5-实现" class="headerlink" title="5.实现"></a>5.实现</h4><h4 id="6-继承与面向对象设计"><a href="#6-继承与面向对象设计" class="headerlink" title="6.继承与面向对象设计"></a>6.继承与面向对象设计</h4><h4 id="7-模板与泛型编程"><a href="#7-模板与泛型编程" class="headerlink" title="7.模板与泛型编程"></a>7.模板与泛型编程</h4><h4 id="8-定制new和delete"><a href="#8-定制new和delete" class="headerlink" title="8.定制new和delete"></a>8.定制new和delete</h4><h4 id="9-杂项讨论"><a href="#9-杂项讨论" class="headerlink" title="9. 杂项讨论"></a>9. 杂项讨论</h4><a id="more"></a>
+<p>所谓资源就是一旦用了它，就必须将它还给系统，如果不这样，糟糕的事情就会发生。C++程序中最常使用的资源就是动态内存分配，但内存只是你必须管理的众多资源之一，其他常见的资源还包括文件描述符，互斥锁，图形界面中的字形和笔刷，数据库连接，以及网络sockets。不论哪儿一种资源，重要的是，当你不再使用它时，必须将它还给系统。</p>
+<h4 id="条款13：以对象管理资源"><a href="#条款13：以对象管理资源" class="headerlink" title="条款13：以对象管理资源"></a>条款13：以对象管理资源</h4><p>假设我们使用一个塑模投资行为的程序库，其中各式各样的投资类型继承自一个root class Investment：</p>
+<p>进一步假设，这个程序库</p>
+<h4 id="条款14：在资源管理类中小心copying行为"><a href="#条款14：在资源管理类中小心copying行为" class="headerlink" title="条款14：在资源管理类中小心copying行为"></a>条款14：在资源管理类中小心copying行为</h4><h4 id="条款15：在资源管理类中提供对原始资源的访问"><a href="#条款15：在资源管理类中提供对原始资源的访问" class="headerlink" title="条款15：在资源管理类中提供对原始资源的访问"></a>条款15：在资源管理类中提供对原始资源的访问</h4><h4 id="条款16-成对使用new-和delete时要采用相同形式"><a href="#条款16-成对使用new-和delete时要采用相同形式" class="headerlink" title="条款16 成对使用new 和delete时要采用相同形式"></a>条款16 成对使用new 和delete时要采用相同形式</h4><h4 id="条款17：以独立语句将newed对象置入智能指针"><a href="#条款17：以独立语句将newed对象置入智能指针" class="headerlink" title="条款17：以独立语句将newed对象置入智能指针"></a>条款17：以独立语句将newed对象置入智能指针</h4><a id="more"></a>
       
     </div>
     
@@ -466,7 +466,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -521,7 +521,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-资源管理"><span class="nav-number">1.</span> <span class="nav-text">3. 资源管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-设计与声明"><span class="nav-number">2.</span> <span class="nav-text">4. 设计与声明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-实现"><span class="nav-number">3.</span> <span class="nav-text">5.实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-继承与面向对象设计"><span class="nav-number">4.</span> <span class="nav-text">6.继承与面向对象设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-模板与泛型编程"><span class="nav-number">5.</span> <span class="nav-text">7.模板与泛型编程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-定制new和delete"><span class="nav-number">6.</span> <span class="nav-text">8.定制new和delete</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-杂项讨论"><span class="nav-number">7.</span> <span class="nav-text">9. 杂项讨论</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#条款13：以对象管理资源"><span class="nav-number">1.</span> <span class="nav-text">条款13：以对象管理资源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条款14：在资源管理类中小心copying行为"><span class="nav-number">2.</span> <span class="nav-text">条款14：在资源管理类中小心copying行为</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条款15：在资源管理类中提供对原始资源的访问"><span class="nav-number">3.</span> <span class="nav-text">条款15：在资源管理类中提供对原始资源的访问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条款16-成对使用new-和delete时要采用相同形式"><span class="nav-number">4.</span> <span class="nav-text">条款16 成对使用new 和delete时要采用相同形式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条款17：以独立语句将newed对象置入智能指针"><span class="nav-number">5.</span> <span class="nav-text">条款17：以独立语句将newed对象置入智能指针</span></a></li></ol></div>
             
 
           </div>
